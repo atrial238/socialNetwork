@@ -1,0 +1,8 @@
+.wrapper{
+	grid-area: n;
+	background-color:burlywood;
+	padding: 15px;
+}
+.nav{
+	margin-bottom: 15px;
+}

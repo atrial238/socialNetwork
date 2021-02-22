@@ -1,0 +1,12 @@
+.wrapper{
+	color: #fff;
+}
+.title{
+	font-size: 30px;
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+}
+.friendsWrapper{
+	display: flex;
+	justify-content: space-between;
+}

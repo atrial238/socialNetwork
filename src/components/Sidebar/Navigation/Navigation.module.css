@@ -1,0 +1,13 @@
+.nav{
+	margin-bottom: 40px;
+}
+.item {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+.item.active {
+	color:brown;
+}
