@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 
 
-function App({state, addPost, changeStateWhenTextareaInput, changeStateWhenMessageTyping, addMessage}) {
+function App({state}) {
 	return (
 		<Router>
 			<div className='app_wrapper'>
@@ -14,10 +14,7 @@ function App({state, addPost, changeStateWhenTextareaInput, changeStateWhenMessa
 				<Content 
 					className='app_wrapper_content' 
 					content={state.content}
-					addPost={addPost}
-					changeStateWhenTextareaInput={changeStateWhenTextareaInput}
-					changeStateWhenMessageTyping ={changeStateWhenMessageTyping}
-					addMessage={addMessage}
+					state={state}
 				/>
 			</div>
 		</Router>

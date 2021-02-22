@@ -3,7 +3,7 @@ import DeployMessage from './DeployMessage/DeployMessage';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.css';
 
-const Messages = ({messages, changeStateWhenMessageTyping, addMessage}) => {
+const Messages = ({messages, state}) => {
 
 	return (
 		<div className={wrapper}>
@@ -11,8 +11,7 @@ const Messages = ({messages, changeStateWhenMessageTyping, addMessage}) => {
 			<DeployMessage 
 				arrMessages={messages.arrMessages}
 				temporaryMessage={messages.temporaryMessage}
-				changeStateWhenMessageTyping ={changeStateWhenMessageTyping}
-				addMessage={addMessage}
+				state={state}
 			/>
 		</div>
 	)

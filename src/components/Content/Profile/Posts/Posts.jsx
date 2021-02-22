@@ -2,14 +2,14 @@ import React from 'react';
 import Post from './Post/Post';
 import {form} from './Posts.module.css';
 
-const Posts = ({profile, addPost, changeStateWhenTextareaInput}) => {
+const Posts = ({profile, state}) => {
 	
 	const postElement = profile.postData.map( post => <Post text={post.text} like={post.like}/> );
 	const refTextatea = React.createRef();
+	
+	const postMessage = () => state.addPost();
 
-	const postMessage = () => addPost();
-
-	const changeStateFromInput = () => changeStateWhenTextareaInput(refTextatea.current.value);
+	const changeStateFromInput = () => state.changeStateWhenTextareaInput(refTextatea.current.value);
 
 	return (
 		<div >

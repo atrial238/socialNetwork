@@ -2,12 +2,12 @@ import React from 'react';
 import { wrapper, form, column, textarea } from './DeployMessage.module.css';
 import OneMessage from './OneMessage/OneMessage';
 
-const DeployMessage = ({ temporaryMessage, arrMessages, changeStateWhenMessageTyping, 	addMessage}) => {
+const DeployMessage = ({ temporaryMessage, arrMessages, state}) => {
 
 	const arrMessagesElements =arrMessages.map(message => <OneMessage text={message.text} pathImg={message.pathImg} />);
 	const refTextarea = React.createRef();
-	const sendMessage = () => addMessage();
-	const changeGlobalState = () => changeStateWhenMessageTyping(refTextarea.current.value);
+	const sendMessage = () => state.addMessage();
+	const changeGlobalState = () => state.changeStateWhenMessageTyping(refTextarea.current.value);
 	return (
 		<div className={wrapper}>
 			<div className={column}>

@@ -38,64 +38,64 @@ const state = {
 		]
 	},
 	renderAllApp: '',
-	subscribe: (observer) => {
+	subscribe: function(observer) {
 		this.renderAllApp = observer;
 	},
-	addPost: () => {
+	addPost: function () {
 		const newObj = {id: '6', text: this.content.profile.temporaryValue, like: '0'};
 		this.content.profile.postData.push(newObj);
 		this.content.profile.temporaryValue = '';
-		renderAllApp(this);
+		this.renderAllApp(this);
 	},
-	changeStateWhenTextareaInput: (valueInput) => {
+	changeStateWhenTextareaInput: function (valueInput) {
 		this.content.profile.temporaryValue = valueInput;
-		renderAllApp(this);
+		this.renderAllApp(this);
 	},
-	addMessage: () => {
+	addMessage: function () {
 		let newObjMessage = { 
 			text: this.content.messages.temporaryMessage,
 			pathImg:  'https://i.pinimg.com/564x/a3/79/29/a3792984c6423f3c216e39a193e93d48.jpg'
 		};
 		this.content.messages.arrMessages.push(newObjMessage);
 		this.content.messages.temporaryMessage ='';
-		renderAllApp(this);
+		this.renderAllApp(this);
 	},
-	changeStateWhenMessageTyping: (value) => {
+	changeStateWhenMessageTyping: function (value) {
 		this.content.messages.temporaryMessage = value;
-		renderAllApp(this);
+		this.renderAllApp(this);
 	}
 
 }
 
 window.state = state;
 
-export const subscribe = (observer) => {
-	renderAllApp = observer;
-}
-export const addPost = () => {
+// export const subscribe = (observer) => {
+// 	renderAllApp = observer;
+// }
+// export const addPost = () => {
 	
-	const newObj = {id: '6', text: state.content.profile.temporaryValue, like: '0'};
-	state.content.profile.postData.push(newObj);
-	state.content.profile.temporaryValue = '';
-	renderAllApp(state);
-}
-export const changeStateWhenTextareaInput = (valueInput) => {
+// 	const newObj = {id: '6', text: state.content.profile.temporaryValue, like: '0'};
+// 	state.content.profile.postData.push(newObj);
+// 	state.content.profile.temporaryValue = '';
+// 	renderAllApp(state);
+// }
+// export const changeStateWhenTextareaInput = (valueInput) => {
 	
-	state.content.profile.temporaryValue = valueInput;
-	renderAllApp(state);
-}
+// 	state.content.profile.temporaryValue = valueInput;
+// 	renderAllApp(state);
+// }
 
-export const addMessage = () => {
-	let newObjMessage = { 
-		text: state.content.messages.temporaryMessage,
-		pathImg:  'https://i.pinimg.com/564x/a3/79/29/a3792984c6423f3c216e39a193e93d48.jpg'
-	};
-	state.content.messages.arrMessages.push(newObjMessage);
-	state.content.messages.temporaryMessage ='';
-	renderAllApp(state);
-}
-export const changeStateWhenMessageTyping = (value) => {
-	state.content.messages.temporaryMessage = value;
-	renderAllApp(state);
-}
+// export const addMessage = () => {
+// 	let newObjMessage = { 
+// 		text: state.content.messages.temporaryMessage,
+// 		pathImg:  'https://i.pinimg.com/564x/a3/79/29/a3792984c6423f3c216e39a193e93d48.jpg'
+// 	};
+// 	state.content.messages.arrMessages.push(newObjMessage);
+// 	state.content.messages.temporaryMessage ='';
+// 	renderAllApp(state);
+// }
+// export const changeStateWhenMessageTyping = (value) => {
+// 	state.content.messages.temporaryMessage = value;
+// 	renderAllApp(state);
+// }
 export default state;

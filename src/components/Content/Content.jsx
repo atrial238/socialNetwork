@@ -7,20 +7,18 @@ import Music from './Music/Music';
 import Settings from './Settings/Settings';
 import { content_style } from './Content.module.css';
 
-const Content = ({content, addPost, changeStateWhenTextareaInput, changeStateWhenMessageTyping, addMessage}) => {
+const Content = ({content, state}) => {
 	return (
 		<div className={content_style}>
 			<Route path='/profile' render={() => <Profile 
 																profile={content.profile} 
-																addPost={addPost}
-																changeStateWhenTextareaInput={changeStateWhenTextareaInput}
+																state={state}
 																/>} 
 			/>
 			<Route path='/messages' render={() => 
 				<Messages 
 					messages={content.messages}
-					changeStateWhenMessageTyping ={changeStateWhenMessageTyping}
-					addMessage={addMessage}
+					state={state}
 				/>}
 			/>
 			<Route path='/news' component={News} />
