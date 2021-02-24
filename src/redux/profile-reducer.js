@@ -15,9 +15,37 @@ const changeStateWhenTextareaInput = (state, valueInput) => {
 	state.temporaryValue = valueInput;
 	return state;
 }
+const initState = {
+	postData: [{
+		id: '1',
+		text: 'Something really important was written here1',
+		like: '33'
+	},
+	{
+		id: '2',
+		text: 'Something really important was written here2',
+		like: '3'
+	},
+	{
+		id: '3',
+		text: 'Something really important was written here3',
+		like: '53'
+	},
+	{
+		id: '4',
+		text: 'Something really important was written here4',
+		like: '63'
+	},
+	{
+		id: '5',
+		text: 'Something really important was written here5',
+		like: '14'
+	},
+	],
+	temporaryValue: ''
+}
 
-
-const profileReducer = (state, action) => {
+const profileReducer = (state = initState, action) => {
 	switch(action.type){
 		case ADD_POST:
 			return addPost(state);

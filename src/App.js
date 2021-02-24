@@ -13,7 +13,7 @@ function App({state, dispatch}) {
 				<Sidebar state={state.sidebar}/>
 				<Content 
 					className='app_wrapper_content' 
-					content={state.content}
+					content={state}
 					dispatch={dispatch}
 				/>
 			</div>
