@@ -7,13 +7,26 @@ const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
 
 
 const addPost = (state) => {
-	state.postData.push( {id: '6', text: state.temporaryValue, like: '0'} );
-	state.temporaryValue = '';
-	return state;
+	// const stateCopy = {...state};
+	// stateCopy.postData = [...state.postData];
+	// stateCopy.postData.push( {id: '6', text: state.temporaryValue, like: '0'} );
+	// stateCopy.temporaryValue = '';
+	// return stateCopy;
+	return {
+		...state,
+		postData: [...state.postData, {id: '6', text: state.temporaryValue, like: '0'} ],
+		temporaryValue: ''
+
+	}
 }
 const changeStateWhenTextareaInput = (state, valueInput) => {
-	state.temporaryValue = valueInput;
-	return state;
+	// const stateCopy = {...state};
+	// stateCopy.temporaryValue = valueInput;
+	// return stateCopy;
+	return {
+		...state,
+		temporaryValue: valueInput
+	}
 }
 const initState = {
 	postData: [{

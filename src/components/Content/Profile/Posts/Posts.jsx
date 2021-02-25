@@ -1,21 +1,16 @@
-import React from 'react';
-import { changeGlobalStatePostActionCreator, postMesssgeActioncreator } from '../../../../redux/profile-reducer';
+import React from 'react'; 
 import Post from './Post/Post';
 import {form} from './Posts.module.css';
 
-const Posts = ({profile, dispatch}) => {
+const Posts = ({postData, temporaryValue, postMessage, changeClobalStatePost}) => {
 	
-	const postElement = profile.postData.map( post => <Post text={post.text} like={post.like}/> );
-	
-	const postMessage = () => dispatch(postMesssgeActioncreator());
-
-	const changeClobalStatePost = (e) => dispatch(changeGlobalStatePostActionCreator(e.target.value));
+	const postElement = postData.map( post => <Post text={post.text} like={post.like}/> );
 	
 	return (
 		<div >
 			<h2>My posts</h2>
 			<div className={form}>
-				<textarea value={profile.temporaryValue} placeholder='your news...'  onChange={changeClobalStatePost}></textarea>
+				<textarea value={temporaryValue} placeholder='your news...' onChange={(e) => changeClobalStatePost(e.target.value)}></textarea>
 				<button  onClick={postMessage} >send</button>
 			</div>
 			{postElement}

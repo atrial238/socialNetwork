@@ -5,12 +5,12 @@ import Navigation from './Navigation/Navigation';
 
 
 
-const Sidebar = ({state}) => {
+const Sidebar = ({store}) => {
 	
 	return (
 		<div className={wrapper}>
 			<Navigation/>
-			<Friends friends={state.friends}/>
+			<Friends friends={store.getState().sidebar.friends}/>
 		</div>
 	)
 }

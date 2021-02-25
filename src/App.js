@@ -5,15 +5,15 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 
 
-function App({state, dispatch}) {
+function App({store, dispatch}) {
 	return (
 		<Router>
 			<div className='app_wrapper'>
 				<Header/>
-				<Sidebar state={state.sidebar}/>
+				<Sidebar store={store}/>
 				<Content 
 					className='app_wrapper_content' 
-					content={state}
+					store={store}
 					dispatch={dispatch}
 				/>
 			</div>

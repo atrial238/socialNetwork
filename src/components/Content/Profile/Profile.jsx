@@ -1,18 +1,15 @@
 import React from 'react';
-import Posts from './Posts/Posts';
+import PostsContainer from './Posts/PostsContainer';
 import MyData from './MyData/MyData';
 import style from './Profile.module.css';
 import Cover from './Cover/Cover';
 
-const Profile = ({profile, dispatch}) => {
+const Profile = ({store, dispatch}) => {
 	return (
 		<div>
 			<Cover/>
 			<MyData/>
-			<Posts 
-				profile={profile}
-				dispatch={dispatch}
-			/>
+			<PostsContainer/>
 		 </div>
 
 	)

@@ -1,18 +1,14 @@
 import React from 'react';
-import DeployMessage from './DeployMessage/DeployMessage';
+import DeployMessageContainer from './DeployMessage/DeployMessageContainer';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.css';
 
-const Messages = ({messages, dispatch}) => {
+const Messages = ({store, dispatch}) => {
 
 	return (
 		<div className={wrapper}>
-			<Dialogs dialogsData={messages.dialogsData} />
-			<DeployMessage 
-				arrMessages={messages.arrMessages}
-				temporaryMessage={messages.temporaryMessage}
-				dispatch={dispatch}
-			/>
+			<Dialogs dialogsData={store.getState().messages.dialogsData} />
+			<DeployMessageContainer/>
 		</div>
 	)
 }

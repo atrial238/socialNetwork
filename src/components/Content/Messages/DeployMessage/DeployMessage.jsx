@@ -1,15 +1,10 @@
 import React from 'react';
-import { changeGlobalStateMessageActionCreator, sendMessageActionCreator } from '../../../../redux/message-reducer';
 import { wrapper, form, column, textarea } from './DeployMessage.module.css';
 import OneMessage from './OneMessage/OneMessage';
 
-const DeployMessage = ({ temporaryMessage, arrMessages, dispatch}) => {
+const DeployMessage = ({ temporaryMessage, arrMessages, sendMessage, changeGlobalStateMessage}) => {
 
-	const arrMessagesElements =arrMessages.map(message => <OneMessage text={message.text} pathImg={message.pathImg} />);
-	const refTextarea = React.createRef();
-	
-	const sendMessage = () => dispatch(sendMessageActionCreator());
-	const changeGlobalStateMessage = (e) => dispatch(changeGlobalStateMessageActionCreator(e.target.value));
+	const arrMessagesElements = arrMessages.map(message => <OneMessage text={message.text} pathImg={message.pathImg} />);
 
 	return (
 		<div className={wrapper}>
@@ -17,7 +12,7 @@ const DeployMessage = ({ temporaryMessage, arrMessages, dispatch}) => {
 				{arrMessagesElements}
 			</div>
 			<div className={form + ' ' + column}>
-				<textarea className={textarea}  onChange={changeGlobalStateMessage} value={temporaryMessage}></textarea>
+				<textarea className={textarea}  onChange={(e) => changeGlobalStateMessage(e.target.value)} value={temporaryMessage}></textarea>
 				<button  onClick={sendMessage}>send</button>
 			</div>
 		</div>
