@@ -4,7 +4,7 @@ import {form} from './Posts.module.css';
 
 const Posts = ({postData, temporaryValue, postMessage, changeClobalStatePost}) => {
 	
-	const postElement = postData.map( post => <Post text={post.text} like={post.like}/> );
+	const postElement = postData.map( post => <Post key={post.id} text={post.text} like={post.like}/> );
 	
 	return (
 		<div >

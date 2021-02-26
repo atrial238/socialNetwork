@@ -12,6 +12,7 @@ const Navigation = () => {
 			<div><NavLink className={item} activeClassName={active} to='/news'>News</NavLink></div>
 			<div><NavLink className={item} activeClassName={active} to='/music'>Music</NavLink></div>
 			<div><NavLink className={item} activeClassName={active} to='/settings'>Settings</NavLink></div>
+			<div><NavLink className={item} activeClassName={active} to='/findUsers'>Find users</NavLink></div>
 		</nav>
 	)
 }

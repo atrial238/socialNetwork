@@ -6,23 +6,17 @@ import store from './redux/store-redux';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 
-export const render = (store) => {
-
 	ReactDOM.render(
-		<React.StrictMode>
+		
 			<Provider store={store}>
 				<App 
 					store={store}
 					dispatch={store.dispatch.bind(store)}
 				/>
-		  </Provider>
-		</React.StrictMode>,
+		  </Provider>,
 		document.getElementById('root')
 	 );
-}
-render(store);
 
-store.subscribe(() => render(store));
-
+window.state = store.getState();
 
 reportWebVitals();

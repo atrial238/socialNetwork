@@ -4,7 +4,7 @@ import { title, wrapper } from './Dialogs.module.css';
 
 const Dialogs = ({dialogsData}) => {
 
-	const dialogsElement = dialogsData.map(dialog => <DialogsItem name={dialog.name} id={dialog.id} path={dialog.path} />)
+	const dialogsElement = dialogsData.map(dialog => <DialogsItem name={dialog.name} key={dialog.id} path={dialog.path} />)
 	
 	return (
 		<div className={wrapper}>

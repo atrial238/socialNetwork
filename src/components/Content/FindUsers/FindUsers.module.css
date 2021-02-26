@@ -1,0 +1,14 @@
+.friends{
+	margin-bottom: 30px;
+}
+.button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.button span {
+	background-color: burlywood;
+	padding: 15px;
+	cursor: pointer;
+	border-radius: 10px;
+}

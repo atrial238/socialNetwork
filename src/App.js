@@ -14,7 +14,6 @@ function App({store, dispatch}) {
 				<Content 
 					className='app_wrapper_content' 
 					store={store}
-					dispatch={dispatch}
 				/>
 			</div>
 		</Router>

@@ -4,7 +4,7 @@ import { wrapper, title, friendsWrapper} from './Friends.module.css';
 
 const Friends = ({friends}) => {
 
-	const friendsElem = friends.map(friend => <Friend src={friend.src} name={friend.name}/>)
+	const friendsElem = friends.map(friend => <Friend key={friend.id} src={friend.src} name={friend.name}/>)
 
 	return (
 		<div className={wrapper}>

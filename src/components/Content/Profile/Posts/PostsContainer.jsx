@@ -1,5 +1,3 @@
-import React from 'react';
-import GlobalContext from '../../../../context';
 import { changeGlobalStatePostActionCreator, postMesssgeActioncreator } from '../../../../redux/profile-reducer';
 import Posts from './Posts';
 import {connect} from 'react-redux';

@@ -4,7 +4,7 @@ import OneMessage from './OneMessage/OneMessage';
 
 const DeployMessage = ({ temporaryMessage, arrMessages, sendMessage, changeGlobalStateMessage}) => {
 
-	const arrMessagesElements = arrMessages.map(message => <OneMessage text={message.text} pathImg={message.pathImg} />);
+	const arrMessagesElements = arrMessages.map(message => <OneMessage key={message.id} text={message.text} pathImg={message.pathImg} />);
 
 	return (
 		<div className={wrapper}>

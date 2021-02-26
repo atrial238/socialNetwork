@@ -4,7 +4,7 @@ import MyData from './MyData/MyData';
 import style from './Profile.module.css';
 import Cover from './Cover/Cover';
 
-const Profile = ({store, dispatch}) => {
+const Profile = () => {
 	return (
 		<div>
 			<Cover/>
