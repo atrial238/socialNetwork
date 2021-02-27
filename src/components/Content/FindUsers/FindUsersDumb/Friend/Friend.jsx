@@ -1,6 +1,6 @@
 import React from 'react';
 import { wrapper, avatarDiv, img, body, header, statuss, buttonClass } from './Friend.module.css'
-import avatar from '../../../../assets/images/1.jpg';
+import avatar from '../../../../../assets/images/1.jpg';
 const Friend = ({ data, onFollow, onUnfollow }) => {
 	
 	const {id, name, status, photos, followed } = data;

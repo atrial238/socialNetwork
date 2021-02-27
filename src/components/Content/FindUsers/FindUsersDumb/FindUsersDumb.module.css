@@ -1,5 +1,12 @@
 .friends{
 	margin-bottom: 30px;
+	min-height: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.allFriendsClass{
+	width: 90%;
 }
 .button{
 	display: flex;

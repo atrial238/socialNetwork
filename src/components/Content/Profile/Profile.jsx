@@ -1,14 +1,13 @@
 import React from 'react';
 import PostsContainer from './Posts/PostsContainer';
-import MyData from './MyData/MyData';
-import style from './Profile.module.css';
+import MyDataContainer from './MyDataContainer/MyDataContainer';
 import Cover from './Cover/Cover';
 
 const Profile = () => {
 	return (
 		<div>
 			<Cover/>
-			<MyData/>
+			<MyDataContainer/>
 			<PostsContainer/>
 		 </div>
 

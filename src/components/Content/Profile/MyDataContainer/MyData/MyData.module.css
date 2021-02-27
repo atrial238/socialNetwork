@@ -1,0 +1,21 @@
+.my_data {
+	display: flex;
+}
+.avatar {
+	margin-right: 20px;
+	width: 200px;
+}
+.avatar img{
+	width: 100%;
+	border-radius: 50%;
+}
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.about{
+	color: #fff;
+}
+
+
