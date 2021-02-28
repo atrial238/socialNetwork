@@ -11,7 +11,7 @@ import FindUsersContainer from './FindUsers/FindUsersContainer'
 const Content = ({store}) => {
 	return (
 		<div className={content_style}>
-			<Route path='/profile' render={() => <ProfileContainer/>}/>
+			<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
 			<Route path='/messages' render={() => <Messages store={store}/>}/>
 			<Route path='/findUsers' render={() => <FindUsersContainer/>}/>
 			<Route path='/news' component={News} />

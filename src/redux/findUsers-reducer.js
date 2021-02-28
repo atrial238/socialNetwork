@@ -31,6 +31,7 @@ const initState = {
 	isLoading: true
 }
 const findUsersReducer = (state = initState, action) => {
+	
 	switch (action.type) {
 		case FOLLOW:
 			return followUser(state, action.userId);

@@ -56,7 +56,7 @@ const initState = {
 }
 
 const profileReducer = (state = initState, action) => {
-	
+
 	switch(action.type){
 		case ADD_POST:
 			return addPost(state);

@@ -7,7 +7,7 @@ import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
 class FindUsersContainer extends Component {
 
 	componentDidMount() {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${this.props.friendPerPage}`)
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${this.props.friendPerPage}`, {withCredentials: true})
 			.then(res => {
 				this.props.setLoadingAnimation(false);
 				this.props.onSetUsers(res.data.items);
