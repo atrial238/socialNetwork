@@ -25,6 +25,7 @@ class Profile extends Component {
 		)
 	}
 }
+
 const mapStateToProps = (state) => {
 	return {
 		profileData: state.profile.profileUser

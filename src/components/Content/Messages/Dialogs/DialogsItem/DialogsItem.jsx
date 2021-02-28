@@ -12,6 +12,4 @@ const DialogsItem = ({ name, id, path }) => {
 	)
 }
 
-	
-
 export default DialogsItem;
