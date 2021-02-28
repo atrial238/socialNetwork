@@ -3,25 +3,27 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as axios from 'axios';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
+import{usersAPI} from '../../api/api';
 
 class FindUsersContainer extends Component {
 
 	componentDidMount() {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${this.props.friendPerPage}`, {withCredentials: true})
+		usersAPI.getUsers(null, this.props.friendPerPage)
 			.then(res => {
 				this.props.setLoadingAnimation(false);
-				this.props.onSetUsers(res.data.items);
-				this.props.setTotalCount(res.data.totalCount);
+				this.props.onSetUsers(res.items);
+				this.props.setTotalCount(res.totalCount);
 				}
 			)
 	}
 	setPage = (currentPage) => {
 		this.props.setCurrentPage(currentPage);
 		this.props.setLoadingAnimation(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.friendPerPage}`)
+
+		usersAPI.getUsers(currentPage, this.props.friendPerPage)
 			.then(res => {
 				this.props.setLoadingAnimation(false)
-				this.props.onSetUsers(res.data.items)
+				this.props.onSetUsers(res.items)
 			});
 	}
 	

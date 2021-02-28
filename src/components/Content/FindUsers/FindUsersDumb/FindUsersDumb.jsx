@@ -2,6 +2,7 @@ import React from 'react';
 import Friend from './Friend/Friend';
 import { friends, pagination, currentPageClass, allFriendsClass } from './FindUsersDumb.module.css';
 import Loading from '../../../common/Loading/Loading';
+
 const FindUsersDumb = (props) => {
 
 	const { 

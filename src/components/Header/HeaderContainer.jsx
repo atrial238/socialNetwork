@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import {setAuthUserData, serAvatarSrc} from '../../redux/auth-reucer';
 import * as axios from 'axios';
+import{ usersAPI} from '../api/api';
 
 class HeaderContainer extends React.Component {
 
 	componentDidMount() {
-		axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true})
+		usersAPI.authorization()
 			.then(res => {
 				this.props.setAuthUserData(res.data)
 				const userId = res.data.data.id;
