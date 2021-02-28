@@ -1,16 +1,18 @@
-export const onFollow = (userId) => ({type: FOLLOW, userId});
-export const onUnfollow = (userId) => ({type: UNFOLLOW, userId});
-export const onSetUsers = (usersArr) => ({type: SET_USERS, usersArr});
-export const setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage});
-export const setTotalCount = (totalCount) => ({type: TOTAL_COUNT, totalCount});
-export const setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad})
+export const onFollow = (userId) => ({type: FOLLOW, userId}),
+				onUnfollow = (userId) => ({type: UNFOLLOW, userId}),
+				onSetUsers = (usersArr) => ({type: SET_USERS, usersArr}),
+				setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage}),
+				setTotalCount = (totalCount) => ({type: TOTAL_COUNT, totalCount}),
+				setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad}),
+				setButtonDisabled = (id) => ({type: DISABLE_BUTTON, id})
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const CURRENT_PAGE = 'CURRENT_PAGE';
-const TOTAL_COUNT = 'TOTAL_COUNT';
-const LOADING = 'LOADING';
+const FOLLOW = 'FOLLOW',
+		UNFOLLOW = 'UNFOLLOW',
+		SET_USERS = 'SET_USERS',
+		CURRENT_PAGE = 'CURRENT_PAGE',
+		TOTAL_COUNT = 'TOTAL_COUNT',
+		LOADING = 'LOADING',
+		DISABLE_BUTTON = 'DISABLE_BUTTON';
 
 const followUser = (state, userId) => {
 	return {...state,users: state.users.map(friend => friend.id === userId ? {...friend,followed: true} : friend)}
@@ -18,17 +20,29 @@ const followUser = (state, userId) => {
 const unfollowUser = (state, userId) => {
 	return {...state, users: state.users.map(friend => friend.id === userId ? {...friend, followed: false} : friend)}
 }
-const setUsers = (state, usersArr) => ({...state, users: usersArr});
-const setActivePage = (state, currentPage) => ({...state, numberCurrentPage: currentPage});
-const setTotalUser = (state, totalCount) => ({...state, totalFriend: totalCount});
-const setLoadingProcces = (state, isLoad) => ({...state, isLoading: isLoad});
+const setUsers = (state, usersArr) => {
+			return {...state, users: usersArr.map(user => ({...user, isButtonDisable: false}))}
+		},
+		setActivePage = (state, currentPage) => ({...state, numberCurrentPage: currentPage}),
+		setTotalUser = (state, totalCount) => ({...state, totalFriend: totalCount}),
+		setLoadingProcces = (state, isLoad) => ({...state, isLoading: isLoad}),
+		toggleButton = (state, id) => {
+			return {
+				...state,
+				users: state.users.map(user => user.id === id ? {...user,  isButtonDisable: !user.isButtonDisable} : user)
+				
+			}
+		}
+		
 
 const initState = {
 	users: [],
 	numberCurrentPage: 1,
 	friendPerPage: 4,
 	totalFriend: 30,
-	isLoading: true
+	isLoading: true,
+	
+	
 }
 const findUsersReducer = (state = initState, action) => {
 	
@@ -39,12 +53,16 @@ const findUsersReducer = (state = initState, action) => {
 			return unfollowUser(state, action.userId);
 		case SET_USERS:
 			return setUsers(state, action.usersArr);
+			break;
 		case CURRENT_PAGE:
 			return setActivePage(state, action.currentPage);
 		case TOTAL_COUNT:
 			return setTotalUser(state, action.totalCount);
 		case LOADING: 
-			return setLoadingProcces(state, action.isLoad)
+			return setLoadingProcces(state, action.isLoad);
+		case DISABLE_BUTTON:
+			console.log(1)
+			return toggleButton(state, action.id)
 		default:
 			return state;
 	}

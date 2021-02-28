@@ -13,15 +13,18 @@ const FindUsersDumb = (props) => {
 		friendPerPage,
 		totalFriend,
 		setPage,
-		isLoading
+		isLoading,
+		setButtonDisabled
 	} = props.data;
-
+	
 	const allFriends = friendsArrFinded.map(friend =>
+		
 	<Friend
 		key={friend.id}
 		data={friend}
 		onFollow={onFollow}
 		onUnfollow={onUnfollow}
+		setButtonDisabled={setButtonDisabled}
 	/>
 	);
 

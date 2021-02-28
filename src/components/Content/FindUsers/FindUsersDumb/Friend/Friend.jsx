@@ -5,22 +5,32 @@ import { NavLink } from 'react-router-dom';
 import * as axios from 'axios';
 import {usersAPI} from '../../../../api/api';
 
-const Friend = ({ data, onFollow, onUnfollow }) => {
-	
-	const {id, name, status, photos, followed } = data;
+const Friend = ({ data, onFollow, onUnfollow, setButtonDisabled }) => {
+
+	const {id, name, status, photos, followed, isButtonDisable } = data;
 
 	const clickOnFollow = () => {
+		setButtonDisabled(id);
+
 		usersAPI.follow(id)
-			.then(res => !res.resultCode ? onFollow(id) : null)
+			.then(res => {
+						setButtonDisabled(id);
+						if(!res.resultCode) onFollow(id) 
+			})
 	}
 
 	const clickUnFollow = () => {
+		setButtonDisabled(id);
+
 		usersAPI.unfollow(id)
-			.then(res => !res.resultCode ? onUnfollow(id) : null)
+			.then(res => {
+				setButtonDisabled(id);
+				if(!res.resultCode) onUnfollow(id);
+			})
 	}
 
-	const button = followed ? <button className={buttonClass} onClick={ clickUnFollow } >Unfollow</button>
-									: <button className={buttonClass} onClick={ clickOnFollow } >Follow</button>;
+	const button = followed ? <button disabled={isButtonDisable} className={buttonClass} onClick={ clickUnFollow } >Unfollow</button>
+									: <button disabled={isButtonDisable} className={buttonClass} onClick={ clickOnFollow } >Follow</button>;
 	return (
 		<>
 			<div className={wrapper}>

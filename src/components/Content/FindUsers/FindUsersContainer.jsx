@@ -1,9 +1,15 @@
-import { onFollow, onUnfollow, onSetUsers, setCurrentPage, setTotalCount, setLoadingAnimation} from "../../../redux/findUsers-reducer";
+import { onFollow, 
+			onUnfollow, 
+			onSetUsers,
+			setCurrentPage, 
+			setTotalCount, 
+			setLoadingAnimation,
+			setButtonDisabled,
+		} from "../../../redux/findUsers-reducer";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import * as axios from 'axios';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
-import{usersAPI} from '../../api/api';
+import {usersAPI} from '../../api/api';
 
 class FindUsersContainer extends Component {
 
@@ -36,7 +42,8 @@ class FindUsersContainer extends Component {
 			numberCurrentPage,
 			friendPerPage,
 			totalFriend,
-			isLoading
+			isLoading,
+			setButtonDisabled
 		} = this.props;
 
 		const data = {
@@ -47,6 +54,7 @@ class FindUsersContainer extends Component {
 			friendPerPage,
 			totalFriend,
 			isLoading,
+			setButtonDisabled,
 			setPage: this.setPage
 		}
 		
@@ -79,7 +87,8 @@ const mapDispatchToProps = {
 	onSetUsers,
 	setCurrentPage,
 	setTotalCount,
-	setLoadingAnimation
+	setLoadingAnimation,
+	setButtonDisabled
 }
 export default connect(mapStateToProps, mapDispatchToProps)(FindUsersContainer);
 
