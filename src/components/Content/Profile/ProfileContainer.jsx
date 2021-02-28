@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PostsContainer from './Posts/PostsContainer';
-import DataContainer from './DataContainer/DataContainer';
+import DataUser from './DataUser/DataUser';
 import style from './Profile.module.css';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ class Profile extends Component {
 		return (
 			<div>
 				<Cover/>
-				<DataContainer {...this.props}/>
+				<DataUser profileData = {this.props.profileData}/>
 				<PostsContainer/>
 			 </div>
 	
