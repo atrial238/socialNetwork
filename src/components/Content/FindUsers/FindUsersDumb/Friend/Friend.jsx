@@ -2,35 +2,14 @@ import React from 'react';
 import { wrapper, avatarDiv, img, body, header, statuss, buttonClass } from './Friend.module.css'
 import avatar from '../../../../../assets/images/1.jpg';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
-import {usersAPI} from '../../../../api/api';
 
-const Friend = ({ data, onFollow, onUnfollow, setButtonDisabled }) => {
+const Friend = ({ data, followThunk, unfollowThunk }) => {
 
 	const {id, name, status, photos, followed, isButtonDisable } = data;
 
-	const clickOnFollow = () => {
-		setButtonDisabled(id);
 
-		usersAPI.follow(id)
-			.then(res => {
-						setButtonDisabled(id);
-						if(!res.resultCode) onFollow(id) 
-			})
-	}
-
-	const clickUnFollow = () => {
-		setButtonDisabled(id);
-
-		usersAPI.unfollow(id)
-			.then(res => {
-				setButtonDisabled(id);
-				if(!res.resultCode) onUnfollow(id);
-			})
-	}
-
-	const button = followed ? <button disabled={isButtonDisable} className={buttonClass} onClick={ clickUnFollow } >Unfollow</button>
-									: <button disabled={isButtonDisable} className={buttonClass} onClick={ clickOnFollow } >Follow</button>;
+	const button = followed ? <button disabled={isButtonDisable} className={buttonClass} onClick={ () => unfollowThunk(id) } >Unfollow</button>
+									: <button disabled={isButtonDisable} className={buttonClass} onClick={ () => followThunk(id) } >Follow</button>;
 	return (
 		<>
 			<div className={wrapper}>

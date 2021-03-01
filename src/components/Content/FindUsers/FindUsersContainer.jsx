@@ -1,60 +1,43 @@
-import { onFollow, 
-			onUnfollow, 
-			onSetUsers,
-			setCurrentPage, 
-			setTotalCount, 
-			setLoadingAnimation,
-			setButtonDisabled,
+import { 
+			getUsersThunk,
+			setCurrentPageThunk,
+			followThunk,
+			unfollowThunk
 		} from "../../../redux/findUsers-reducer";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
-import {usersAPI} from '../../api/api';
+import FindUsersDumb from './FindUsersDumb/FindUsersDumb';;
 
 class FindUsersContainer extends Component {
 
 	componentDidMount() {
-		usersAPI.getUsers(null, this.props.friendPerPage)
-			.then(res => {
-				this.props.setLoadingAnimation(false);
-				this.props.onSetUsers(res.items);
-				this.props.setTotalCount(res.totalCount);
-				}
-			)
+		this.props.getUsersThunk(null, this.props.friendPerPage)
 	}
-	setPage = (currentPage) => {
-		this.props.setCurrentPage(currentPage);
-		this.props.setLoadingAnimation(true);
 
-		usersAPI.getUsers(currentPage, this.props.friendPerPage)
-			.then(res => {
-				this.props.setLoadingAnimation(false)
-				this.props.onSetUsers(res.items)
-			});
+	setPage = (currentPage) => {
+		this.props.setCurrentPageThunk(currentPage, this.props.friendPerPage);
 	}
 	
 	render() {
 
 		const { 
 			friendsArrFinded,
-			onFollow,
-			onUnfollow,
 			numberCurrentPage,
 			friendPerPage,
 			totalFriend,
 			isLoading,
-			setButtonDisabled
+			followThunk,
+			unfollowThunk
 		} = this.props;
 
 		const data = {
 			friendsArrFinded,
-			onFollow,
-			onUnfollow,
 			numberCurrentPage,
 			friendPerPage,
 			totalFriend,
 			isLoading,
-			setButtonDisabled,
+			followThunk,
+			unfollowThunk,
 			setPage: this.setPage
 		}
 		
@@ -82,13 +65,10 @@ const mapStateToProps = (state) => {
 // 	}
 // }
 const mapDispatchToProps = {
-	onFollow,
-	onUnfollow,
-	onSetUsers,
-	setCurrentPage,
-	setTotalCount,
-	setLoadingAnimation,
-	setButtonDisabled
+	getUsersThunk,
+	setCurrentPageThunk,
+	followThunk,
+	unfollowThunk
 }
 export default connect(mapStateToProps, mapDispatchToProps)(FindUsersContainer);
 

@@ -7,12 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 
 	ReactDOM.render(
-		
 			<Provider store={store}>
-				<App 
-					store={store}
-					dispatch={store.dispatch.bind(store)}
-				/>
+				<App store={store} />
 		  </Provider>,
 		document.getElementById('root')
 	 );

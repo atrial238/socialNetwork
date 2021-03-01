@@ -1,10 +1,12 @@
-export const onFollow = (userId) => ({type: FOLLOW, userId}),
-				onUnfollow = (userId) => ({type: UNFOLLOW, userId}),
-				onSetUsers = (usersArr) => ({type: SET_USERS, usersArr}),
-				setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage}),
-				setTotalCount = (totalCount) => ({type: TOTAL_COUNT, totalCount}),
-				setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad}),
-				setButtonDisabled = (id) => ({type: DISABLE_BUTTON, id})
+import {usersAPI} from '../components/api/api';
+
+const onFollow = (userId) => ({type: FOLLOW, userId}),
+		onUnfollow = (userId) => ({type: UNFOLLOW, userId}),
+		onSetUsers = (usersArr) => ({type: SET_USERS, usersArr}),
+		setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage}),
+		setTotalCount = (totalCount) => ({type: TOTAL_COUNT, totalCount}),
+		setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad}),
+		setButtonDisabled = (id) => ({type: DISABLE_BUTTON, id});
 
 const FOLLOW = 'FOLLOW',
 		UNFOLLOW = 'UNFOLLOW',
@@ -15,7 +17,7 @@ const FOLLOW = 'FOLLOW',
 		DISABLE_BUTTON = 'DISABLE_BUTTON';
 
 const followUser = (state, userId) => {
-	return {...state,users: state.users.map(friend => friend.id === userId ? {...friend,followed: true} : friend)}
+	return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend,followed: true} : friend)}
 }
 const unfollowUser = (state, userId) => {
 	return {...state, users: state.users.map(friend => friend.id === userId ? {...friend, followed: false} : friend)}
@@ -53,7 +55,6 @@ const findUsersReducer = (state = initState, action) => {
 			return unfollowUser(state, action.userId);
 		case SET_USERS:
 			return setUsers(state, action.usersArr);
-			break;
 		case CURRENT_PAGE:
 			return setActivePage(state, action.currentPage);
 		case TOTAL_COUNT:
@@ -68,4 +69,46 @@ const findUsersReducer = (state = initState, action) => {
 	}
 }
 
+export const getUsersThunk = (page, friendPerPage) => (dispatch) =>  {
+
+	usersAPI.getUsers(page, friendPerPage)
+		.then(res => {
+			dispatch(setLoadingAnimation(false));
+			dispatch(onSetUsers(res.items));
+			dispatch(setTotalCount(res.totalCount));
+			}
+		)
+
+}
+export const setCurrentPageThunk = (page, friendPerPage) => (dispatch) => {
+
+	dispatch(setCurrentPage(page));
+	dispatch(setLoadingAnimation(true));
+	usersAPI.getUsers(page, friendPerPage)
+		.then(res => {
+			dispatch(setLoadingAnimation(false));
+			dispatch(onSetUsers(res.items));
+		});
+
+}
+export const followThunk = (id) => (dispatch) => {
+
+	dispatch(setButtonDisabled(id));
+	usersAPI.follow(id)
+		.then(res => {
+				dispatch(setButtonDisabled(id));
+				if(!res.resultCode) dispatch(onFollow(id));
+		})
+
+}
+export const unfollowThunk = (id) => (dispatch) =>{
+
+	dispatch(setButtonDisabled(id));
+	usersAPI.unfollow(id)
+		.then(res => {
+			dispatch(setButtonDisabled(id));
+			if(!res.resultCode) dispatch(onUnfollow(id));
+		})
+ 
+}
 export default findUsersReducer;

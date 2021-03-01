@@ -1,3 +1,5 @@
+import {usersAPI} from '../components/api/api';
+
 export const postMesssgeActioncreator = () => ({type: ADD_POST});
 export const changeGlobalStatePostActionCreator = (value) => ({type: INPUT_POST_CHANGE, value});
 export const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
@@ -6,6 +8,10 @@ const ADD_POST = 'ADD_POST';
 const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
 const SET_PROFILE = 'SET_PROFILE'
 
+export const dataProfileThunk = (userId) => 	(dispatch) => {
+		usersAPI.getUser(userId)
+			.then(res => dispatch(setDataProfile(res.data)))
+}
 
 const addPost = (state) => {
 	return {

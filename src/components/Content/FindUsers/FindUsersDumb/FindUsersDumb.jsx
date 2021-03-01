@@ -7,37 +7,31 @@ const FindUsersDumb = (props) => {
 
 	const { 
 		friendsArrFinded,
-		onFollow,
-		onUnfollow,
 		numberCurrentPage,
 		friendPerPage,
 		totalFriend,
 		setPage,
 		isLoading,
-		setButtonDisabled
+		followThunk,
+		unfollowThunk
 	} = props.data;
 	
 	const allFriends = friendsArrFinded.map(friend =>
-		
-	<Friend
-		key={friend.id}
-		data={friend}
-		onFollow={onFollow}
-		onUnfollow={onUnfollow}
-		setButtonDisabled={setButtonDisabled}
-	/>
+									<Friend
+										key={friend.id}
+										data={friend}
+										followThunk={followThunk}
+										unfollowThunk={unfollowThunk}
+									/>
 	);
 
-	const paginationElements = Array.from({length: Math.ceil(totalFriend / friendPerPage)})
-									.map((element, index) => 
+	const paginationElements = Array.from({length: Math.ceil(totalFriend / friendPerPage)}).map((element, index) => 
 									<li 
-
 										key={index}
 										className={numberCurrentPage === index + 1 ? currentPageClass : null}
 										onClick={() => setPage(index + 1)}
-
 									>{index + 1}</li>
-									);
+	);
 
 	return (
 	<>
