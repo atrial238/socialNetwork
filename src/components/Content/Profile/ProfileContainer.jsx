@@ -4,8 +4,8 @@ import DataUser from './DataUser/DataUser';
 import style from './Profile.module.css';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux'; 
-import {dataProfileThunk }from '../../../redux/profile-reducer'
-import {withRouter} from "react-router-dom";
+import {dataProfileThunk} from '../../../redux/profile-reducer'
+import {Redirect, withRouter} from "react-router-dom";
 
 class ProfileContainer extends Component {
 
@@ -15,6 +15,7 @@ class ProfileContainer extends Component {
 	}
 
 	render(){
+	if(this.props.isAuth) return <Redirect to='/login'/>
 		return (
 			<div>
 				<Cover/>
@@ -25,9 +26,23 @@ class ProfileContainer extends Component {
 	}
 }
 
+// const withRedirect = (component) => {
+
+// 	const Wrapper = (props) => {
+// 		return component
+// 	}
+		
+// 	return Wrapper;
+// }
+
+// const ProfileContainerWithRedirect = withRedirect(ProfileContainer)
+
 const mapStateToProps = (state) => {
 	return {
-		profileData: state.profile.profileUser
+		profileData: state.profile.profileUser,
+		isAuth: state.auth.resultCode
+			
 	}
 }
-export default connect(mapStateToProps, {dataProfileThunk})(withRouter(ProfileContainer));
+
+export default connect(mapStateToProps, {dataProfileThunk})(withRouter( ProfileContainer));

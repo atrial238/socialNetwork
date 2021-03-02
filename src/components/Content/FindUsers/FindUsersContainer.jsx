@@ -6,7 +6,9 @@ import {
 		} from "../../../redux/findUsers-reducer";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import FindUsersDumb from './FindUsersDumb/FindUsersDumb';;
+import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
+import { Redirect } from "react-router-dom";
+;
 
 class FindUsersContainer extends Component {
 
@@ -27,7 +29,8 @@ class FindUsersContainer extends Component {
 			totalFriend,
 			isLoading,
 			followThunk,
-			unfollowThunk
+			unfollowThunk,
+			isAuth
 		} = this.props;
 
 		const data = {
@@ -40,8 +43,8 @@ class FindUsersContainer extends Component {
 			unfollowThunk,
 			setPage: this.setPage
 		}
-		
-		return <FindUsersDumb data={data}/>
+	
+		return isAuth ? <Redirect to='/login'/> : <FindUsersDumb data={data}/>
 	} 
 }
 const mapStateToProps = (state) => {
@@ -51,7 +54,8 @@ const mapStateToProps = (state) => {
 		numberCurrentPage: state.findUsers.numberCurrentPage,
 		friendPerPage: state.findUsers.friendPerPage,
 		totalFriend: state.findUsers.totalFriend,
-		isLoading: state.findUsers.isLoading
+		isLoading: state.findUsers.isLoading,
+		isAuth: state.auth.resultCode
 	}
 }
 // const mapDispatchToProps = (dispatch) => {

@@ -7,6 +7,7 @@ import Music from './Music/Music';
 import Settings from './Settings/Settings';
 import { content_style } from './Content.module.css';
 import FindUsersContainer from './FindUsers/FindUsersContainer'
+import Login from './Login/Login';
 
 const Content = ({store}) => {
 	return (
@@ -17,6 +18,7 @@ const Content = ({store}) => {
 			<Route path='/news' component={News} />
 			<Route path='/music' component={Music} />
 			<Route path='/settings' component={Settings} />
+			<Route path='/login' component={Login}/>
 		</div>
 	)
 	
