@@ -1,4 +1,4 @@
-import {usersAPI} from '../components/api/api';
+import {usersAPI} from '../api/api';
 
 const onFollow = (userId) => ({type: FOLLOW, userId}),
 		onUnfollow = (userId) => ({type: UNFOLLOW, userId}),

@@ -1,4 +1,4 @@
-import {usersAPI} from '../components/api/api';
+import {usersAPI} from '../api/api';
 
 const AUTH = 'AUTH';
 const AVATAR_SRC = 'AVATAR_SRC'
@@ -6,7 +6,7 @@ const AVATAR_SRC = 'AVATAR_SRC'
 export const setAuthUserData = (data) => ({type: AUTH, data});
 export const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});
 
-export const getAuthData = () =>  (dispatch) => {
+export const getAuthData = () => (dispatch) => {
 	
 		usersAPI.authorization()
 			.then(res => {

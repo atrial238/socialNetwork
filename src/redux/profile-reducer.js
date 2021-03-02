@@ -1,4 +1,4 @@
-import {usersAPI} from '../components/api/api';
+import {usersAPI} from '../api/api';
 
 export const postMesssgeActioncreator = () => ({type: ADD_POST});
 export const changeGlobalStatePostActionCreator = (value) => ({type: INPUT_POST_CHANGE, value});

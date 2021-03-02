@@ -7,8 +7,8 @@ import {
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
-import { Redirect } from "react-router-dom";
-;
+import WithAuthRedirect from '../../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 class FindUsersContainer extends Component {
 
@@ -44,9 +44,9 @@ class FindUsersContainer extends Component {
 			setPage: this.setPage
 		}
 	
-		return isAuth ? <Redirect to='/login'/> : <FindUsersDumb data={data}/>
+		return   <FindUsersDumb data={data}/>
 	} 
-}
+} 
 const mapStateToProps = (state) => {
 
 	return {
@@ -74,5 +74,9 @@ const mapDispatchToProps = {
 	followThunk,
 	unfollowThunk
 }
-export default connect(mapStateToProps, mapDispatchToProps)(FindUsersContainer);
+
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	WithAuthRedirect
+)(FindUsersContainer);
 

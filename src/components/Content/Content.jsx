@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Messages from './Messages/Messages';
+import MessagesContainer from './Messages/MessagesContainer';
 import ProfileContainer from './Profile/ProfileContainer';
 import News from './News/News';
 import Music from './Music/Music';
@@ -13,7 +13,7 @@ const Content = ({store}) => {
 	return (
 		<div className={content_style}>
 			<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-			<Route path='/messages' render={() => <Messages store={store}/>}/>
+			<Route path='/messages' render={() => <MessagesContainer />}/>
 			<Route path='/findUsers' render={() => <FindUsersContainer/>}/>
 			<Route path='/news' component={News} />
 			<Route path='/music' component={Music} />

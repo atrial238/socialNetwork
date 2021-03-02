@@ -1,17 +1,17 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import DeployMessageContainer from './DeployMessage/DeployMessageContainer';
+import DeployMessage from './DeployMessage/DeployMessage';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.css';
-
-const Messages = ({store}) => {
-	if(store.getState().auth.resultCode) return <Redirect to='/login'/>
+						
+const Messages = ({messages, sendMessage, changeGlobalStateMessage}) => {
 	
+	const {arrMessages, temporaryMessage, dialogsData} = messages;
+	const data = {arrMessages, temporaryMessage, sendMessage, changeGlobalStateMessage}
 	return (
 		
 		<div className={wrapper}>
-			<Dialogs dialogsData={store.getState().messages.dialogsData} />
-			<DeployMessageContainer/>
+			<Dialogs dialogsData={dialogsData} />
+			<DeployMessage {...data} />
 		</div>
 	)
 }

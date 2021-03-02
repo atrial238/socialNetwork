@@ -1,11 +1,5 @@
 export const sendMessageActionCreator = () => ({type: ADD_MESSAGE});
-export const changeGlobalStateMessageActionCreator = (value) => {
-
-	return {
-		type: INPUT_MESSAGE_CHANGE, value
-	}
-};
-
+export const changeGlobalStateMessageActionCreator = (value) => ({type: INPUT_MESSAGE_CHANGE, value});
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const INPUT_MESSAGE_CHANGE = 'INPUT_MESSAGE_CHANGE';
 
@@ -15,27 +9,14 @@ const addMessage = (state)  =>{
 		text: state.temporaryMessage,
 		pathImg: 'https://i.pinimg.com/564x/a3/79/29/a3792984c6423f3c216e39a193e93d48.jpg'
 	};
-	// const stateCopy = {...state};
-	// stateCopy.arrMessages = [...state.arrMessages];
-	// stateCopy.arrMessages.push(newObjMessage);
-	// stateCopy.temporaryMessage = '';
-	// return stateCopy;
-
 	return {
 		...state,
 		arrMessages: [...state.arrMessages, newObjMessage],
 		temporaryMessage: ''
 	}
 }
-const changeStateWhenMessageTyping = (state, value) => {
-	// const stateCopy = {...state};
-	// stateCopy.temporaryMessage = value;
-	// return stateCopy;
-	return {
-		...state,
-		temporaryMessage: value
-	}
-}
+const changeStateWhenMessageTyping = (state, value) => ({...state,temporaryMessage: value});
+
 const initState = {
 	dialogsData: [{
 		name: 'Andrew',
