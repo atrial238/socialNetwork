@@ -1,4 +1,4 @@
-import {usersAPI} from '../api/api';
+import {usersAPI, authAPI} from '../api/api';
 
 const AUTH = 'AUTH';
 const AVATAR_SRC = 'AVATAR_SRC'
@@ -8,7 +8,7 @@ export const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});
 
 export const getAuthData = () => (dispatch) => {
 	
-		usersAPI.authorization()
+		authAPI.authorization()
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
 				const userId = res.data.data.id;

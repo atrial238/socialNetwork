@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PostsContainer from './Posts/PostsContainer';
 import DataUser from './DataUser/DataUser';
 import style from './Profile.module.css';
 import Cover from './Cover/Cover';
-import { connect } from 'react-redux'; 
-import {dataProfileThunk} from '../../../redux/profile-reducer'
-import {withRouter} from "react-router-dom";
+import { connect } from 'react-redux';
+import { dataProfileThunk } from '../../../redux/profile-reducer'
+import { withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
-import {compose} from 'redux';
+import { compose } from 'redux';
+
 class ProfileContainer extends Component {
 
 	componentDidMount() {
@@ -15,22 +16,21 @@ class ProfileContainer extends Component {
 		this.props.dataProfileThunk(userId);
 	}
 
-	render(){
+	render() {
 		return (
 			<div>
-				<Cover/>
-				<DataUser profileData = {this.props.profileData}/>
-				<PostsContainer/>
-			 </div>
+				<Cover />
+				<DataUser profileData={this.props.profileData} />
+				<PostsContainer />
+			</div>
 		)
 	}
 }
 
-
-const mapStateToProps = (state) => ({profileData: state.profile.profileUser});
+const mapStateToProps = (state) => ({ profileData: state.profile.profileUser });
 
 export default compose(
-	connect(mapStateToProps, {dataProfileThunk}),
+	connect(mapStateToProps, { dataProfileThunk }),
 	withRouter,
 	WithAuthRedirect
 )(ProfileContainer);

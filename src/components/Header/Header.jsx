@@ -5,6 +5,7 @@ const Header = (props) => {
 	const {resultCode, login, avatar} = props;
 
 	const log = <span style={{cursor: 'pointer'}}>{resultCode ? 'Log In' : `Log Out`}</span>
+	
 	return (
 		<header className={header}>
 			<div className={wrapper}>

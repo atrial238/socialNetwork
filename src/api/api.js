@@ -24,7 +24,10 @@ export const usersAPI = {
 	unfollow(id){
 		return instance.delete('follow/' + id)
 			.then(res => res.data)
-	},
+	}
+}
+
+export const authAPI = {
 	authorization(){
 		return instance.get('auth/me')
 	}
