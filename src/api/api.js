@@ -14,9 +14,6 @@ export const usersAPI = {
 		return instance.get(`users?page=${currentPage}&count=${friendPerPage}` )
 			.then(res => res.data);
 	},
-	getUser(id){
-		return instance.get('profile/' + id)
-	},
 	follow(id){
 		return instance.post('follow/' + id)
 			.then(res => res.data)
@@ -27,6 +24,17 @@ export const usersAPI = {
 	}
 }
 
+export const profileAPI = {
+	getUserProfile(id){
+		return instance.get('profile/' + id)
+	},
+	getUserStatus(id){
+		return instance.get('/profile/status/' + id)
+	},
+	updateMyStatus(status){
+		return instance.put('/profile/status', {status})
+	}
+}
 export const authAPI = {
 	authorization(){
 		return instance.get('auth/me')

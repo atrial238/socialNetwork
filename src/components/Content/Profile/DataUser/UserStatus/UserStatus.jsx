@@ -3,24 +3,43 @@ import React, {Component} from 'react';
 
 export default class UserStatus extends Component {
 	state = {
-		status: 'its my status here was written someday',
+		temporaryStatus: this.props.userStatus,
 		isStatusModify: false,
-		temporaryValue: ''
 	}
-	handleInput = (e) =>  this.setState({temporaryValue: e.target.value});
-	handleStatus = (e) => this.setState({isStatusModify: !this.state.isStatusModify, status: e.target.value || this.state.status});
 
+	handleInput = (e) =>  this.setState({
+		temporaryStatus: e.currentTarget.value
+	});
+
+	statusUpdate = (e) => {
+		this.setState({isStatusModify: !this.state.isStatusModify })
+		const state = this.state.temporaryStatus || this.props.userStatus;
+		this.props.putMyStatusOnServerThunk(state);
+
+	};
+
+	componentDidUpdate(prevProps, prevState) {
+		
+		if(prevProps.userStatus !== this.props.userStatus){
+
+			this.setState({temporaryStatus: this.props.userStatus})
+		}
+	}
+	
 	render() {
+		
 		return (
 			this.state.isStatusModify 
 								? <input 
 										autoFocus 
 										type="text" 
-										onBlur={(e) => this.handleStatus(e)}
+										onBlur={(e) => this.statusUpdate(e)}
 										onChange={(e) => this.handleInput(e)}
-										vlaue={this.state.temporaryValue} 
+										value={this.state.temporaryStatus} 
 									/> 
-								: <div onDoubleClick={this.handleStatus}>{this.state.status}</div>
+								: <div 
+										onDoubleClick={() => this.setState({isStatusModify: !this.state.isStatusModify })}
+									>{this.props.userStatus || 'No status'}</div>
 		)
 	}
 }

@@ -30,7 +30,6 @@ class FindUsersContainer extends Component {
 			isLoading,
 			followThunk,
 			unfollowThunk,
-			isAuth
 		} = this.props;
 
 		const data = {
@@ -55,7 +54,6 @@ const mapStateToProps = (state) => {
 		friendPerPage: state.findUsers.friendPerPage,
 		totalFriend: state.findUsers.totalFriend,
 		isLoading: state.findUsers.isLoading,
-		isAuth: state.auth.resultCode
 	}
 }
 // const mapDispatchToProps = (dispatch) => {

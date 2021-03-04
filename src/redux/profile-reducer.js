@@ -1,18 +1,31 @@
-import {usersAPI} from '../api/api';
+import { profileAPI} from '../api/api';
 
 export const postMesssgeActioncreator = () => ({type: ADD_POST});
 export const changeGlobalStatePostActionCreator = (value) => ({type: INPUT_POST_CHANGE, value});
-export const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
+const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
+const setUserStatus = (status) => ({type: USER_STATUS, status})
+
 
 const ADD_POST = 'ADD_POST';
 const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
-const SET_PROFILE = 'SET_PROFILE'
+const SET_PROFILE = 'SET_PROFILE';
+const USER_STATUS = 'USER_STATUS';
+const PUT_STATUS_ON_SERVER = 'PUT_STATUS_ON_SERVER';
 
-export const dataProfileThunk = (userId) => 	(dispatch) => {
-		usersAPI.getUser(userId)
+export const profileUserDataThunk = (userId) => (dispatch) => {
+		profileAPI.getUserProfile(userId)
 			.then(res => dispatch(setDataProfile(res.data)))
 }
-
+export const getUserStatusThunk = (id) => (dispatch) => {
+	profileAPI.getUserStatus(id)
+		.then(res => dispatch(setUserStatus(res.data)))
+}
+export const putMyStatusOnServerThunk = (status) => (dispatch) => {
+	profileAPI.updateMyStatus(status)
+		.then(res => {
+			if(!res.data.resultCode) dispatch(setUserStatus(status))
+		})
+} 
 const addPost = (state) => {
 	return {
 		...state,
@@ -28,7 +41,7 @@ const changeStateWhenTextareaInput = (state, valueInput) => {
 }
 const setProfile = (state, profileData) => {
 	
-	return {...state, profileUser: profileData}
+	return {...state, profileUserData: profileData}
 }
 const initState = {
 	postData: [{
@@ -58,7 +71,9 @@ const initState = {
 	},
 	],
 	temporaryValue: '',
-	profileUser: null
+	profileUserData: null,
+	userStatus: 'status',
+	
 }
 
 const profileReducer = (state = initState, action) => {
@@ -69,7 +84,9 @@ const profileReducer = (state = initState, action) => {
 		case INPUT_POST_CHANGE:
 			return changeStateWhenTextareaInput (state, action.value);
 		case SET_PROFILE:
-			return setProfile(state, action.profile)
+			return setProfile(state, action.profile);
+		case USER_STATUS:
+			return {...state, userStatus: action.status}
 		default: 
 			return state;
 	}

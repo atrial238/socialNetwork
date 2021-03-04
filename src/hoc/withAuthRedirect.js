@@ -6,7 +6,7 @@ const WithAuthRedirect = (Component) => {
 
 	const wrapper = (props) => {
 		if(props.isAuth) return <Redirect to='/login'/>
-		return <Component {...props}/>
+		return <Component {...props}/> 
 	}
 	const mapStateToProps = (state) => ({isAuth: state.auth.resultCode});
 

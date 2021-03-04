@@ -1,4 +1,4 @@
-import {usersAPI, authAPI} from '../api/api';
+import {profileAPI, authAPI} from '../api/api';
 
 const AUTH = 'AUTH';
 const AVATAR_SRC = 'AVATAR_SRC'
@@ -12,10 +12,9 @@ export const getAuthData = () => (dispatch) => {
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
 				const userId = res.data.data.id;
-		usersAPI.getUser(2)
+		profileAPI.getUserProfile(2)
 				.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
 		});
-	
 	
 }
 
