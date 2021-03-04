@@ -1,21 +1,20 @@
-export const sendMessageActionCreator = () => ({type: ADD_MESSAGE});
+export const sendMessageActionCreator = (message) => ({type: ADD_MESSAGE, message});
 export const changeGlobalStateMessageActionCreator = (value) => ({type: INPUT_MESSAGE_CHANGE, value});
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const INPUT_MESSAGE_CHANGE = 'INPUT_MESSAGE_CHANGE';
 
-const addMessage = (state)  =>{
+const addMessage = (state, message)  =>{
 	
 	const newObjMessage = {
-		text: state.temporaryMessage,
+		text: message,
 		pathImg: 'https://i.pinimg.com/564x/a3/79/29/a3792984c6423f3c216e39a193e93d48.jpg'
 	};
 	return {
 		...state,
-		arrMessages: [...state.arrMessages, newObjMessage],
-		temporaryMessage: ''
+		arrMessages: [...state.arrMessages, newObjMessage]
 	}
 }
-const changeStateWhenMessageTyping = (state, value) => ({...state,temporaryMessage: value});
+
 
 const initState = {
 	dialogsData: [{
@@ -69,15 +68,12 @@ const initState = {
 		text: 'some message4',
 		pathImg: 'https://i.pinimg.com/564x/e8/10/e5/e810e518b6014817f18295b16015047b.jpg'
 	},
-	],
-	temporaryMessage: ''
+	]
 }
 const messageReducer = (state = initState, action) => {
 	switch(action.type){
 		case ADD_MESSAGE:
-			return addMessage(state);
-		case INPUT_MESSAGE_CHANGE:
-			return changeStateWhenMessageTyping(state, action.value);
+			return addMessage(state, action.message);
 		default: 
 			return state;
 	}

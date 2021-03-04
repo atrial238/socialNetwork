@@ -36,7 +36,10 @@ export const profileAPI = {
 	}
 }
 export const authAPI = {
-	authorization(){
+	isAuthorization(){
 		return instance.get('auth/me')
+	},
+	logIn(formData){
+		return instance.post('/auth/login', {formData})
 	}
 }

@@ -24,17 +24,9 @@ import {connect} from 'react-redux';
 // 		</GlobalContext.Consumer>
 // 	)
 // }
-const mapStateToProps = (state) => {
-	return {
-		postData: state.profile.postData,
-		temporaryValue: state.profile.temporaryValue
-	}
-}
-const mapDispatchToProps = (dispatch) => {
-	return {
-		postMessage() {dispatch(postMesssgeActioncreator())},
-		changeClobalStatePost(value) {dispatch(changeGlobalStatePostActionCreator(value))}
-	}
-}
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
-export default PostsContainer;
+
+const PostsContainer = (props) => <Posts {...props}/>;
+
+const mapStateToProps = (state) => ({postData: state.profile.postData});
+
+export default connect(mapStateToProps, {postMesssgeActioncreator})(PostsContainer)

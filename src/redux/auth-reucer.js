@@ -8,7 +8,7 @@ export const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});
 
 export const getAuthData = () => (dispatch) => {
 	
-		authAPI.authorization()
+		authAPI.isAuthorization()
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
 				const userId = res.data.data.id;
@@ -16,6 +16,10 @@ export const getAuthData = () => (dispatch) => {
 				.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
 		});
 	
+}
+export const authMe = (formData) => {
+	authAPI.logIn(formData)
+		.then(res => !res.data.resultCode ? getAuthData() : null)
 }
 
 const stateInit = {

@@ -1,7 +1,6 @@
 import { profileAPI} from '../api/api';
 
-export const postMesssgeActioncreator = () => ({type: ADD_POST});
-export const changeGlobalStatePostActionCreator = (value) => ({type: INPUT_POST_CHANGE, value});
+export const postMesssgeActioncreator = (post) => ({type: ADD_POST, post});
 const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
 const setUserStatus = (status) => ({type: USER_STATUS, status})
 
@@ -10,7 +9,7 @@ const ADD_POST = 'ADD_POST';
 const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
 const SET_PROFILE = 'SET_PROFILE';
 const USER_STATUS = 'USER_STATUS';
-const PUT_STATUS_ON_SERVER = 'PUT_STATUS_ON_SERVER';
+
 
 export const profileUserDataThunk = (userId) => (dispatch) => {
 		profileAPI.getUserProfile(userId)
@@ -26,19 +25,14 @@ export const putMyStatusOnServerThunk = (status) => (dispatch) => {
 			if(!res.data.resultCode) dispatch(setUserStatus(status))
 		})
 } 
-const addPost = (state) => {
+const addPost = (state, post) => {
 	return {
 		...state,
-		postData: [...state.postData, {id: '6', text: state.temporaryValue, like: '0'} ],
+		postData: [...state.postData, {id: '6', text: post, like: '0'} ],
 		temporaryValue: ''
 	}
 }
-const changeStateWhenTextareaInput = (state, valueInput) => {
-	return {
-		...state,
-		temporaryValue: valueInput
-	}
-}
+
 const setProfile = (state, profileData) => {
 	
 	return {...state, profileUserData: profileData}
@@ -80,9 +74,7 @@ const profileReducer = (state = initState, action) => {
 
 	switch(action.type){
 		case ADD_POST:
-			return addPost(state);
-		case INPUT_POST_CHANGE:
-			return changeStateWhenTextareaInput (state, action.value);
+			return addPost(state, action.post);
 		case SET_PROFILE:
 			return setProfile(state, action.profile);
 		case USER_STATUS:

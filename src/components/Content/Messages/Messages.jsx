@@ -3,10 +3,10 @@ import DeployMessage from './DeployMessage/DeployMessage';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.css';
 						
-const Messages = ({messages, sendMessage, changeGlobalStateMessage}) => {
+const Messages = ({messages, sendMessageActionCreator}) => {
 	
 	const {arrMessages, temporaryMessage, dialogsData} = messages;
-	const data = {arrMessages, temporaryMessage, sendMessage, changeGlobalStateMessage}
+	const data = {arrMessages, temporaryMessage, sendMessageActionCreator}
 	return (
 		
 		<div className={wrapper}>

@@ -3,7 +3,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
-.form {
+.formClass {
 	display: grid;
 	grid-template-columns: 4fr 1fr;
 }
