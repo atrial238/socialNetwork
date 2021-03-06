@@ -6,7 +6,14 @@ export default class UserStatus extends Component {
 		temporaryStatus: this.props.userStatus,
 		isStatusModify: false,
 	}
+	componentDidUpdate(prevProps, prevState) {
+		
+		if(prevProps.userStatus !== this.props.userStatus){
 
+			this.setState({temporaryStatus: this.props.userStatus})
+		}
+	}
+	
 	handleInput = (e) =>  this.setState({
 		temporaryStatus: e.currentTarget.value
 	});
@@ -18,13 +25,7 @@ export default class UserStatus extends Component {
 
 	};
 
-	componentDidUpdate(prevProps, prevState) {
-		
-		if(prevProps.userStatus !== this.props.userStatus){
 
-			this.setState({temporaryStatus: this.props.userStatus})
-		}
-	}
 	
 	render() {
 		

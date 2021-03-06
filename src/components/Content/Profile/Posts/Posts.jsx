@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Post from './Post/Post';
 import {form} from './Posts.module.css';
+import {renderField, required} from '../../../common/util/validateInput';
 
 const FormPost = ({handleSubmit})=> {
 	return (
@@ -9,7 +10,9 @@ const FormPost = ({handleSubmit})=> {
 			<Field 
 				type='text'
 				name='post' 
-				component='textarea' 
+				lable='textarea'
+				component={renderField} 
+				validate={[required]}
 				placeholder='your news...' 
 				style={{marginRight: '15px', width: '500px', height: '50px', borderRadius: '7px'}}/>
 			<button  type='submit' >send</button>

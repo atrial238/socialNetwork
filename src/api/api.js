@@ -39,7 +39,10 @@ export const authAPI = {
 	isAuthorization(){
 		return instance.get('auth/me')
 	},
-	logIn(formData){
-		return instance.post('/auth/login', {formData})
+	logInMe(email, password, rememberMe){
+		return instance.post('/auth/login', {email, password, rememberMe})
+	},
+	logOutMe(){
+		return instance.delete('/auth/login')
 	}
 }
