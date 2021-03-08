@@ -21,31 +21,10 @@ class FindUsersContainer extends Component {
 	}
 	
 	render() {
-
-		const { 
-			friendsArrFinded,
-			numberCurrentPage,
-			friendPerPage,
-			totalFriend,
-			isLoading,
-			followThunk,
-			unfollowThunk,
-		} = this.props;
-
-		const data = {
-			friendsArrFinded,
-			numberCurrentPage,
-			friendPerPage,
-			totalFriend,
-			isLoading,
-			followThunk,
-			unfollowThunk,
-			setPage: this.setPage
-		}
-	
-		return   <FindUsersDumb data={data}/>
+		return <FindUsersDumb {...this.props} setPage={this.setPage} />
 	} 
 } 
+
 const mapStateToProps = (state) => {
 
 	return {
@@ -75,6 +54,6 @@ const mapDispatchToProps = {
 
 export default compose(
 	connect(mapStateToProps, mapDispatchToProps),
-	WithAuthRedirect
+	// WithAuthRedirect
 )(FindUsersContainer);
 

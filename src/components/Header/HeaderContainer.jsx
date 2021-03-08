@@ -6,7 +6,7 @@ import {getAuthData, logOutMe} from '../../redux/auth-reucer';
 
 class HeaderContainer extends React.Component {
 	
-	componentDidMount = () => this.props.getAuthData();
+
 
 	render = () => <Header { ...this.props.userAuth} logOutMe={this.props.logOutMe}/> 
 }

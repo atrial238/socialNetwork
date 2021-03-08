@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form';
 import {profileAPI, authAPI} from '../api/api';
 
 const AUTH = 'AUTH';
@@ -10,7 +11,7 @@ const nullMyData = () => ({type: NULL_MY_DATA});
 
 export const getAuthData = () => (dispatch) => {
 
-		authAPI.isAuthorization()
+	return authAPI.isAuthorization()
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
 				const userId = res.data.data.id;
@@ -20,7 +21,9 @@ export const getAuthData = () => (dispatch) => {
 }
 export const authMe = (email, password, rememberMe) => (dispatch) =>{
 	authAPI.logInMe(email, password, rememberMe)
-		.then(res => !res.data.resultCode ? dispatch(getAuthData()) : null)
+			.then(res => !res.data.resultCode 
+											? dispatch(getAuthData()) 
+											: dispatch(stopSubmit('login', {_error: res.data.messages[0]})))
 }
 export const logOutMe = () => (dispatch) => {
 

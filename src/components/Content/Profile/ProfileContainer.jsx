@@ -12,12 +12,20 @@ import { compose } from 'redux';
 class ProfileContainer extends Component {
 
 	componentDidMount() {
-		const userId = this.props.match.params.userId || 15300;
+
+		let userId = this.props.match.params.userId;
+		if(!userId && !this.props.authData.isAuth) {
+			userId = this.props.authData.id
+		}else if(!userId && this.props.authData.isAuth){
+			this.props.history.push('/login')
+		};
+
 		this.props.profileUserDataThunk (userId);
 		this.props.getUserStatusThunk(userId);
 	}
 
 	render() {
+		
 		return (
 			<div>
 				<Cover />
@@ -33,16 +41,17 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => (
+
 	{ 
 		profileUserData: state.profile.profileUserData,
 		userStatus: state.profile.userStatus,
-
+		authData: {id: state.auth.id, isAuth: state.auth.resultCode}
 	});
 
 export default compose(
 	connect(mapStateToProps, { profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk}),
 	withRouter,
-	WithAuthRedirect
+	// WithAuthRedirect
 )(ProfileContainer);
 
 // connect = (mstp, mdtp) => {

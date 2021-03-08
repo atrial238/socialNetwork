@@ -14,7 +14,7 @@ const FindUsersDumb = (props) => {
 		isLoading,
 		followThunk,
 		unfollowThunk
-	} = props.data;
+	} = props;
 	
 	const allFriends = friendsArrFinded.map(friend =>
 									<Friend

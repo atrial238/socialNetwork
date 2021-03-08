@@ -6,6 +6,7 @@ const Header = (props) => {
 	const {resultCode, login, avatar, logOutMe} = props;
 	
 	return (
+
 		<header className={header}>
 			<div className={wrapper}>
 				<div className={img}>

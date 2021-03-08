@@ -34,13 +34,13 @@ const FormLogin = (props) => {
 					component={renderField} 
 					validate={[required]}
 				/>
-					
 			</div>
 
 			<div style={{marginBottom: '15px'}}>
 				<label htmlFor="checkbox" style={{marginRight: '10px'}}>remember me</label>
 				<Field id='checkbox' type="checkbox" name='rememberMe' component='input'/>
 			</div>
+			<div>{props.error} </div>
 			<button type='submit' style={{cursor: 'pointer'}}>Submit</button>
 		</form>
 	)
@@ -49,9 +49,7 @@ const FormLogin = (props) => {
 const FormWithReduxForm = reduxForm({form: 'login'})(FormLogin);
 
 const Login = (props) => {
-
 	
-
 	const onSubmit = (formData) => {
 		props.authMe(formData.email, formData.password, formData.rememberMe)
 	}

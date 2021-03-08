@@ -62,7 +62,6 @@ const findUsersReducer = (state = initState, action) => {
 		case LOADING: 
 			return setLoadingProcces(state, action.isLoad);
 		case DISABLE_BUTTON:
-			console.log(1)
 			return toggleButton(state, action.id)
 		default:
 			return state;
