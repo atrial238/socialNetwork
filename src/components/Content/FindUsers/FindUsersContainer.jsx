@@ -1,6 +1,5 @@
 import { 
 			getUsersThunk,
-			setCurrentPageThunk,
 			followThunk,
 			unfollowThunk
 		} from "../../../redux/findUsers-reducer";
@@ -13,11 +12,11 @@ import {compose} from 'redux';
 class FindUsersContainer extends Component {
 
 	componentDidMount() {
-		this.props.getUsersThunk(null, this.props.friendPerPage)
+		this.props.getUsersThunk(1, this.props.friendPerPage)
 	}
 
 	setPage = (currentPage) => {
-		this.props.setCurrentPageThunk(currentPage, this.props.friendPerPage);
+		this.props.getUsersThunk(currentPage, this.props.friendPerPage);
 	}
 	
 	render() {
@@ -47,7 +46,6 @@ const mapStateToProps = (state) => {
 // }
 const mapDispatchToProps = {
 	getUsersThunk,
-	setCurrentPageThunk,
 	followThunk,
 	unfollowThunk
 }

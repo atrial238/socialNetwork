@@ -68,18 +68,18 @@ const findUsersReducer = (state = initState, action) => {
 	}
 }
 
-export const getUsersThunk = (page, friendPerPage) => (dispatch) =>  {
+// export const getUsersThunk = (page, friendPerPage) => (dispatch) =>  {
 
-	usersAPI.getUsers(page, friendPerPage)
-		.then(res => {
-			dispatch(setLoadingAnimation(false));
-			dispatch(onSetUsers(res.items));
-			dispatch(setTotalCount(res.totalCount));
-			}
-		)
+// 	usersAPI.getUsers(page, friendPerPage)
+// 		.then(res => {
+// 			dispatch(setLoadingAnimation(false));
+// 			dispatch(onSetUsers(res.items));
+// 			dispatch(setTotalCount(res.totalCount));
+// 			}
+// 		)
 
-}
-export const setCurrentPageThunk = (page, friendPerPage) => (dispatch) => {
+// }
+export const getUsersThunk = (page, friendPerPage) => (dispatch) => {
 
 	dispatch(setCurrentPage(page));
 	dispatch(setLoadingAnimation(true));
@@ -87,6 +87,7 @@ export const setCurrentPageThunk = (page, friendPerPage) => (dispatch) => {
 		.then(res => {
 			dispatch(setLoadingAnimation(false));
 			dispatch(onSetUsers(res.items));
+			dispatch(setTotalCount(res.totalCount));
 		});
 
 }

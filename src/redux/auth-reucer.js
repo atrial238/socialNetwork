@@ -5,8 +5,8 @@ const AUTH = 'AUTH';
 const AVATAR_SRC = 'AVATAR_SRC'
 const NULL_MY_DATA= 'NULL_MY_DATA';
 
-export const setAuthUserData = (data) => ({type: AUTH, data});
-export const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});
+const setAuthUserData = (data) => ({type: AUTH, data});
+const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});
 const nullMyData = () => ({type: NULL_MY_DATA});
 
 export const getAuthData = () => (dispatch) => {
@@ -15,7 +15,7 @@ export const getAuthData = () => (dispatch) => {
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
 				const userId = res.data.data.id;
-		profileAPI.getUserProfile(2)
+		profileAPI.getUserProfile(userId)
 				.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
 		});
 }

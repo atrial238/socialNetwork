@@ -5,7 +5,7 @@ import style from './Profile.module.css';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
 import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk } from '../../../redux/profile-reducer'
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -16,8 +16,6 @@ class ProfileContainer extends Component {
 		let userId = this.props.match.params.userId;
 		if(!userId && !this.props.authData.isAuth) {
 			userId = this.props.authData.id
-		}else if(!userId && this.props.authData.isAuth){
-			this.props.history.push('/login')
 		};
 
 		this.props.profileUserDataThunk (userId);
@@ -25,7 +23,7 @@ class ProfileContainer extends Component {
 	}
 
 	render() {
-		
+		if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
 		return (
 			<div>
 				<Cover />

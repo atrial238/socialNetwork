@@ -28,8 +28,7 @@ export const putMyStatusOnServerThunk = (status) => (dispatch) => {
 const addPost = (state, post) => {
 	return {
 		...state,
-		postData: [...state.postData, {id: '6', text: post, like: '0'} ],
-		temporaryValue: ''
+		postData: [...state.postData, {id: '6', text: post, like: '0'} ]
 	}
 }
 
