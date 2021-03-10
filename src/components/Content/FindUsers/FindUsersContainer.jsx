@@ -8,6 +8,8 @@ import React, { Component } from 'react';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
+
 
 class FindUsersContainer extends Component {
 
@@ -27,7 +29,7 @@ class FindUsersContainer extends Component {
 const mapStateToProps = (state) => {
 
 	return {
-		friendsArrFinded: state.findUsers.users,
+		friendsArrFinded: getUsersSelecor(state),
 		numberCurrentPage: state.findUsers.numberCurrentPage,
 		friendPerPage: state.findUsers.friendPerPage,
 		totalFriend: state.findUsers.totalFriend,
