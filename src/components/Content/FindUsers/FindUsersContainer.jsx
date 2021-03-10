@@ -13,17 +13,11 @@ import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
 
 class FindUsersContainer extends Component {
 
-	componentDidMount() {
-		this.props.getUsersThunk(1, this.props.friendPerPage)
-	}
+	componentDidMount = () => this.props.getUsersThunk(1, this.props.friendPerPage);
 
-	setPage = (currentPage) => {
-		this.props.getUsersThunk(currentPage, this.props.friendPerPage);
-	}
+	setPage = currentPage => this.props.getUsersThunk(currentPage, this.props.friendPerPage);
 	
-	render() {
-		return <FindUsersDumb {...this.props} setPage={this.setPage} />
-	} 
+	render = () => <FindUsersDumb {...this.props} setPage={this.setPage} />; 
 } 
 
 const mapStateToProps = (state) => {

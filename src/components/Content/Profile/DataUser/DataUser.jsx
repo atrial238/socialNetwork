@@ -1,7 +1,7 @@
 import React from 'react';
 import Loading from '../../../common/Loading/Loading';
 import {my_data, avatar, content, about, header, bottom} from './DataUser.module.css';
-import UserStatus from './UserStatus/UserStatus';
+import UserStatusWithHook from './UserStatus/UserStatusWithHook';
 
 const DataUser = (props) => {
 	if(!props.profileUserData)  return <Loading/>;
@@ -19,7 +19,7 @@ const DataUser = (props) => {
 						<div className={about}>{aboutMe || `no data`}</div>
 					</div>
 					<div className={bottom}>
-						<UserStatus 
+						<UserStatusWithHook
 							userStatus = {props.userStatus}
 							putMyStatusOnServerThunk={ props.putMyStatusOnServerThunk}
 						 />
