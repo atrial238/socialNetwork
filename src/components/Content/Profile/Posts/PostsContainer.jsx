@@ -25,7 +25,10 @@ import {connect} from 'react-redux';
 // 	)
 // }
 
-const PostsContainer = (props) => <Posts {...props}/>;
+const PostsContainer = (props) => {
+	console.log(props)
+	return <Posts {...props}/>
+};
 
 const mapStateToProps = (state) => ({postData: state.profile.postData});
 

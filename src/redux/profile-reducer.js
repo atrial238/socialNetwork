@@ -3,12 +3,13 @@ import { profileAPI} from '../api/api';
 export const postMesssgeActioncreator = (post) => ({type: ADD_POST, post});
 const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
 const setUserStatus = (status) => ({type: USER_STATUS, status})
-
+export const deletePostAC = (id) => ({type: DELETE_POST, id})
 
 const ADD_POST = 'ADD_POST';
 const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
 const SET_PROFILE = 'SET_PROFILE';
 const USER_STATUS = 'USER_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 
 export const profileUserDataThunk = (userId) => (dispatch) => {
@@ -74,6 +75,8 @@ const profileReducer = (state = initState, action) => {
 	switch(action.type){
 		case ADD_POST:
 			return addPost(state, action.post);
+		case DELETE_POST: 
+			return {...state, postData: state.postData.filter(elem => elem.id !== action.id)}
 		case SET_PROFILE:
 			return setProfile(state, action.profile);
 		case USER_STATUS:

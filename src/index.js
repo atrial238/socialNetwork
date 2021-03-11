@@ -14,6 +14,4 @@ import {Provider} from 'react-redux';
 		document.getElementById('root')
 	 );
 
-window.state = store.getState();
-
 reportWebVitals();

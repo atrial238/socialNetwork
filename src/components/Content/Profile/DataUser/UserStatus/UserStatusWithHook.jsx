@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
  const UserStatusWithHook = ({userStatus, putMyStatusOnServerThunk}) => {
 	
-	const [isStatusEdit, setIsStatusEdit] = useState(false);
+	const [isStatusEditMod, setIsStatusEditMod] = useState(false);
 	const [temporaryStatus, setStatus] = useState(userStatus);
+
+	useEffect ( () => setStatus(userStatus), [userStatus]);
 	
-	const activateEditMode = () => setIsStatusEdit(!isStatusEdit);
+	const activateEditMode = () => setIsStatusEditMod(!isStatusEditMod);
 	const deactivateEditMode = () => {
-		setIsStatusEdit(!isStatusEdit)
+		setIsStatusEditMod(!isStatusEditMod)
 		putMyStatusOnServerThunk(temporaryStatus)
 	};
 	const setTemporaryStatus = (e) => setStatus(e.currentTarget.value)
 
-
 	return (
-		isStatusEdit
+		isStatusEditMod
 						? <input 
 								autoFocus 
 								type="text" 
