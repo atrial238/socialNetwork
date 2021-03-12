@@ -1,7 +1,7 @@
 import {getAuthData} from './auth-reucer';
 const initializedAC = () => ({type: INITIALIZED_SUCCESS})
 
-const INITIALIZED_SUCCESS ='INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS ='app_reducer/NITIALIZED_SUCCESS';
 
 export const initializedThunk = () => (dispatch) => {
 	const promise = dispatch(getAuthData());

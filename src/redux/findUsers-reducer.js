@@ -17,7 +17,7 @@ const FOLLOW = 'FOLLOW',
 		DISABLE_BUTTON = 'DISABLE_BUTTON';
 
 const followUser = (state, userId) => {
-	return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend,followed: true} : friend)}
+	return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend, followed: true} : friend)}
 }
 const unfollowUser = (state, userId) => {
 	return {...state, users: state.users.map(friend => friend.id === userId ? {...friend, followed: false} : friend)}
