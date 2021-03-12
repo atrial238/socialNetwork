@@ -17,12 +17,12 @@ const FOLLOW = 'findUsers_reducer/FOLLOW',
 		DISABLE_BUTTON = 'findUsers_reducer/DISABLE_BUTTON';
 
 const followUser = (state, userId) => {
-	return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend, followed: true} : friend)}
-}
-const unfollowUser = (state, userId) => {
-	return {...state, users: state.users.map(friend => friend.id === userId ? {...friend, followed: false} : friend)}
-}
-const setUsers = (state, usersArr) => {
+			return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend, followed: true} : friend)}
+		},
+		unfollowUser = (state, userId) => {
+			return {...state, users: state.users.map(friend => friend.id === userId ? {...friend, followed: false} : friend)}
+		},
+		setUsers = (state, usersArr) => {
 			return {...state, users: usersArr.map(user => ({...user, isButtonDisable: false}))}
 		},
 		setActivePage = (state, currentPage) => ({...state, numberCurrentPage: currentPage}),
@@ -32,10 +32,8 @@ const setUsers = (state, usersArr) => {
 			return {
 				...state,
 				users: state.users.map(user => user.id === id ? {...user,  isButtonDisable: !user.isButtonDisable} : user)
-				
 			}
 		}
-		
 
 const initState = {
 	users: [],
@@ -79,36 +77,30 @@ const findUsersReducer = (state = initState, action) => {
 // 		)
 
 // }
-export const getUsersThunk = (page, friendPerPage) => (dispatch) => {
+export const getUsersThunk = (page, friendPerPage) => async (dispatch) => {
 
 	dispatch(setCurrentPage(page));
 	dispatch(setLoadingAnimation(true));
-	usersAPI.getUsers(page, friendPerPage)
-		.then(res => {
-			dispatch(setLoadingAnimation(false));
-			dispatch(onSetUsers(res.items));
-			dispatch(setTotalCount(res.totalCount));
-		});
-
+	const res = await usersAPI.getUsers(page, friendPerPage)
+	dispatch(setLoadingAnimation(false));
+	dispatch(onSetUsers(res.items));
+	dispatch(setTotalCount(res.totalCount));
+	
 }
-export const followThunk = (id) => (dispatch) => {
+export const followThunk = (id) => async (dispatch) => {
 
 	dispatch(setButtonDisabled(id));
-	usersAPI.follow(id)
-		.then(res => {
-				dispatch(setButtonDisabled(id));
-				if(!res.resultCode) dispatch(onFollow(id));
-		})
-
+	const res = await usersAPI.follow(id)
+	dispatch(setButtonDisabled(id));
+	if(!res.resultCode) dispatch(onFollow(id));
+		
 }
-export const unfollowThunk = (id) => (dispatch) =>{
+export const unfollowThunk = (id) => async (dispatch) =>{
 
 	dispatch(setButtonDisabled(id));
-	usersAPI.unfollow(id)
-		.then(res => {
-			dispatch(setButtonDisabled(id));
-			if(!res.resultCode) dispatch(onUnfollow(id));
-		})
- 
+	const res = await usersAPI.unfollow(id)
+	dispatch(setButtonDisabled(id));
+	if(!res.resultCode) dispatch(onUnfollow(id));
+
 }
 export default findUsersReducer;

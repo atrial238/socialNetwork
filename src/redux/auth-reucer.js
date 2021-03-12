@@ -19,16 +19,18 @@ export const getAuthData = () => (dispatch) => {
 				.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
 		});
 }
-export const authMe = (email, password, rememberMe) => (dispatch) =>{
-	authAPI.logInMe(email, password, rememberMe)
-			.then(res => !res.data.resultCode 
-											? dispatch(getAuthData()) 
-											: dispatch(stopSubmit('login', {_error: res.data.messages[0]})))
-}
-export const logOutMe = () => (dispatch) => {
 
-	authAPI.logOutMe()
-		.then(res => !res.data.resultCode ? dispatch(nullMyData()) : null)
+export const authMe =  (email, password, rememberMe) => async (dispatch) => {
+
+	const respond = await authAPI.logInMe(email, password, rememberMe);
+	!respond.data.resultCode ? dispatch(getAuthData()) 
+									 : dispatch(stopSubmit('login', {_error: respond.data.messages[0]}))
+}
+
+export const logOutMe = () => async (dispatch) => {
+
+	const res = await authAPI.logOutMe();
+	if(!res.data.resultCode) dispatch(nullMyData()) 
 }
 
 const stateInit = {
