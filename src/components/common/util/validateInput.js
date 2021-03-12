@@ -12,9 +12,7 @@ export const renderField = ({meta, input, type, lable, id, style}) => {
 	
 	return (
 		<div style={{display: style.display, border: redBorder}}>
-			{React.createElement(lable, 
-				{...input, type:type, id:id}, null)}
-				{/* <input {...props.input} type={props.type}/> */}
+			{React.createElement(lable, {...input, type:type, id:id}, null)}
 			{meta.touched && meta.error ? meta.error : null}
 		</div>
 	)
