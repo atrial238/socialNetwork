@@ -1,9 +1,9 @@
 import { stopSubmit } from 'redux-form';
 import {profileAPI, authAPI} from '../api/api';
 
-const AUTH = 'AUTH';
-const AVATAR_SRC = 'AVATAR_SRC'
-const NULL_MY_DATA= 'NULL_MY_DATA';
+const AUTH = 'auth_reducer/AUTH';
+const AVATAR_SRC = 'auth_reducer/AVATAR_SRC'
+const NULL_MY_DATA= 'auth_reducer/NULL_MY_DATA';
 
 const setAuthUserData = (data) => ({type: AUTH, data});
 const serAvatarSrc = (src) => ({type: AVATAR_SRC, src});

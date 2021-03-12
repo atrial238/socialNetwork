@@ -8,13 +8,13 @@ const onFollow = (userId) => ({type: FOLLOW, userId}),
 		setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad}),
 		setButtonDisabled = (id) => ({type: DISABLE_BUTTON, id});
 
-const FOLLOW = 'FOLLOW',
-		UNFOLLOW = 'UNFOLLOW',
-		SET_USERS = 'SET_USERS',
-		CURRENT_PAGE = 'CURRENT_PAGE',
-		TOTAL_COUNT = 'TOTAL_COUNT',
-		LOADING = 'LOADING',
-		DISABLE_BUTTON = 'DISABLE_BUTTON';
+const FOLLOW = 'findUsers_reducer/FOLLOW',
+		UNFOLLOW = 'findUsers_reducer/UNFOLLOW',
+		SET_USERS = 'findUsers_reducer/SET_USERS',
+		CURRENT_PAGE = 'findUsers_reducer/CURRENT_PAGE',
+		TOTAL_COUNT = 'findUsers_reducer/TOTAL_COUNT',
+		LOADING = 'findUsers_reducer/LOADING',
+		DISABLE_BUTTON = 'findUsers_reducer/DISABLE_BUTTON';
 
 const followUser = (state, userId) => {
 	return {...state ,users: state.users.map(friend => friend.id === userId ? {...friend, followed: true} : friend)}

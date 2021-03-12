@@ -1,7 +1,8 @@
 export const sendMessageActionCreator = (message) => ({type: ADD_MESSAGE, message});
 export const changeGlobalStateMessageActionCreator = (value) => ({type: INPUT_MESSAGE_CHANGE, value});
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const INPUT_MESSAGE_CHANGE = 'INPUT_MESSAGE_CHANGE';
+
+const ADD_MESSAGE = 'message_reducer/ADD_MESSAGE';
+const INPUT_MESSAGE_CHANGE = 'message_reducer/INPUT_MESSAGE_CHANGE';
 
 const addMessage = (state, message)  =>{
 	

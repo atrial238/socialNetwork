@@ -5,11 +5,11 @@ const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
 const setUserStatus = (status) => ({type: USER_STATUS, status})
 export const deletePostAC = (id) => ({type: DELETE_POST, id})
 
-const ADD_POST = 'ADD_POST';
-const INPUT_POST_CHANGE = 'INPUT_POST_CHANGE';
-const SET_PROFILE = 'SET_PROFILE';
-const USER_STATUS = 'USER_STATUS';
-const DELETE_POST = 'DELETE_POST';
+const ADD_POST = 'profile_reducer/ADD_POST';
+const INPUT_POST_CHANGE = 'profile_reducer/INPUT_POST_CHANGE';
+const SET_PROFILE = 'profile_reducer/SET_PROFILE';
+const USER_STATUS = 'profile_reducer/USER_STATUS';
+const DELETE_POST = 'profile_reducer/DELETE_POST';
 
 
 export const profileUserDataThunk = (userId) => (dispatch) => {
