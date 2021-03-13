@@ -1,7 +1,8 @@
 import React from 'react';
-import Friend from './Friend/Friend';
-import { friends, pagination, currentPageClass, allFriendsClass } from './FindUsersDumb.module.css';
+import Users from './Users/Users';
+import { friends, allFriendsClass } from './FindUsersDumb.module.css';
 import Loading from '../../../common/Loading/Loading';
+import Pagination from '../../../common/Pagination/Pagination';
 
 const FindUsersDumb = (props) => {
 
@@ -17,20 +18,12 @@ const FindUsersDumb = (props) => {
 	} = props;
 	
 	const allFriends = friendsArrFinded.map(friend =>
-									<Friend
+									<Users
 										key={friend.id}
 										data={friend}
 										followThunk={followThunk}
 										unfollowThunk={unfollowThunk}
 									/>
-	);
-
-	const paginationElements = Array.from({length: Math.ceil(totalFriend / friendPerPage)}).map((element, index) => 
-									<li 
-										key={index}
-										className={numberCurrentPage === index + 1 ? currentPageClass : null}
-										onClick={() => setPage(index + 1)}
-									>{index + 1}</li>
 	);
 
 	return (
@@ -39,11 +32,13 @@ const FindUsersDumb = (props) => {
 		<div className={friends}>
 			{isLoading ? <Loading/> : <div className={allFriendsClass}>{allFriends}</div>}
 		</div>
-		<div className={pagination}>
-			<ul>
-				{paginationElements}
-			</ul>
-		</div>
+		<Pagination 
+			totalItems={totalFriend}
+			itemsPerPage={friendPerPage}
+			numberCurrentPage={numberCurrentPage}
+			setPage={setPage}
+		/>
+		
 	</>
 	)
 }

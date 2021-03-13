@@ -3,7 +3,7 @@ import { wrapper, avatarDiv, img, body, header, statuss, buttonClass } from './F
 import avatar from '../../../../../assets/images/1.jpg';
 import { NavLink } from 'react-router-dom';
 
-const Friend = ({ data, followThunk, unfollowThunk }) => {
+const Users = ({ data, followThunk, unfollowThunk }) => {
 
 	const {id, name, status, photos, followed, isButtonDisable } = data;
 
@@ -30,4 +30,4 @@ const Friend = ({ data, followThunk, unfollowThunk }) => {
 		</>
 	)
 }
-export default Friend;
+export default Users;
