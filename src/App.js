@@ -24,7 +24,8 @@ class App extends Component {
 			</Router>
 		)
 	}
-}
+} 
+
 const mapStateToProps = (state) => {
 	return {
 		isInintApp: state.app.initialized,

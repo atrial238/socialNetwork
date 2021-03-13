@@ -15,10 +15,10 @@ class ProfileContainer extends Component {
 		let userId = this.props.match.params.userId;
 		if(!userId && !this.props.authData.isAuth) {
 			userId = this.props.authData.id;
-			this.props.profileUserDataThunk (userId);
-			this.props.getUserStatusThunk(userId);
+			
 		}
-
+		this.props.profileUserDataThunk (userId);
+		this.props.getUserStatusThunk(userId);
 		
 		
 	}

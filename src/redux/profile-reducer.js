@@ -47,7 +47,6 @@ const initState = {
 		like: '14'
 	},
 	],
-	temporaryValue: '',
 	profileUserData: null,
 	userStatus: 'status',
 	
