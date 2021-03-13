@@ -4,9 +4,9 @@ import OneMessage from './OneMessage/OneMessage';
 import FormMessageWithFormRedux from './FormMessage/FormMessage';
 
 
-const DeployMessage = ({ arrMessages, sendMessageActionCreator }) => {
-
-	const arrMessagesElements = arrMessages.map(message => <OneMessage key={message.id} text={message.text} pathImg={message.pathImg} />);
+const DeployMessage = ({ messages, sendMessageActionCreator }) => {
+	
+	const arrMessagesElements = messages.map(message => <OneMessage key={message.id} text={message.text} pathImg={message.pathImg} />);
 	
 	const onSubmit = (data) => {
 		sendMessageActionCreator(data.message)

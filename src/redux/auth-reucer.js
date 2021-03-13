@@ -14,22 +14,26 @@ export const getAuthData = () => (dispatch) => {
 	return authAPI.isAuthorization()
 			.then(res => {
 				dispatch(setAuthUserData(res.data))
-				const userId = res.data.data.id;
-		profileAPI.getUserProfile(userId)
-				.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
+				if(res.data.data.id){
+					const userId = res.data.data.id;
+					profileAPI.getUserProfile(userId)
+						.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
+				}
+				
 		});
 }
 
-export const authMe =  (email, password, rememberMe) => async (dispatch) => {
+export const authMe =  (email, password, rememberMe) =>  (dispatch) => {
 
-	const respond = await authAPI.logInMe(email, password, rememberMe);
-	!respond.data.resultCode ? dispatch(getAuthData()) 
-									 : dispatch(stopSubmit('login', {_error: respond.data.messages[0]}))
+	return authAPI.logInMe(email, password, rememberMe)
+	.then(respond => !respond.data.resultCode ? dispatch(getAuthData()) 
+															: dispatch(stopSubmit('login', {_error: respond.data.messages[0]})))
+									 
 }
 
-export const logOutMe = () => async (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
 
-	const res = await authAPI.logOutMe();
+	const res = await authAPI.logoutUser();
 	if(!res.data.resultCode) dispatch(nullMyData()) 
 }
 
@@ -37,7 +41,7 @@ const stateInit = {
 	id: null,
 	login: null,
 	email: null,
-	resultCode: 0,
+	resultCode: 1,
 	avatar: null
 }
 

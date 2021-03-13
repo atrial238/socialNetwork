@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { friend, friend_img, friend_name } from './Friend.module.css';
 
-
-
 const Friend = ({ src, name }) => {
 
 	return (

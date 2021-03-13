@@ -16,9 +16,8 @@ const addMessage = (state, message)  =>{
 	}
 }
 
-
 const initState = {
-	dialogsData: [{
+	dialogs: [{
 		name: 'Andrew',
 		id: '1',
 		path: 'https://i.pinimg.com/564x/cd/20/b0/cd20b0c8a4fbab1419c2a5059b110f6b.jpg'

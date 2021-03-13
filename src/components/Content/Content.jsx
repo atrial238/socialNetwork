@@ -9,7 +9,7 @@ import { content_style } from './Content.module.css';
 import FindUsersContainer from './FindUsers/FindUsersContainer'
 import Login from './Login/Login';
 
-const Content = ({store}) => {
+const Content = () => {
 	return (
 		<div className={content_style}>
 			<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>

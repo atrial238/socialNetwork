@@ -18,15 +18,17 @@ class App extends Component {
 			<Router>
 				<div className='app_wrapper'>
 					<HeaderContainer/>
-					<Sidebar store={this.props.store}/>
-					<Content 
-						className='app_wrapper_content' 
-						store={this.props.store}
-					/>
+					<Sidebar friends={this.props.friends}/>
+					<Content className='app_wrapper_content'/>
 				</div>
 			</Router>
 		)
 	}
 }
-const mapStateToProps = (state) => ({isInintApp: state.app.initialized})
+const mapStateToProps = (state) => {
+	return {
+		isInintApp: state.app.initialized,
+		friends: state.sidebar.friends
+	}
+}
 export default connect(mapStateToProps, {initializedThunk})(App);

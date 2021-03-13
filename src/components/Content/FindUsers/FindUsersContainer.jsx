@@ -1,8 +1,4 @@
-import { 
-			getUsersThunk,
-			followThunk,
-			unfollowThunk
-		} from "../../../redux/findUsers-reducer";
+import { getUsersThunk, followThunk, unfollowThunk} from "../../../redux/findUsers-reducer";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
@@ -20,16 +16,16 @@ class FindUsersContainer extends Component {
 	render = () => <FindUsersDumb {...this.props} setPage={this.setPage} />; 
 } 
 
-const mapStateToProps = (state) => {
-
-	return {
+const mapStateToProps = (state) => (
+	{
 		friendsArrFinded: getUsersSelecor(state),
 		numberCurrentPage: state.findUsers.numberCurrentPage,
 		friendPerPage: state.findUsers.friendPerPage,
 		totalFriend: state.findUsers.totalFriend,
 		isLoading: state.findUsers.isLoading,
 	}
-}
+)
+
 // const mapDispatchToProps = (dispatch) => {
 // 	return {
 // 		onFollow: (userId) => dispatch(followActionCreator(userId)),

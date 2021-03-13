@@ -2,9 +2,9 @@ import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
 import { title, wrapper } from './Dialogs.module.css';
 
-const Dialogs = ({dialogsData}) => {
+const Dialogs = ({dialogs}) => {
 
-	const dialogsElement = dialogsData.map(dialog => <DialogsItem name={dialog.name} key={dialog.id} id={dialog.id} path={dialog.path} />)
+	const dialogsElement = dialogs.map(dialog => <DialogsItem name={dialog.name} key={dialog.id} id={dialog.id} path={dialog.path} />)
 	
 	return (
 		<div className={wrapper}>
