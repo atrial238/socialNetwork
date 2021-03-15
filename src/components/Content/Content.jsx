@@ -9,13 +9,13 @@ import FindUsersContainer from './FindUsers/FindUsersContainer'
 import Login from './Login/Login';
 import Loading from '../common/Loading/Loading';
 
-const ProfileContainer = React.lazy(() => import('./Profile/ProfileContainer'));
+const ProfileContainerWithHook = React.lazy(() => import('./Profile/ProfileContainerWithHook'));
 const Content = () => {
 	
 	return (
 		<div className={content_style}>
 				<Suspense fallback={<div>...Loading</div>}>
-					<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+					<Route path='/profile/:userId?' render={() => <ProfileContainerWithHook/>}/>
 				</Suspense>
 				<Route path='/messages' render={() => <MessagesContainer />}/>
 				<Route path='/findUsers' render={() => <FindUsersContainer/>}/>

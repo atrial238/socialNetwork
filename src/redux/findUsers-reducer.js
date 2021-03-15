@@ -71,6 +71,7 @@ const followUnfollowHelper = async (id, methodAPI, dispatch) => {
 export const followThunk = (id) => (dispatch) => followUnfollowHelper(id, usersAPI.follow,  dispatch);
 export const unfollowThunk = (id) => (dispatch) => followUnfollowHelper(id, usersAPI.unfollow,  dispatch);
 
+
 export const getUsersThunk = (page, friendPerPage) => async (dispatch) => {
 
 	dispatch(setCurrentPage(page));

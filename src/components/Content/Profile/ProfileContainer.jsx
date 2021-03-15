@@ -10,19 +10,19 @@ import { compose } from 'redux';
 
 class ProfileContainer extends Component {
 
-	componentDidMount() {
-
+	getUserData(){
 		let userId = this.props.match.params.userId;
-		if(!userId && !this.props.authData.isAuth) {
-			userId = this.props.authData.id;
-			
-		}
+		if(!userId && !this.props.authData.isAuth) userId = this.props.authData.id;
 		this.props.profileUserDataThunk (userId);
 		this.props.getUserStatusThunk(userId);
-		
-		
 	}
 
+	componentDidMount() {this.getUserData()};
+
+	componentDidUpdate(prevProps){
+		if(this.props.match.params.userId !== prevProps.match.params.userId) this.getUserData()
+	}
+	
 	render() {
 		if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
 
