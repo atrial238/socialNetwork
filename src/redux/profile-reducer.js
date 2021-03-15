@@ -3,12 +3,14 @@ import { profileAPI} from '../api/api';
 export const postMesssgeActioncreator = (post) => ({type: ADD_POST, post});
 export const deletePostAC = (id) => ({type: DELETE_POST, id})
 const setDataProfile = (profile) => ({type: SET_PROFILE, profile});
-const setUserStatus = (status) => ({type: USER_STATUS, status})
+const setUserStatus = (status) => ({type: USER_STATUS, status});
+const uploadAvatar = file => ({type: UPLOAD_AVATAR, file});
 
 const ADD_POST = 'profile_reducer/ADD_POST',
 		SET_PROFILE = 'profile_reducer/SET_PROFILE',
 		USER_STATUS = 'profile_reducer/USER_STATUS',
-		DELETE_POST = 'profile_reducer/DELETE_POST';
+		DELETE_POST = 'profile_reducer/DELETE_POST',
+		UPLOAD_AVATAR ='UPLOAD_AVATAR';
 
 const addPost = (state, post) => {
 			return {
@@ -18,7 +20,8 @@ const addPost = (state, post) => {
 		},
  		setProfile = (state, profileData) => ({...state, profileUserData: profileData}),
 		deletePost = (state, id) => ({...state, postData: state.postData.filter(elem => elem.id !== id)}),
-		setStatus = (state, status) => ({...state, userStatus: status});
+		setStatus = (state, status) => ({...state, userStatus: status}),
+		setAvatar = (state, image) => ({...state, profileUserData: {...state.profileUserData, photos: image}});
 
 const initState = {
 	postData: [{
@@ -62,7 +65,9 @@ const profileReducer = (state = initState, action) => {
 		case SET_PROFILE:
 			return setProfile(state, action.profile);
 		case USER_STATUS:
-			return setStatus(state, action.status)
+			return setStatus(state, action.status);
+		case UPLOAD_AVATAR:
+			return setAvatar(state, action.file)
 		default: 
 			return state;
 	}
@@ -81,6 +86,10 @@ export const getUserStatusThunk = (id) => async (dispatch) => {
 export const putMyStatusOnServerThunk = (status) => async (dispatch) => {
 	const res = await profileAPI.updateMyStatus(status)
 	if(!res.data.resultCode) dispatch(setUserStatus(status))
+}
+export const changeAvatarThunk = file => async (dispatch) => {
+	const res = await profileAPI.postAvatar(file);
+	if(!res.data.resultCode) dispatch(uploadAvatar(res.data.data.photos));
 }
 
 export default profileReducer;

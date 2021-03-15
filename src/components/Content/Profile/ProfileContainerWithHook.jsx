@@ -3,7 +3,7 @@ import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
-import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator} from '../../../redux/profile-reducer'
+import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk} from '../../../redux/profile-reducer'
 import { Redirect, withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -11,13 +11,15 @@ import { compose } from 'redux';
 const ProfileContainerWithHook = props =>{
 
 	useEffect(() => {
+
 		let userId = props.match.params.userId;
 		if(!userId && !props.authData.isAuth) userId = props.authData.id;
 		props.profileUserDataThunk (userId);
 		props.getUserStatusThunk(userId);
-	});
 
-	const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator} = props;
+	}, [props.match.params.userId]);
+
+	const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, changeAvatarThunk} = props;
 
 	if(!props.match.params.userId && props.authData.isAuth) return <Redirect to='/login'/>
 
@@ -27,12 +29,13 @@ const ProfileContainerWithHook = props =>{
 			<DataUser 
 				profileUserData={profileUserData} 
 				userStatus = {userStatus}
+				userIdInUrl={props.match.params.userId}
 				putMyStatusOnServerThunk={putMyStatusOnServerThunk}
+				changeAvatarThunk={changeAvatarThunk}
 			/>
 			<Posts postData={postData} postMesssgeActioncreator={postMesssgeActioncreator}/>
 		</div>
 	)
-	
 }
 
 const mapStateToProps = state => (
@@ -45,7 +48,7 @@ const mapStateToProps = state => (
 );
 
 export default compose(
-	connect(mapStateToProps, {profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator}),
+	connect(mapStateToProps, {profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk}),
 	withRouter,
 	// WithAuthRedirect
 )(ProfileContainerWithHook);
