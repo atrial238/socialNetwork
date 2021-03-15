@@ -6,8 +6,8 @@ const Pagination = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amoun
 	const [numberPortionVisibleItmes, setVisibleItems] = useState(1);
 
 	const amountAllItmes = Math.ceil(totalItems / itemsPerPage),
-		leftVisibleItems = (numberPortionVisibleItmes - 1) * amountVisiblePortion,
-		rightVisibleItems = numberPortionVisibleItmes * amountVisiblePortion - 1 ;
+			leftVisibleItems = (numberPortionVisibleItmes - 1) * amountVisiblePortion,
+			rightVisibleItems = numberPortionVisibleItmes * amountVisiblePortion - 1 ;
 
 	const changeVisibleItems = (direction) => {
 		if(direction){
