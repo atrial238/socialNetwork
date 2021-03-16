@@ -27,11 +27,13 @@ const ProfileContainerWithHook = props =>{
 		<div>
 			<Cover />
 			<DataUser 
+
 				profileUserData={profileUserData} 
 				userStatus = {userStatus}
 				userIdInUrl={props.match.params.userId}
 				putMyStatusOnServerThunk={putMyStatusOnServerThunk}
 				changeAvatarThunk={changeAvatarThunk}
+				
 			/>
 			<Posts postData={postData} postMesssgeActioncreator={postMesssgeActioncreator}/>
 		</div>
