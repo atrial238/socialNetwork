@@ -3,7 +3,7 @@ import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
-import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk} from '../../../redux/profile-reducer'
+import {changeProfileDataThunk, profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk} from '../../../redux/profile-reducer'
 import { Redirect, withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -19,7 +19,7 @@ const ProfileContainerWithHook = props =>{
 
 	}, [props.match.params.userId]);
 
-	const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, changeAvatarThunk} = props;
+	const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, changeAvatarThunk, changeProfileDataThunk} = props;
 
 	if(!props.match.params.userId && props.authData.isAuth) return <Redirect to='/login'/>
 
@@ -27,13 +27,12 @@ const ProfileContainerWithHook = props =>{
 		<div>
 			<Cover />
 			<DataUser 
-
 				profileUserData={profileUserData} 
 				userStatus = {userStatus}
-				userIdInUrl={props.match.params.userId}
+				isOwner={props.match.params.userId === undefined}
 				putMyStatusOnServerThunk={putMyStatusOnServerThunk}
 				changeAvatarThunk={changeAvatarThunk}
-				
+				changeProfileDataThunk={changeProfileDataThunk}
 			/>
 			<Posts postData={postData} postMesssgeActioncreator={postMesssgeActioncreator}/>
 		</div>
@@ -50,7 +49,7 @@ const mapStateToProps = state => (
 );
 
 export default compose(
-	connect(mapStateToProps, {profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk}),
+	connect(mapStateToProps, {changeProfileDataThunk, profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, changeAvatarThunk}),
 	withRouter,
 	// WithAuthRedirect
 )(ProfileContainerWithHook);

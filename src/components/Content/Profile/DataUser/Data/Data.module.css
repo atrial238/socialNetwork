@@ -28,4 +28,10 @@
 .bottom {
 
 }
+.skills, .contactsClass{
+	display: flex;
+}
+.skills :first-child, .contactsClass :first-child{
+	margin-right: 15px;
+}
 

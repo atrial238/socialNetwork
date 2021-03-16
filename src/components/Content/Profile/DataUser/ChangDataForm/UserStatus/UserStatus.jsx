@@ -11,9 +11,11 @@ export default class UserStatus extends Component {
 			this.setState({temporaryStatus: this.props.userStatus})
 		}
 	}
+	
 	handleInput = (e) =>  this.setState({
 		temporaryStatus: e.currentTarget.value
 	});
+
 	statusUpdate = (e) => {
 		this.setState({isStatusModify: !this.state.isStatusModify })
 		const state = this.state.temporaryStatus || this.props.userStatus;

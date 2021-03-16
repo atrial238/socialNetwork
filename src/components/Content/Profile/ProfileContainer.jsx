@@ -3,7 +3,7 @@ import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
-import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator} from '../../../redux/profile-reducer'
+import { profileUserDataThunk, getUserStatusThunk,  putMyStatusOnServerThunk, postMesssgeActioncreator, chabgeProfileDataThunk} from '../../../redux/profile-reducer'
 import { Redirect, withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -26,7 +26,7 @@ class ProfileContainer extends Component {
 	render() {
 		if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
 
-		const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator} = this.props;
+		const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, chabgeProfileDataThunk} = this.props;
 		return (
 			<div>
 				<Cover />
@@ -34,6 +34,7 @@ class ProfileContainer extends Component {
 					profileUserData={profileUserData} 
 					userStatus = {userStatus}
 					putMyStatusOnServerThunk={putMyStatusOnServerThunk}
+					chabgeProfileDataThunk={chabgeProfileDataThunk}
 				/>
 				<Posts postData={postData} postMesssgeActioncreator={postMesssgeActioncreator}/>
 			</div>
@@ -51,7 +52,7 @@ const mapStateToProps = state => (
 );
 
 export default compose(
-	connect(mapStateToProps, { profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator}),
+	connect(mapStateToProps, { profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, chabgeProfileDataThunk}),
 	withRouter,
 	// WithAuthRedirect
 )(ProfileContainer);
