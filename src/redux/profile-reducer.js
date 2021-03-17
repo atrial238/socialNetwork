@@ -75,7 +75,6 @@ const profileReducer = (state = initState, action) => {
 export const profileUserDataThunk = (userId) => async (dispatch) => {
 	const res = await profileAPI.getUserProfile(userId)
 		 dispatch(setDataProfile(res.data))
-		 return res;
 }
 
 export const getUserStatusThunk = (id) => async (dispatch) => {
@@ -95,12 +94,8 @@ export const changeAvatarThunk = file => async (dispatch) => {
 
 export const changeProfileDataThunk = data => async (dispatch, getState) => {
 	const res = await profileAPI.postDataProfile(data);
-	if(!res.data.resultCode){
-		const res = await profileAPI.getUserProfile(getState().auth.id)
-		 dispatch(setDataProfile(res.data))
-		 return res;
-	}
-	return res;
+	if(!res.data.resultCode) dispatch(profileUserDataThunk(getState().auth.id));
+	return res
 }
 
 export default profileReducer;

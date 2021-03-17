@@ -13,7 +13,10 @@ const ProfileContainerWithHook = props =>{
 	useEffect(() => {
 
 		let userId = props.match.params.userId;
-		if(!userId && !props.authData.isAuth) userId = props.authData.id;
+		if(!userId) {
+			userId = props.authData.id;
+			if(!userId) props.history.push('/login')
+		} 
 		props.profileUserDataThunk (userId);
 		props.getUserStatusThunk(userId);
 
@@ -21,7 +24,7 @@ const ProfileContainerWithHook = props =>{
 
 	const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, changeAvatarThunk, changeProfileDataThunk} = props;
 
-	if(!props.match.params.userId && props.authData.isAuth) return <Redirect to='/login'/>
+	// if(!props.match.params.userId && props.authData.isAuth) return <Redirect to='/login'/>
 
 	return (
 		<div>

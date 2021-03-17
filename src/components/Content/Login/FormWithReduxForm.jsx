@@ -5,6 +5,7 @@ import {renderField, required, maxLength15} from '../../common/util/validateInpu
 const FormLogin = (props) => {
 
 	const styleInput = {display: 'inline-block'}
+	
 	return (
 		<form onSubmit={props.handleSubmit}>
 
@@ -38,10 +39,19 @@ const FormLogin = (props) => {
 				<label htmlFor="checkbox" style={{marginRight: '10px'}}>remember me</label>
 				<Field id='checkbox' type="checkbox" name='rememberMe' component='input'/>
 			</div>
+			<img src={props.captcha}/>
+			<div>
+				<Field 
+					type="text" 
+					lable='input' 
+					name='captcha' 
+					style={styleInput}
+					component={renderField} 
+				/>
+			</div>
 			<div>{props.error} </div>
 			<button type='submit' style={{cursor: 'pointer'}}>Submit</button>
 		</form>
 	)
 } 
-
 export default reduxForm({form: 'login'})(FormLogin);

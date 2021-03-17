@@ -7,13 +7,12 @@ const DataUser = props => {
 	const [editMode, setEditMode] = useState(false);
 
 	const onSubmit = (data) => {
-	
 		props.changeProfileDataThunk(data)
 		.then(() => setEditMode(false))
 	}
-	const data = {...props, setEditMode, onSubmit};
-	// editMode ? <DataForm {...data} /> :
-	// return  <Data {...data}/>;
+	const initialValues = props.profileUserData
+	const data = {...props, setEditMode, onSubmit, initialValues};
+	
 	return editMode ? <ChangeDataForm {...data}/> : <Data {...data}/>;
 }
 export default DataUser;

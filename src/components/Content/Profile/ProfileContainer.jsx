@@ -12,7 +12,10 @@ class ProfileContainer extends Component {
 
 	getUserData(){
 		let userId = this.props.match.params.userId;
-		if(!userId && !this.props.authData.isAuth) userId = this.props.authData.id;
+		if(!userId && !this.props.authData.isAuth) {
+			userId = this.props.authData.id
+			if(userId) this.props.history.push('/login')
+		};
 		this.props.profileUserDataThunk (userId);
 		this.props.getUserStatusThunk(userId);
 	}
@@ -24,7 +27,7 @@ class ProfileContainer extends Component {
 	}
 	
 	render() {
-		if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
+		// if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
 
 		const {profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, chabgeProfileDataThunk} = this.props;
 		return (
