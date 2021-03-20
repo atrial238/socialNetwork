@@ -15,7 +15,7 @@ const stateInit = {
 	id: null,
 	login: null,
 	email: null,
-	resultCode: 1,
+	isAuth: false,
 	avatar: null,
 	captcha: null
 }
@@ -24,11 +24,11 @@ const authReducer = (state = stateInit, action) => {
 	
 	switch(action.type){
 		case AUTH: 
-			return {...state, ...action.data.data, resultCode: action.data.resultCode};
+			return {...state, ...action.data.data, isAuth: true};
 		case AVATAR_SRC:
 			return {...state, avatar: action.src}
 		case NULL_MY_DATA:
-			return {...state, id: null, login: null, email: null, resultCode: 1, avatar: null}
+			return {...state, id: null, login: null, email: null, isAuth: false, avatar: null}
 		case GET_CAPTCHA:
 			return {...state, captcha: action.url}
 		default: 
@@ -39,8 +39,8 @@ export const getAuthData = () => (dispatch) => {
 
 	return authAPI.isAuthorization()
 		.then(res => {
-			dispatch(setAuthUserData(res.data))
-			if(res.data.data.id){
+			if(res.data.resultCode === 0){
+				dispatch(setAuthUserData(res.data))
 				profileAPI.getUserProfile(res.data.data.id)
 					.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
 			}

@@ -8,7 +8,7 @@ const WithAuthRedirect = (Component) => {
 		if(props.isAuth) return <Redirect to='/login'/>
 		return <Component {...props}/> 
 	}
-	const mapStateToProps = (state) => ({isAuth: state.auth.resultCode});
+	const mapStateToProps = (state) => ({isAuth: state.auth.isAuth});
 
 	return connect(mapStateToProps)(wrapper);
 }
