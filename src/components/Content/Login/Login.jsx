@@ -10,7 +10,7 @@ const Login = ({isAuth, authMe, getCaptchaThunk, captcha}) => {
 		authMe(formData.email, formData.password, formData.rememberMe, formData.captcha)
 	}
 
-	if(!isAuth) return <Redirect to='/profile'/>
+	if(!isAuth) return <Redirect to='/'/>
 
 	return (
 		<div>

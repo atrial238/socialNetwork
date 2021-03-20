@@ -8,22 +8,21 @@ import { content_style } from './Content.module.css';
 import FindUsersContainer from './FindUsers/FindUsersContainer'
 import Login from './Login/Login';
 import Loading from '../common/Loading/Loading';
+import ProfileContainerWithHook from './Profile/ProfileContainerWithHook';
+// const ProfileContainerWithHook = React.lazy(() => import('./Profile/ProfileContainerWithHook'));
 
-const ProfileContainerWithHook = React.lazy(() => import('./Profile/ProfileContainerWithHook'));
 const Content = () => {
 	
 	return (
 		<div className={content_style}>
-				<Suspense fallback={<div>...Loading</div>}>
-					<Route path='/profile/:userId?' render={() => <ProfileContainerWithHook/>}/>
-				</Suspense>
+				{/* <Suspense fallback={<div>...Loading</div>}></Suspense> */}
+				<Route path='/profile/:userId?' render={() => <ProfileContainerWithHook/>}/>
 				<Route path='/messages' render={() => <MessagesContainer />}/>
 				<Route path='/findUsers' render={() => <FindUsersContainer/>}/>
 				<Route path='/news' component={News} />
 				<Route path='/music' component={Music} />
 				<Route path='/settings' component={Settings} />
-				<Route path='/login' component={Login}/>
-		
+				
 		</div>
 	)
 	

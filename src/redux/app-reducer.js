@@ -4,6 +4,7 @@ const initializedAC = () => ({type: INITIALIZED_SUCCESS})
 const INITIALIZED_SUCCESS ='app_reducer/NITIALIZED_SUCCESS';
 
 export const initializedThunk = () => (dispatch) => {
+	
 	const promiseAuthData = dispatch(getAuthData());
 	
 	Promise.all([promiseAuthData]).then(() => dispatch(initializedAC()));
