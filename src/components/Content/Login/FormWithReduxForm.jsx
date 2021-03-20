@@ -1,45 +1,43 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {renderField, required, maxLength15} from '../../common/util/validateInput';
-
+import {renderField, required, maxLength15} from '../../common/util/rederFormField';
+import {field, field_checkbox} from './Login.module.scss'
 const FormLogin = (props) => {
 
 	const styleInput = {display: 'inline-block'}
 	
 	return (
 		<form onSubmit={props.handleSubmit}>
-
-			<div style={{marginBottom: '15px'}}>
-				<label htmlFor="login" style={{marginRight: '10px'}}>Enter your login</label>
+			<div className={field}>
 				<Field 
 					id='login' 
 					type="text" 
 					lable='input' 
 					name='email' 
+					placeholder='Your email'
 					style={styleInput}
 					component={renderField} 
 					validate={[required]}
 				/>
 			</div>
-
-			<div style={{marginBottom: '15px'}}>
-				<label htmlFor="password" style={{marginRight: '10px'}}>Enter password</label>
+			<div className={field}>
 				<Field 
 					id='password'
 					type="text" 
 					name='password' 
 					lable='input' 
 					style={styleInput}
+					placeholder='password'
 					component={renderField} 
 					validate={[required]}
 				/>
 			</div>
-
-			<div style={{marginBottom: '15px'}}>
-				<label htmlFor="checkbox" style={{marginRight: '10px'}}>remember me</label>
+			<div className={field + ' ' + field_checkbox}>
 				<Field id='checkbox' type="checkbox" name='rememberMe' component='input'/>
+				<label htmlFor="checkbox">remember me</label>
 			</div>
-			<img src={props.captcha}/>
+			
+			{/* <img src={props.captcha}/>
 			<div>
 				<Field 
 					type="text" 
@@ -48,9 +46,12 @@ const FormLogin = (props) => {
 					style={styleInput}
 					component={renderField} 
 				/>
+			</div> */}
+
+			{/* <div className={field}>{props.error} </div> */}
+			<div className={field}>
+				<button type='submit' style={{cursor: 'pointer', backgroundColor: '#00B8FF', border: 'none'}}>Enter</button>
 			</div>
-			<div>{props.error} </div>
-			<button type='submit' style={{cursor: 'pointer'}}>Submit</button>
 		</form>
 	)
 } 

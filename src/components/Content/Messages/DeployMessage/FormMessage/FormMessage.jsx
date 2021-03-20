@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {renderField, required, maxLength15} from '../../../../common/util/validateInput';
+import {renderField, required, maxLength15} from '../../../../common/util/rederFormField';
 import { formClass, column, textarea } from '../DeployMessage.module.css';
 
 const FormMessage = ({handleSubmit}) => {
