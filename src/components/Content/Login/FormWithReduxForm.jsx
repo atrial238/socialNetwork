@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {renderField, required, maxLength15} from '../../common/util/rederFormField';
+import {renderField, required, maxLength15} from '../../../util/rederFormField';
 import {field, field_checkbox} from './Login.module.scss'
 const FormLogin = (props) => {
 

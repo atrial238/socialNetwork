@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { Field, reduxForm } from 'redux-form';
 import {form} from './Posts.module.css';
-import {renderField, required} from '../../../common/util/rederFormField';
+import {renderField, required} from '../../../../util/rederFormField';
 
 const FormPost = ({handleSubmit})=> {
 	return (
