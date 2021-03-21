@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { authMe, getCaptchaThunk } from '../../../redux/auth-reucer';
 import PropTypes from 'prop-types';
-import FormWithReduxForm from './FormWithReduxForm';
+import FormWithReduxForm from './FormLogin/FormLogin';
 import LoginSlider from './LoginSlider/LoginSlider';
 import { container } from './Login.module.scss'
+import FormLogin from './FormLogin/FormLogin';
 
 const Login = ({ isAuth, authMe, getCaptchaThunk, captcha }) => {
 	
@@ -15,7 +16,7 @@ const Login = ({ isAuth, authMe, getCaptchaThunk, captcha }) => {
 					  : <div className={container}>
 							<div>
 								<h1>Social Network</h1>
-								<FormWithReduxForm onSubmit={onSubmit} getCaptchaThunk={getCaptchaThunk} captcha={captcha} />
+								<FormLogin onSubmit={onSubmit} getCaptchaThunk={getCaptchaThunk} captcha={captcha} />
 							</div>
 							<LoginSlider/>
 						 </div>

@@ -24,7 +24,7 @@ const authReducer = (state = stateInit, action) => {
 	
 	switch(action.type){
 		case AUTH: 
-			return {...state, ...action.data.data, isAuth: true};
+			return {...state, ...action.data.data, isAuth: true, captcha: null};
 		case AVATAR_SRC:
 			return {...state, avatar: action.src}
 		case NULL_MY_DATA:
@@ -54,7 +54,7 @@ export const authMe =  (email, password, rememberMe, captcha) =>  (dispatch) => 
 																	: respond.data.resultCode === 10
 																	? dispatch(getCaptchaThunk())
 																	: dispatch(stopSubmit('login', {_error: respond.data.messages[0]})))
-															
+	.catch()
 }
 
 export const logoutUser = () => async (dispatch) => {
