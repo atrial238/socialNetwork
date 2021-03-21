@@ -1,8 +1,24 @@
 import React from 'react';
-import {loading} from './Loading.module.css'
-import loadImgSrc from '../../../assets/images/loading.gif'
+import {loading, container} from './Loading.module.scss';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { withStyles } from '@material-ui/core/styles';
 
  const Loading = () => {
-	return <div className={loading}><img src={loadImgSrc} /></div>
+	 const LoadingProgress =  withStyles(() => ({
+
+			root: {height: 10,borderRadius: 5},
+			bar: {backgroundColor: '#00B8FF'},
+			colorPrimary: {backgroundColor: '#ffffff'},
+
+	}))(LinearProgress);
+
+	return (
+		<div className={container}>
+			<div>
+				<h1>Social Network</h1>
+				<div className={loading}><LoadingProgress /></div>
+			</div>
+		</div>
+	)
 }
 export default Loading;

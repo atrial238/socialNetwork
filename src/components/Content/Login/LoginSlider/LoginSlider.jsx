@@ -12,7 +12,7 @@ const LoginSlider = () => {
 	
 	const images = pathAllImage.map((path, index) => 
 													!index ? <img key={path} src={path} alt="background"  />
-													: <img key={path} data-src={path} alt="background" className='swiper-lazy' />  )
+															 : <img key={path} data-src={path} alt="background" className='swiper-lazy' />  )
 	
 	return (
 			<div className={imgBg}>
