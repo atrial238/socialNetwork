@@ -13,5 +13,5 @@ const mapStateToProps = state => ({messages: state.messages.arrMessages, dialogs
 
 export default compose(
 	connect(mapStateToProps, {sendMessageActionCreator}),
-	WithAuthRedirect
+	
 )(MessagesContainer);

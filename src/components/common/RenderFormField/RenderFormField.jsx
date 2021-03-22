@@ -1,5 +1,6 @@
 import React from 'react';
 import {requireStyleError, container, errorBorder} from './RenderFormField.module.scss';
+import PropTypes from 'prop-types';
 
 const RenderField = ({meta, input, typeTag, placeholder = '', errorMessage}) => {
 	
@@ -11,4 +12,12 @@ const RenderField = ({meta, input, typeTag, placeholder = '', errorMessage}) => 
 	)
 }
 export default RenderField;
+
+RenderField.propTypes = {
+	meta: PropTypes.object,
+	input: PropTypes.object,
+	typeTag: PropTypes.string,
+	placeholder: PropTypes.string,
+	errorMessage: PropTypes.string,
+}
 

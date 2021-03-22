@@ -17,7 +17,7 @@ const stateInit = {
 	email: null,
 	isAuth: false,
 	avatar: null,
-	captcha: null
+	captcha: ''
 }
 
 const authReducer = (state = stateInit, action) => {
@@ -47,14 +47,14 @@ export const getAuthData = () => (dispatch) => {
 		});
 }
 
-export const authMe =  (email, password, rememberMe, captcha) =>  (dispatch) => {
+export const loginUser =  (email, password, rememberMe, captcha) =>  (dispatch) => {
 
-	return authAPI.logInMe(email, password, rememberMe, captcha)
-	.then(respond => respond.data.resultCode === 0 ? dispatch(getAuthData()) 
-																	: respond.data.resultCode === 10
-																	? dispatch(getCaptchaThunk())
-																	: respond.data)
-																	// dispatch(stopSubmit('login', {_error: respond.data.messages[0]})))
+	return authAPI.loginUser(email, password, rememberMe, captcha)
+			.then(respond => respond.data.resultCode === 0 ? dispatch(getAuthData()) 
+																			: respond.data.resultCode === 10
+																			? dispatch(getCaptchaThunk())
+																			: respond.data)
+			.catch(error => error);
 }
 
 export const logoutUser = () => async (dispatch) => {

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Loading from './components/common/Loading/Loading';
 import Content from './components/Content/Content';
-import Login from './components/Content/Login/Login';
+import Login from './components/Login/Login';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import {initializedThunk} from './redux/app-reducer';
@@ -22,13 +22,14 @@ class App extends Component {
 									<Content className='app_wrapper_content'/>
 								</div>
 
-		return isInintApp ? <>
+		return isInintApp ? <Router>
 										<Route path='/login' component={Login}/>
-										<Route exact path='/' >
+										<Route path='/' >
 											{isAuth ? entireApp : <Redirect to='/login'/>}
 										</Route>
-									</>
+									</Router>
 								: <Loading/>
+		return entireApp;
 	}
 } 
 

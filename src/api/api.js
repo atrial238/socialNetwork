@@ -46,7 +46,7 @@ export const authAPI = {
 	isAuthorization(){
 		return instance.get('auth/me')
 	},
-	logInMe(email, password, rememberMe, captcha){
+	loginUser(email, password, rememberMe, captcha){
 		return instance.post('/auth/login', {email, password, rememberMe, captcha})
 	},
 	logoutUser(){
