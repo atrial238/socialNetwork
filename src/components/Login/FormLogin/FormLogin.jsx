@@ -54,7 +54,6 @@ const FormLogin = ({onSubmit, captcha}) => {
 					<div className={field}>
 						<button 
 							type='submit' 
-							style={{cursor: 'pointer', backgroundColor: '#00B8FF', border: 'none'}}
 							disabled={submitting}
 						>Enter
 						</button>

@@ -1,13 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {nav, active, item} from './Navigation.module.css';
-
+import {nav, active, link, img_wrapper} from './Navigation.module.scss';
+import homeIcon from '../../../assets/images/navigation/home.svg';
+import messageIcon from '../../../assets/images/navigation/messages.svg';
+import findUsers from '../../../assets/images/navigation/findUsers.svg';
 const Navigation = () => {
 	return (
 		<nav className={nav}>
-			<div><NavLink className={item} activeClassName={active} to='/profile'>Profile</NavLink></div>
-			<div><NavLink className={item} activeClassName={active} to='/messages'>Messages</NavLink></div>
-			<div><NavLink className={item} activeClassName={active} to='/findUsers'>Find users</NavLink></div>
+
+			
+				<NavLink className={link} activeClassName={active} to='/profile'>
+					<div className={img_wrapper}>
+						<img src={homeIcon} alt=""/>
+					</div>
+				</NavLink>
+			
+				<NavLink className={link} activeClassName={active} to='/messages'>
+					<div className={img_wrapper}>
+						<img src={messageIcon} alt=""/>
+					</div>
+				</NavLink>
+		
+				<NavLink className={link} activeClassName={active} to='/findUsers'>
+					<div className={img_wrapper}>
+						<img src={findUsers} alt=""/>
+					</div>
+				</NavLink>
+			
+
 		</nav>
 	)
 }

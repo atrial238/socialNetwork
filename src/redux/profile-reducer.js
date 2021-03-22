@@ -1,63 +1,25 @@
-import {
-	profileAPI
-} from '../api/api';
+import {profileAPI} from '../api/api';
 
-export const sendMessage = (post) => ({
-	type: ADD_POST,
-	post
-});
-export const deletePostAC = (id) => ({
-	type: DELETE_POST,
-	id
-})
-const setDataProfile = (profile) => ({
-	type: SET_PROFILE,
-	profile
-});
-const setUserStatus = (status) => ({
-	type: USER_STATUS,
-	status
-});
-const uploadAvatar = file => ({
-	type: UPLOAD_AVATAR,
-	file
-});
+export const sendMessage = post => ({type: ADD_POST, post});
+export const deletePostAC = id => ({type: DELETE_POST, id})
+const setDataProfile = profile => ({type: SET_PROFILE, profile});
+const setUserStatus = status => ({type: USER_STATUS, status});
+const uploadAvatar = file => ({type: UPLOAD_AVATAR, file});
 
 const ADD_POST = 'profile_reducer/ADD_POST',
-	SET_PROFILE = 'profile_reducer/SET_PROFILE',
-	USER_STATUS = 'profile_reducer/USER_STATUS',
-	DELETE_POST = 'profile_reducer/DELETE_POST',
-	UPLOAD_AVATAR = 'UPLOAD_AVATAR';
+		SET_PROFILE = 'profile_reducer/SET_PROFILE',
+		USER_STATUS = 'profile_reducer/USER_STATUS',
+		DELETE_POST = 'profile_reducer/DELETE_POST',
+		UPLOAD_AVATAR = 'UPLOAD_AVATAR';
 
-const addPost = (state, post) => {
-		return {
-			...state,
-			postData: [...state.postData, {
-				id: '6',
-				text: post,
-				like: '0'
-			}]
-		}
-	},
-	setProfile = (state, profileData) => ({
-		...state,
-		profileUserData: profileData
-	}),
-	deletePost = (state, id) => ({
-		...state,
-		postData: state.postData.filter(elem => elem.id !== id)
-	}),
-	setStatus = (state, status) => ({
-		...state,
-		userStatus: status
-	}),
-	setAvatar = (state, image) => ({
-		...state,
-		profileUserData: {
-			...state.profileUserData,
-			photos: image
-		}
-	});
+const addPost = (state, post) => 
+			({...state,postData: [...state.postData, {id: '6', text: post, like: '0'}]}),
+		setProfile = (state, profileData) => ({...state, profileUserData: profileData}),
+		deletePost = (state, id) =>
+			({...state,postData: state.postData.filter(elem => elem.id !== id)}),
+		setStatus = (state, status) => ({...state, userStatus: status}),
+		setAvatar = (state, image) => 
+			({...state,profileUserData: {...state.profileUserData,photos: image}});
 
 const initState = {
 	postData: [{

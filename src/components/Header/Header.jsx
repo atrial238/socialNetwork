@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {header, wrapper, img, imgAvatar, loginWrapper}  from './Header.module.scss';
 import Navigation from './Navigation/Navigation';
 import logo from '../../assets/images/logo1.png';
+
 const Header = ({resultCode, login, avatar, logoutUser}) => {
 	
 	return (
