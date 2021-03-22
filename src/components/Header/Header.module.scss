@@ -1,9 +1,9 @@
 .header {
-	grid-area: h;
-	background-color:aquamarine;
+	background-color: #242526;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 10px;
 }
 
 .img {
@@ -21,6 +21,8 @@
 .loginWrapper {
 	display: flex;
 	align-items: center;
+	color: #fff;
+	
 }
 .imgAvatar {
 	width: 50px;

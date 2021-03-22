@@ -1,12 +1,12 @@
 import profileReducer, {
-	postMesssgeActioncreator,
+	sendMessage,
 	deletePostAC
 } from "./profile-reducer"
 
 
 test('length of postArr shoud be increment', () => {
 	//test data
-	const action = postMesssgeActioncreator('some very important message');
+	const action = sendMessage('some very important message');
 	const state = {
 		postData: [{
 				id: '1',

@@ -24,9 +24,9 @@ describe("UserStatus component", () => {
 
 	test("after creation  input shouldn't be displayed", () => {
 		const component = create(<UserStatus userStatus="my status" />);
-		expect(() => {const input = component.root.findByType("input");}).toThrow();
-	}); 
-	
+		expect(() => { const input = component.root.findByType("input"); }).toThrow();
+	});
+
 	test("if editMode is true should be displayed input insted of span", () => {
 		const component = create(<UserStatus userStatus="my status" />);
 		const div = component.root.findByType("div");
@@ -38,7 +38,7 @@ describe("UserStatus component", () => {
 
 	test("callback should be called", () => {
 		const fakeFunc = jest.fn();
-		const component = create(<UserStatus userStatus="my status" putMyStatusOnServerThunk ={fakeFunc}/>);
+		const component = create(<UserStatus userStatus="my status" updateStatus={fakeFunc} />);
 		const instance = component.getInstance();
 		instance.statusUpdate();
 		expect(fakeFunc.mock.calls.length).toBe(1);

@@ -18,7 +18,7 @@ class App extends Component {
 		
 		const entireApp = <div className='app_wrapper'>
 									<HeaderContainer/>
-									<Sidebar friends={friends}/>
+									{/* <Sidebar friends={friends}/> */}
 									<Content className='app_wrapper_content'/>
 								</div>
 

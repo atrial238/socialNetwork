@@ -1,48 +1,50 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
 import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import Cover from './Cover/Cover';
-import { connect } from 'react-redux';
-import { profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, chabgeProfileDataThunk } from '../../../redux/profile-reducer'
-import { Redirect, withRouter } from "react-router-dom";
+import { updateProfileData, getUserProfile, getUserStatus, updateStatus, sendMessage, updateAvatar } from '../../../redux/profile-reducer'
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
-import { compose } from 'redux';
 
-class ProfileContainer extends Component {
+const ProfileContainer = props => {
 
-	getUserData() {
-		let userId = this.props.match.params.userId;
-		if (!userId && !this.props.authData.isAuth) {
-			userId = this.props.authData.id
-			if (userId) this.props.history.push('/login')
-		};
-		this.props.profileUserDataThunk(userId);
-		this.props.getUserStatusThunk(userId);
-	}
+	useEffect(() => {
+		const userIdFromUrl = props.match.params.userId,
+				userIdromAuthData = props.authData.id;
+		if (!userIdFromUrl && !userIdromAuthData) props.history.push('/login')
+		props.getUserProfile(userIdromAuthData);
+		props.getUserStatus(userIdromAuthData);
 
-	componentDidMount() { this.getUserData() };
+	}, [props.match.params.userId]);
 
-	componentDidUpdate(prevProps) {
-		if (this.props.match.params.userId !== prevProps.match.params.userId) this.getUserData()
-	}
+	const { profileUserData,
+		userStatus,
+		updateStatus,
+		postData,
+		sendMessage,
+		updateAvatar,
+		updateProfileData } = props;
 
-	render() {
-		// if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
+	const data = {
+		profileUserData,
+		userStatus,
+		updateStatus,
+		updateAvatar,
+		updateProfileData
+	};
 
-		const { profileUserData, userStatus, putMyStatusOnServerThunk, postData, postMesssgeActioncreator, chabgeProfileDataThunk } = this.props;
-		return (
-			<div>
-				<Cover />
-				<DataUser
-					profileUserData={profileUserData}
-					userStatus={userStatus}
-					putMyStatusOnServerThunk={putMyStatusOnServerThunk}
-					chabgeProfileDataThunk={chabgeProfileDataThunk}
-				/>
-				<Posts postData={postData} postMesssgeActioncreator={postMesssgeActioncreator} />
-			</div>
-		)
-	}
+	const isOwner = props.match.params.userId === undefined;
+
+	return (
+		<>
+			<Cover />
+			<DataUser {...data} isOwner={isOwner} />
+			<Posts postData={postData} sendMessage={sendMessage} />
+		</>
+	)
 }
 
 const mapStateToProps = state => (
@@ -54,8 +56,29 @@ const mapStateToProps = state => (
 	}
 );
 
+const actionCreators = {
+	updateProfileData,
+	getUserProfile,
+	getUserStatus,
+	updateStatus,
+	sendMessage,
+	updateAvatar
+}
+
 export default compose(
-	connect(mapStateToProps, { profileUserDataThunk, getUserStatusThunk, putMyStatusOnServerThunk, postMesssgeActioncreator, chabgeProfileDataThunk }),
+	connect(mapStateToProps, actionCreators),
 	withRouter,
-	// WithAuthRedirect
 )(ProfileContainer);
+
+ProfileContainer.propTypes = {
+	profileUserData: PropTypes.object,
+	userStatus: PropTypes.string,
+	authData: PropTypes.object,
+	postData: PropTypes.array,
+	updateProfileData: PropTypes.func,
+	getUserProfile: PropTypes.func,
+	getUserStatus: PropTypes.func,
+	updateStatus: PropTypes.func,
+	sendMessage: PropTypes.func,
+	updateAvatar: PropTypes.func,
+}
