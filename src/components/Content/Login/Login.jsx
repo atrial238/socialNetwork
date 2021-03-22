@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { authMe, getCaptchaThunk } from '../../../redux/auth-reucer';
 import PropTypes from 'prop-types';
-import FormWithReduxForm from './FormLogin/FormLogin';
+import { FORM_ERROR } from 'final-form';
+import { authMe, getCaptchaThunk } from '../../../redux/auth-reucer';
 import LoginSlider from './LoginSlider/LoginSlider';
-import { container } from './Login.module.scss'
+import {container, wrapper} from './Login.module.scss';
 import FormLogin from './FormLogin/FormLogin';
 
 const Login = ({ isAuth, authMe, getCaptchaThunk, captcha }) => {
 	
-	const onSubmit = (formData) => authMe(formData.email, formData.password, formData.rememberMe, formData.captcha);
+	const onSubmit = async (formData) => {
+		const res = await authMe(formData.email, formData.password, formData.rememberMe, formData.captcha)
+		if(res.resultCode === 1) return { [FORM_ERROR]: res.messages[0] }
+		
+	};
 
 	return isAuth ? <Redirect to='/' />
 					  : <div className={container}>
-							<div>
+							<div className={wrapper}>
 								<h1>Social Network</h1>
 								<FormLogin onSubmit={onSubmit} getCaptchaThunk={getCaptchaThunk} captcha={captcha} />
 							</div>

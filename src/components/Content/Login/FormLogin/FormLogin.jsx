@@ -3,15 +3,16 @@ import { Form, Field } from 'react-final-form'
 import RenderField from '../../../common/RenderFormField/RenderFormField.jsx';
 import Captcha from './Captcha/Captcha';
 import {required} from '../../../../util/validateForm';
-import {field, field_checkbox} from '../Login.module.scss';
+import {field, field_checkbox, error} from './FormLogin.module.scss';
 
 const FormLogin = ({onSubmit, captcha}) => {
 
 	return (
 		<Form onSubmit={onSubmit}>
-			{({handleSubmit}) => (
-				<form onSubmit={handleSubmit}>
-
+			
+			{(props) => (
+				
+				<form onSubmit={props.handleSubmit} >
 					<div className={field}>
 						<Field 
 							name='email'
@@ -22,7 +23,7 @@ const FormLogin = ({onSubmit, captcha}) => {
 							validate={required}
 							errorMessage='Enter email'
 						>
-							{props => (<RenderField {...props}/>)}
+							{props => (<RenderField {...props} />)}
 						</Field>
 					</div>
 
@@ -46,11 +47,18 @@ const FormLogin = ({onSubmit, captcha}) => {
 
 					{captcha && <Captcha captcha={captcha}/>}
 
+					{props.submitError && <div className={error + ' ' + field}>{props.submitError}</div>}
+
 					<div className={field}>
-						<button type='submit' style={{cursor: 'pointer', backgroundColor: '#00B8FF', border: 'none'}}>Enter</button>
+						<button 
+							type='submit' 
+							style={{cursor: 'pointer', backgroundColor: '#00B8FF', border: 'none'}}
+							disabled={props.submitting}
+						>Enter
+						</button>
 					</div>
 				</form>
-			)}
+			)} 
 			
 		</Form>
 	)

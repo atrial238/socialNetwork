@@ -53,8 +53,8 @@ export const authMe =  (email, password, rememberMe, captcha) =>  (dispatch) => 
 	.then(respond => respond.data.resultCode === 0 ? dispatch(getAuthData()) 
 																	: respond.data.resultCode === 10
 																	? dispatch(getCaptchaThunk())
-																	: dispatch(stopSubmit('login', {_error: respond.data.messages[0]})))
-	.catch()
+																	: respond.data)
+																	// dispatch(stopSubmit('login', {_error: respond.data.messages[0]})))
 }
 
 export const logoutUser = () => async (dispatch) => {
