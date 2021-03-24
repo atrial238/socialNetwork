@@ -3,20 +3,22 @@ import {loading, container} from './Loading.module.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
 
- const Loading = () => {
-	 const LoadingProgress =  withStyles(() => ({
+const LoadingProgress =  withStyles(() => ({
 
-			root: {height: 10,borderRadius: 5},
-			bar: {backgroundColor: '#00B8FF'},
-			colorPrimary: {backgroundColor: '#ffffff'},
+	root: {height: 10,borderRadius: 5},
+	bar: {backgroundColor: '#00B8FF'},
+	colorPrimary: {backgroundColor: '#ffffff'},
 
-	}))(LinearProgress);
+}))(LinearProgress);
 
+ const Loading = ({isInintAppFail}) => {
+	 
+	 const error = isInintAppFail && 'Oops! something went wrong'
 	return (
 		<div className={container}>
 			<div>
 				<h1>Social Network</h1>
-				<div className={loading}><LoadingProgress /></div>
+				<div className={loading}>{error || <LoadingProgress />}</div>
 			</div>
 		</div>
 	)

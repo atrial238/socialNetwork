@@ -1,10 +1,11 @@
 import { stopSubmit } from 'redux-form';
 import {profileAPI, authAPI, secureAPI} from '../api/api';
+import {getUserProfile} from './profile-reducer';
 
 const setAuthUserData = (data) => ({type: AUTH, data}),
-		serAvatarSrc = (src) => ({type: AVATAR_SRC, src}),
 		nullMyData = () => ({type: NULL_MY_DATA}),
 		getCaptchaAC = (url) => ({type: GET_CAPTCHA, url});
+export const setAvatarSrc = (src) => ({type: AVATAR_SRC, src});
 
 const AUTH = 'auth_reducer/AUTH',
 		AVATAR_SRC = 'auth_reducer/AVATAR_SRC',
@@ -38,22 +39,22 @@ const authReducer = (state = stateInit, action) => {
 export const getAuthData = () => (dispatch) => {
 
 	return authAPI.isAuthorization()
-		.then(res => {
-			if(res.data.resultCode === 0){
-				dispatch(setAuthUserData(res.data))
-				profileAPI.getUserProfile(res.data.data.id)
-					.then(res => dispatch(serAvatarSrc(res.data.photos.small)))
-			}
-		});
+		.then(res => res.data.resultCode === 0 
+							? dispatch(setAuthUserData(res.data))
+							: res
+		)
+		.catch(error => error)
 }
 
 export const loginUser =  (email, password, rememberMe, captcha) =>  (dispatch) => {
 
 	return authAPI.loginUser(email, password, rememberMe, captcha)
-			.then(respond => respond.data.resultCode === 0 ? dispatch(getAuthData()) 
-																			: respond.data.resultCode === 10
-																			? dispatch(getCaptchaThunk())
-																			: respond.data)
+			.then(respond => respond.data.resultCode === 0 
+										? dispatch(getAuthData()) 
+										: respond.data.resultCode === 10
+										? dispatch(getCaptchaThunk())
+										: respond.data
+			)
 			.catch(error => error);
 }
 

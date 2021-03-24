@@ -14,7 +14,7 @@ class App extends Component {
 	componentDidMount = () => this.props.initializedThunk();
 	
 	render(){
-		const {isInintApp, friends, isAuth} = this.props;
+		const {isInintApp, friends, isAuth, isInintAppFail} = this.props;
 		
 		const entireApp = <div className='app_wrapper'>
 									<HeaderContainer/>
@@ -28,15 +28,17 @@ class App extends Component {
 											{isAuth ? entireApp : <Redirect to='/login'/>}
 										</Route>
 									</Router>
-								: <Loading/>
+								: <Loading isInintAppFail={isInintAppFail}/>
 		return entireApp;
 	}
 } 
 
 const mapStateToProps = (state) => ({
 		isInintApp: state.app.initialized,
+		isInintAppFail: state.app.isInintAppFail,
 		friends: state.sidebar.friends,
-		isAuth: state.auth.isAuth
+		isAuth: state.auth.isAuth,
+		
 });
 
 export default connect(mapStateToProps, {initializedThunk})(App);

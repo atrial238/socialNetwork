@@ -1,8 +1,9 @@
 import {profileAPI} from '../api/api';
+import {setAvatarSrc} from './auth-reucer';
 
 export const sendMessage = post => ({type: ADD_POST, post});
 export const deletePostAC = id => ({type: DELETE_POST, id})
-const setDataProfile = profile => ({type: SET_PROFILE, profile});
+export const setDataProfile = profile => ({type: SET_PROFILE, profile});
 const setUserStatus = status => ({type: USER_STATUS, status});
 const uploadAvatar = file => ({type: UPLOAD_AVATAR, file});
 
@@ -49,7 +50,7 @@ const initState = {
 		},
 	],
 	profileUserData: null,
-	userStatus: 'status',
+	userStatus: '',
 }
 
 const profileReducer = (state = initState, action) => {
@@ -73,11 +74,12 @@ const profileReducer = (state = initState, action) => {
 export const getUserProfile = (userId) => async (dispatch) => {
 	const res = await profileAPI.getUserProfile(userId)
 	dispatch(setDataProfile(res.data))
+	return res;
 }
 
 export const getUserStatus = (id) => async (dispatch) => {
 	const res = await profileAPI.getUserStatus(id)
-	dispatch(setUserStatus(res.data))
+	dispatch(setUserStatus(res.data));
 }
 
 export const updateStatus = (status) => async (dispatch) => {
@@ -87,7 +89,10 @@ export const updateStatus = (status) => async (dispatch) => {
 
 export const updateAvatar = file => async (dispatch) => {
 	const res = await profileAPI.postAvatar(file);
-	if (!res.data.resultCode) dispatch(uploadAvatar(res.data.data.photos));
+	if (!res.data.resultCode) {
+		dispatch(uploadAvatar(res.data.data.photos));
+		dispatch(setAvatarSrc(res.data.data.photos.small));
+	}
 }
 
 export const updateProfileData = data => async (dispatch, getState) => {

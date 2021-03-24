@@ -15,10 +15,12 @@ const ProfileContainer = props => {
 		const userIdFromUrl = props.match.params.userId,
 				userIdromAuthData = props.authData.id;
 		if (!userIdFromUrl && !userIdromAuthData) props.history.push('/login')
-		props.getUserProfile(userIdromAuthData);
-		props.getUserStatus(userIdromAuthData);
+		props.getUserProfile(userIdFromUrl || userIdromAuthData);
+		props.getUserStatus(userIdFromUrl || userIdromAuthData);
 
 	}, [props.match.params.userId]);
+
+	const isOwner = props.match.params.userId === undefined;
 
 	const { profileUserData,
 		userStatus,
@@ -33,28 +35,31 @@ const ProfileContainer = props => {
 		userStatus,
 		updateStatus,
 		updateAvatar,
-		updateProfileData
+		updateProfileData,
+		isOwner
 	};
-
-	const isOwner = props.match.params.userId === undefined;
+	
+	const dataAvatar = {
+		updateAvatar, 
+		avatar: profileUserData && profileUserData.photos.large,
+		isOwner
+	}
 
 	return (
 		<>
-			<Cover />
-			<DataUser {...data} isOwner={isOwner} />
+			<Cover {...dataAvatar} />
+			<DataUser {...data} />
 			<Posts postData={postData} sendMessage={sendMessage} />
 		</>
 	)
 }
 
-const mapStateToProps = state => (
-	{
+const mapStateToProps = state => ({
 		profileUserData: state.profile.profileUserData,
 		userStatus: state.profile.userStatus,
 		authData: { id: state.auth.id, isAuth: state.auth.isAuth },
 		postData: state.profile.postData
-	}
-);
+});
 
 const actionCreators = {
 	updateProfileData,

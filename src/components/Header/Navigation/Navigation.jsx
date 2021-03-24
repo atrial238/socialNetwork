@@ -4,11 +4,11 @@ import {nav, active, link, img_wrapper} from './Navigation.module.scss';
 import homeIcon from '../../../assets/images/navigation/home.svg';
 import messageIcon from '../../../assets/images/navigation/messages.svg';
 import findUsers from '../../../assets/images/navigation/findUsers.svg';
+
 const Navigation = () => {
 	return (
 		<nav className={nav}>
 
-			
 				<NavLink className={link} activeClassName={active} to='/profile'>
 					<div className={img_wrapper}>
 						<img src={homeIcon} alt=""/>
@@ -26,7 +26,6 @@ const Navigation = () => {
 						<img src={findUsers} alt=""/>
 					</div>
 				</NavLink>
-			
 
 		</nav>
 	)
