@@ -1,4 +1,4 @@
-import {getAuthData, setAvatarSrc} from './auth-reucer';
+import {getAuthData, setAvatarSrcOnHeader} from './auth-reucer';
 import {getUserProfile} from './profile-reducer';
 
 const initializedAC = () => ({type: INITIALIZED_SUCCESS});
@@ -14,7 +14,7 @@ export const initializedThunk = () => dispatch => {
 											? dispatch(setFailedInitApp())
 											: res.data.resultCode === 0
 											? dispatch(getUserProfile(res.data.data.id))
-												.then(res => dispatch(setAvatarSrc(res.data.photos.small)) )
+												.then(res => dispatch(setAvatarSrcOnHeader(res.data.photos.small)) )
 												.then(() => dispatch(initializedAC()))
 												.catch(() => dispatch(setFailedInitApp()))
 											:	dispatch(initializedAC())

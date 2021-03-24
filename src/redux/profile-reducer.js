@@ -1,17 +1,21 @@
 import {profileAPI} from '../api/api';
-import {setAvatarSrc} from './auth-reucer';
+import {setAvatarSrcOnHeader} from './auth-reucer';
 
 export const sendMessage = post => ({type: ADD_POST, post});
 export const deletePostAC = id => ({type: DELETE_POST, id})
 export const setDataProfile = profile => ({type: SET_PROFILE, profile});
 const setUserStatus = status => ({type: USER_STATUS, status});
-const uploadAvatar = file => ({type: UPLOAD_AVATAR, file});
+const setAvatarSrc = url => ({type: SET_AVATAR_SRC, url});
+const setIsAvatarUploading = () => ({type: IS_AVATAR_UPLOAD});
+const setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR})
 
 const ADD_POST = 'profile_reducer/ADD_POST',
 		SET_PROFILE = 'profile_reducer/SET_PROFILE',
 		USER_STATUS = 'profile_reducer/USER_STATUS',
 		DELETE_POST = 'profile_reducer/DELETE_POST',
-		UPLOAD_AVATAR = 'UPLOAD_AVATAR';
+		SET_AVATAR_SRC = 'profile_reducer/SET_AVATAR_SRC',
+		IS_AVATAR_UPLOAD ='profile_reducer/IS_AVATAR_UPLOAD',
+		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR';
 
 const addPost = (state, post) => 
 			({...state,postData: [...state.postData, {id: '6', text: post, like: '0'}]}),
@@ -20,7 +24,7 @@ const addPost = (state, post) =>
 			({...state,postData: state.postData.filter(elem => elem.id !== id)}),
 		setStatus = (state, status) => ({...state, userStatus: status}),
 		setAvatar = (state, image) => 
-			({...state,profileUserData: {...state.profileUserData,photos: image}});
+			({...state, profileUserData: {...state.profileUserData, photos: image}});
 
 const initState = {
 	postData: [{
@@ -51,6 +55,8 @@ const initState = {
 	],
 	profileUserData: null,
 	userStatus: '',
+	isAvatarUploading: false,
+	isErrorUpdateAvatar: false
 }
 
 const profileReducer = (state = initState, action) => {
@@ -64,8 +70,12 @@ const profileReducer = (state = initState, action) => {
 			return setProfile(state, action.profile);
 		case USER_STATUS:
 			return setStatus(state, action.status);
-		case UPLOAD_AVATAR:
-			return setAvatar(state, action.file)
+		case SET_AVATAR_SRC:
+			return setAvatar(state, action.url);
+		case IS_AVATAR_UPLOAD:
+			return {...state, isAvatarUploading: !state.isAvatarUploading};
+		case AVATAR_UPDATE_ERROR:
+			return {...state, isErrorUpdateAvatar: !state.isErrorUpdateAvatar};
 		default:
 			return state;
 	}
@@ -87,12 +97,17 @@ export const updateStatus = (status) => async (dispatch) => {
 	if (!res.data.resultCode) dispatch(setUserStatus(status))
 }
 
-export const updateAvatar = file => async (dispatch) => {
-	const res = await profileAPI.postAvatar(file);
-	if (!res.data.resultCode) {
-		dispatch(uploadAvatar(res.data.data.photos));
-		dispatch(setAvatarSrc(res.data.data.photos.small));
-	}
+export const updateAvatar = url =>  (dispatch) => {
+	dispatch(setIsAvatarUploading()) //set true
+	profileAPI.postAvatar(url)
+		.then(res => res.data.resultCode === 0 
+							&& dispatch(setAvatarSrc(res.data.data.photos)) 
+							&& dispatch(setAvatarSrcOnHeader(res.data.data.photos.small)))
+		.catch(() => {
+			dispatch(setIsAvatarUploading()) // set false
+			dispatch(setErrorUpdateAvatar())
+			setTimeout(() => dispatch(setErrorUpdateAvatar()), 3000)
+		})
 }
 
 export const updateProfileData = data => async (dispatch, getState) => {

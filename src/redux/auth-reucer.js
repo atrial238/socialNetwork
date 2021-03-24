@@ -1,11 +1,9 @@
-import { stopSubmit } from 'redux-form';
-import {profileAPI, authAPI, secureAPI} from '../api/api';
-import {getUserProfile} from './profile-reducer';
+import {authAPI, secureAPI} from '../api/api';
 
 const setAuthUserData = (data) => ({type: AUTH, data}),
 		nullMyData = () => ({type: NULL_MY_DATA}),
 		getCaptchaAC = (url) => ({type: GET_CAPTCHA, url});
-export const setAvatarSrc = (src) => ({type: AVATAR_SRC, src});
+export const setAvatarSrcOnHeader = (src) => ({type: AVATAR_SRC, src});
 
 const AUTH = 'auth_reducer/AUTH',
 		AVATAR_SRC = 'auth_reducer/AVATAR_SRC',

@@ -28,7 +28,9 @@ const ProfileContainer = props => {
 		postData,
 		sendMessage,
 		updateAvatar,
-		updateProfileData } = props;
+		updateProfileData,
+		isAvatarUploading,
+		isErrorUpdateAvatar} = props;
 
 	const data = {
 		profileUserData,
@@ -42,7 +44,9 @@ const ProfileContainer = props => {
 	const dataAvatar = {
 		updateAvatar, 
 		avatar: profileUserData && profileUserData.photos.large,
-		isOwner
+		isOwner,
+		isAvatarUploading,
+		isErrorUpdateAvatar
 	}
 
 	return (
@@ -58,7 +62,9 @@ const mapStateToProps = state => ({
 		profileUserData: state.profile.profileUserData,
 		userStatus: state.profile.userStatus,
 		authData: { id: state.auth.id, isAuth: state.auth.isAuth },
-		postData: state.profile.postData
+		postData: state.profile.postData,
+		isAvatarUploading: state.profile.isAvatarUploading,
+		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar
 });
 
 const actionCreators = {
@@ -80,6 +86,8 @@ ProfileContainer.propTypes = {
 	userStatus: PropTypes.string,
 	authData: PropTypes.object,
 	postData: PropTypes.array,
+	isAvatarUploading: PropTypes.bool,
+	isErrorUpdateAvatar: PropTypes.bool,
 	updateProfileData: PropTypes.func,
 	getUserProfile: PropTypes.func,
 	getUserStatus: PropTypes.func,

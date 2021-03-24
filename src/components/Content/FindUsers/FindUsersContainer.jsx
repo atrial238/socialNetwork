@@ -1,9 +1,9 @@
-import { getUsersThunk, followThunk, unfollowThunk} from "../../../redux/findUsers-reducer";
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import {compose} from 'redux';
 import FindUsersDumb from './FindUsersDumb/FindUsersDumb';
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
-import {compose} from 'redux';
+import { getUsersThunk, followThunk, unfollowThunk} from "../../../redux/findUsers-reducer";
 import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
 
 
