@@ -1,7 +1,7 @@
 import React from 'react';
 import {status_input, buttons_wrapper, button, input_fade,
 				 button_fade, wrapper_input, loading_spinner } from './EditModeStatus.module.scss';
-import LoadingSmall from '../../../../../common/LoadingSmall/LoadingSmall';
+import LoadingSmall from '../../../../../../common/LoadingSmall/LoadingSmall';
 
 const EditModeStatus = ({ temporaryStatus, setTemporaryStatus, isStatusEdit, 
 									isError, isStatusUpload, deactivateEditMode, setIsStatusEdit }) => {

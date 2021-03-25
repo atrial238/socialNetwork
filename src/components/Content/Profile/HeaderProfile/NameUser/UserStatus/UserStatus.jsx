@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { status_user, status_user_owner, status_input, buttons_wrapper, 
-				button, input_fade, button_fade, wrapper_input, loading_spinner } from './UserStatus.module.scss';
-import LoadingSmall from '../../../../common/LoadingSmall/LoadingSmall';
+import { status_user, status_user_owner} from './UserStatus.module.scss';
 import EditModeStatus from './EditModeStatus/EditModeStatus';
 
 const UserStatus = ({ userStatus, updateStatus, isOwner }) => {

@@ -12,7 +12,7 @@ const Header = ({login, avatar, logoutUser}) => {
 		<header className={header}>
 			<div className={wrapper}>
 				<div className={wrapper_logo}>
-					<NavLink to='/profile'><div className={img}><img src={logo}/></div></NavLink>
+					<div className={img}><NavLink to='/profile'><img src={logo}/></NavLink></div>
 				</div>
 				<Navigation/>
 				<div className={loginWrapper}>

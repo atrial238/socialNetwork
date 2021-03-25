@@ -1,0 +1,31 @@
+.wrapper {
+	flex: 0 1 33%;
+	border-radius: 7px;
+	background-color: #242526;
+	.live {
+		span {
+			font-size: 20px;
+		}
+		margin-bottom: 25px;
+	}
+	h3 {
+		margin-bottom: 10px;
+	}
+	.contacts_header{
+		
+	}
+	.contacts_wrapper, .skills_wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 20px;
+		div {
+			width: 30px;
+			height: 30px;
+			margin-right: 10px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}

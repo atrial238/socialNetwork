@@ -6,7 +6,7 @@ import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import placeholder from '../../../../assets/images/placeholder.svg';
 import LoadingSmall from '../../../common/LoadingSmall/LoadingSmall';
 import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
-import NameUser from '../NameUser/NameUser';
+import NameUser from './NameUser/NameUser';
 
 const HeaderProfile = props => {
 	const {updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdateAvatar, ...nameUserData} = props;

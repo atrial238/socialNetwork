@@ -12,6 +12,7 @@ const Content = () => {
 		<div className={content_container}>
 				{/* <Suspense fallback={<div>...Loading</div>}></Suspense> */}
 				<Switch>
+					<Route exact path='/' render={() => <ProfileContainer/>}/>
 					<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
 					<Route path='/messages' render={() => <MessagesContainer />}/>
 					<Route path='/findUsers' render={() => <FindUsersContainer />}/>

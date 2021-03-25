@@ -5,9 +5,11 @@ import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
-import HeaderProfile from './Cover/HeaderProfile';
-import { updateProfileData, getUserProfile, getUserStatus, updateStatus, sendMessage, updateAvatar } from '../../../redux/profile-reducer'
+import HeaderProfile from './HeaderProfile/HeaderProfile';
+import { updateProfileData, getUserProfile, getUserStatus, 
+				updateStatus, sendMessage, updateAvatar } from '../../../redux/profile-reducer'
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
+import BodyProfile from './BodyProfile/BodyProfile';
 
 const ProfileContainer = props => {
 
@@ -40,21 +42,25 @@ const ProfileContainer = props => {
 		updateProfileData,
 		isOwner
 	};
-	
+	const {fullName, photos, ...rest} = profileUserData;
+
+	const bodyProfileData = {...rest, isOwner};
+
 	const headerProfileData = {
 		updateAvatar, 
-		avatar: profileUserData && profileUserData.photos.large,
+		avatar: photos.large,
 		isOwner,
 		isAvatarUploading,
 		isErrorUpdateAvatar,
-		nameUser: profileUserData && profileUserData.fullName,
+		nameUser: fullName,
 		userStatus,
 		updateStatus,
 	}
-
+	
 	return (
 		<>
 			<HeaderProfile {...headerProfileData} />
+			<BodyProfile {...bodyProfileData}/>
 			<DataUser {...data} />
 			<Posts postData={postData} sendMessage={sendMessage} />
 		</>

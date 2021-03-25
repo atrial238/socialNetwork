@@ -1,0 +1,11 @@
+.wrapper {
+	background-color: #18191A;
+	margin-top: 15px;
+	color: white;
+	.content {
+		width: 980px;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+	}
+}
