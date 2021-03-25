@@ -1,12 +1,15 @@
 import React from 'react';
-import {cover_img, gradient_bg, wrapper, avatar_style, avatar_change, avatar_wrapper, disable_btn, loading, avatar_fade, updateAvatarFail} from './Cover.module.scss';
+import {cover_img, gradient_bg, wrapper, avatar_container, avatar_change, 
+	avatar_wrapper, disable_btn, loading, avatar_fade, updateAvatarFail} from './Cover.module.scss';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import placeholder from '../../../../assets/images/placeholder.svg';
 import LoadingSmall from '../../../common/LoadingSmall/LoadingSmall';
+import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
+import NameUser from '../NameUser/NameUser';
 
- 
-const Cover = ({updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdateAvatar}) => {
+const HeaderProfile = props => {
+	const {updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdateAvatar, ...nameUserData} = props;
 
 	const [open, setOpen] = React.useState(false);
 
@@ -25,10 +28,10 @@ const Cover = ({updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdate
 		<div className={wrapper}>
 			<div className={cover_img}>
 				<img src='https://peakvisor.com/img/news/french-mountains.jpg'/>
-				<div className={avatar_style}>
+				<div className={avatar_container}>
 					
 						<div className={`${avatar_wrapper} ${isAvatarUploading && avatar_fade}`}>
-							<img  onClick={handleOpen} src={avatar || placeholder} alt="avatar"/>
+							<img  onClick={handleOpen} src={avatar || (isOwner && placeholder) || placeholder_avatar} alt="avatar"/>
 						</div>
 
 						<ModalVeiwPictrue avatar={avatar} open={open} handleClose={handleClose}/>
@@ -42,7 +45,8 @@ const Cover = ({updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdate
 				</div>
 			</div>
 			<div className={gradient_bg}></div>
+			<NameUser {...nameUserData} isOwner={isOwner}/>
 		</div>
 	)
 }
-export default Cover;
+export default HeaderProfile;

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
-import Cover from './Cover/Cover';
+import HeaderProfile from './Cover/HeaderProfile';
 import { updateProfileData, getUserProfile, getUserStatus, updateStatus, sendMessage, updateAvatar } from '../../../redux/profile-reducer'
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 
@@ -41,17 +41,20 @@ const ProfileContainer = props => {
 		isOwner
 	};
 	
-	const dataAvatar = {
+	const headerProfileData = {
 		updateAvatar, 
 		avatar: profileUserData && profileUserData.photos.large,
 		isOwner,
 		isAvatarUploading,
-		isErrorUpdateAvatar
+		isErrorUpdateAvatar,
+		nameUser: profileUserData && profileUserData.fullName,
+		userStatus,
+		updateStatus,
 	}
 
 	return (
 		<>
-			<Cover {...dataAvatar} />
+			<HeaderProfile {...headerProfileData} />
 			<DataUser {...data} />
 			<Posts postData={postData} sendMessage={sendMessage} />
 		</>

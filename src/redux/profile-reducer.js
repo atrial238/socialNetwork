@@ -92,9 +92,10 @@ export const getUserStatus = (id) => async (dispatch) => {
 	dispatch(setUserStatus(res.data));
 }
 
-export const updateStatus = (status) => async (dispatch) => {
-	const res = await profileAPI.updateMyStatus(status)
-	if (!res.data.resultCode) dispatch(setUserStatus(status))
+export const updateStatus = (status) => (dispatch) => {
+	 return profileAPI.updateUserStatus(status)
+				.then(res => res.data.resultCode === 0 && dispatch(setUserStatus(status)))
+				.catch(error => error);
 }
 
 export const updateAvatar = url =>  (dispatch) => {
@@ -108,6 +109,7 @@ export const updateAvatar = url =>  (dispatch) => {
 			dispatch(setErrorUpdateAvatar())
 			setTimeout(() => dispatch(setErrorUpdateAvatar()), 3000)
 		})
+		.finally(()=> dispatch(setIsAvatarUploading())) // set false
 }
 
 export const updateProfileData = data => async (dispatch, getState) => {

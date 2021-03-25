@@ -1,0 +1,13 @@
+.status_user {
+	margin-bottom: 10px;
+	font-weight: 300;
+
+	&.status_user_owner {
+		cursor: pointer;
+		color: rgb(46, 137, 255);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
