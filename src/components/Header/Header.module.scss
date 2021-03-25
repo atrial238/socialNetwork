@@ -8,18 +8,24 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		.img {
-			width: 50px;
-			padding: 5px 0;
-			img {
-				width: 100%;
+		.wrapper_logo{
+			flex: 0 1 30%;
+			.img {
+				width: 50px;
+				padding: 5px 0;
+				img {
+					width: 100%;
+				}
 			}
 		}
 	}
 	.loginWrapper {
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 		color: #fff;
+		flex: 0 1 30%;
+		
 		.imgAvatar {
 			width: 50px;
 			height: 50px;

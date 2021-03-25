@@ -23,13 +23,13 @@ const Login = ({ isAuth, loginUser, getCaptchaThunk, captcha, getUserProfile, se
 	};
 
 	return isAuth ? <Redirect to='/profile' />
-		: <div className={container}>
-			<div className={wrapper}>
-				<h1>Social Network</h1>
-				<FormLogin onSubmit={onSubmit} getCaptchaThunk={getCaptchaThunk} captcha={captcha} />
-			</div>
-			<LoginSlider />
-		</div>
+						: <div className={container}>
+							<div className={wrapper}>
+								<h1>Social Network</h1>
+								<FormLogin onSubmit={onSubmit} getCaptchaThunk={getCaptchaThunk} captcha={captcha} />
+							</div>
+							<LoginSlider />
+						</div>
 }
 
 const mapStateToProps = (state) => ({
