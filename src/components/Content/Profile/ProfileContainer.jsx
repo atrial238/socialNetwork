@@ -32,7 +32,9 @@ const ProfileContainer = props => {
 		updateAvatar,
 		updateProfileData,
 		isAvatarUploading,
-		isErrorUpdateAvatar} = props;
+		isErrorUpdateAvatar,
+		isUserDataUpload,
+		isErrorUploadUserData} = props;
 
 	const data = {
 		profileUserData,
@@ -45,7 +47,7 @@ const ProfileContainer = props => {
 	
 	const {fullName, photos, ...rest} = profileUserData;
 
-	const bodyProfileData = {...rest, isOwner};
+	const bodyProfileData = {...rest, isOwner, updateProfileData, fullName, isUserDataUpload, isErrorUploadUserData};
 
 	const headerProfileData = {
 		updateAvatar, 
@@ -74,7 +76,9 @@ const mapStateToProps = state => ({
 		authData: { id: state.auth.id, isAuth: state.auth.isAuth },
 		postData: state.profile.postData,
 		isAvatarUploading: state.profile.isAvatarUploading,
-		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar
+		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar,
+		isUserDataUpload: state.profile.isUserDataUpload,
+		isErrorUploadUserData: state.profile.isErrorUploadUserData
 });
 
 const actionCreators = {
@@ -98,6 +102,8 @@ ProfileContainer.propTypes = {
 	postData: PropTypes.array,
 	isAvatarUploading: PropTypes.bool,
 	isErrorUpdateAvatar: PropTypes.bool,
+	isErrorUploadUserData: PropTypes.bool,
+	isUserDataUpload: PropTypes.bool,
 	updateProfileData: PropTypes.func,
 	getUserProfile: PropTypes.func,
 	getUserStatus: PropTypes.func,

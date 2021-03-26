@@ -5,7 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 
-const Cover = ({ open, handleClose}) => {
+const Cover = ({open, handleClose, children}) => {
 
 	return (
 		<Modal
@@ -14,15 +14,9 @@ const Cover = ({ open, handleClose}) => {
 			onClose={handleClose}
 			closeAfterTransition
 			BackdropComponent={Backdrop}
-			BackdropProps={{
-				timeout: 500,
-			}}
+			BackdropProps={{timeout: 500}}
 		>
-			<Fade in={open}> 
-				<div className={modal} >
-					
-				</div>
-			</Fade>
+			<Fade in={open}>{children}</Fade>
 		</Modal>
 	)
 }

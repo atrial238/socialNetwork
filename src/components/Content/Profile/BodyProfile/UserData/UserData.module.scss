@@ -16,7 +16,7 @@
 	.contacts_header{
 		
 	}
-	.contacts_wrapper, .skills_wrapper {
+	.contacts_wrapper, .skills_wrapper, .aboutMe_wrapper {
 		display: flex;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
@@ -32,6 +32,9 @@
 				height: 100%;
 			}
 		}
+	}
+	.aboutMe_wrapper {
+		font-size: 14px;
 	}
 	.edit_info {
 		display: block;

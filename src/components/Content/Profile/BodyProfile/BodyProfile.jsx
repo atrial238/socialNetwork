@@ -4,8 +4,9 @@ import UserData from './UserData/UserData';
 import Posts from './Posts/Posts';
 
 const BodyProfile = (props) => {
-	const {aboutMe, isOwner, contacts, lookingForAJobDescription, ...rest} = props;
-	const data = {aboutMe, isOwner, contacts, lookingForAJobDescription}
+	const {aboutMe, isOwner, contacts, lookingForAJobDescription, updateProfileData, fullName, ...rest} = props;
+	const data = {aboutMe, isOwner, contacts, lookingForAJobDescription, updateProfileData, fullName};
+
 	return (
 		<div className={wrapper}>
 			<div className={content}>

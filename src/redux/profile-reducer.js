@@ -4,10 +4,11 @@ import {setAvatarSrcOnHeader} from './auth-reucer';
 export const sendMessage = post => ({type: ADD_POST, post});
 export const deletePostAC = id => ({type: DELETE_POST, id})
 export const setDataProfile = profile => ({type: SET_PROFILE, profile});
-const setUserStatus = status => ({type: USER_STATUS, status});
-const setAvatarSrc = url => ({type: SET_AVATAR_SRC, url});
-const setIsAvatarUploading = () => ({type: IS_AVATAR_UPLOAD});
-const setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR})
+const setUserStatus = status => ({type: USER_STATUS, status}),
+		setAvatarSrc = url => ({type: SET_AVATAR_SRC, url}),
+		setIsAvatarUploading = () => ({type: IS_AVATAR_UPLOAD}),
+		setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR}),
+		setIsErrorUploadUserData = (bool) => ({type: USER_DATA_UPLOAD_ERROR, bool});
 
 const ADD_POST = 'profile_reducer/ADD_POST',
 		SET_PROFILE = 'profile_reducer/SET_PROFILE',
@@ -15,7 +16,8 @@ const ADD_POST = 'profile_reducer/ADD_POST',
 		DELETE_POST = 'profile_reducer/DELETE_POST',
 		SET_AVATAR_SRC = 'profile_reducer/SET_AVATAR_SRC',
 		IS_AVATAR_UPLOAD ='profile_reducer/IS_AVATAR_UPLOAD',
-		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR';
+		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR',
+		USER_DATA_UPLOAD_ERROR ='profile_reducer/USER_DATA_UPLOAD_ERROR';
 
 const addPost = (state, post) => 
 			({...state,postData: [...state.postData, {id: '6', text: post, like: '0'}]}),
@@ -54,25 +56,28 @@ const initState = {
 		},
 	],
 	profileUserData: {
-							fullName: null,
-							lookingForAJOb: false,
-							lookingForAJobDescription: false,
-							userId: null,
-							photos: {large: null, small: null}, 
-							contacts: {
-											facebook: null,
-											website: null,
-											vk: null,
-											twitter: null,
-											instagram: null,
-											youtube: null,
-											github: null,
-											mainLink: null
-										},
-						},
+		fullName: '',
+		lookingForAJOb: false,
+		lookingForAJobDescription: false,
+		userId: '',
+		photos: {large: '', small: ''}, 
+		contacts: {
+			facebook: '',
+			website: '',
+			vk: '',
+			twitter: '',
+			instagram: '',
+			youtube: '',
+			github: '',
+			mainLink: ''
+					},
+	},
 	userStatus: '',
 	isAvatarUploading: false,
-	isErrorUpdateAvatar: false
+	isErrorUpdateAvatar: false,
+	isUserDataUpload: false,
+	isErrorUploadUserData: false
+
 }
 
 const profileReducer = (state = initState, action) => {
@@ -92,6 +97,8 @@ const profileReducer = (state = initState, action) => {
 			return {...state, isAvatarUploading: !state.isAvatarUploading};
 		case AVATAR_UPDATE_ERROR:
 			return {...state, isErrorUpdateAvatar: !state.isErrorUpdateAvatar};
+		case USER_DATA_UPLOAD_ERROR: 
+			return {...state, isErrorUploadUserData: action.bool} 
 		default:
 			return state;
 	}
@@ -128,10 +135,12 @@ export const updateAvatar = url =>  (dispatch) => {
 		.finally(()=> dispatch(setIsAvatarUploading())) // set false
 }
 
-export const updateProfileData = data => async (dispatch, getState) => {
-	const res = await profileAPI.postDataProfile(data);
-	if (!res.data.resultCode) dispatch(getUserProfile(getState().auth.id));
-	return res
+export const updateProfileData = data => (dispatch, getState) => {
+	 return profileAPI.postDataProfile(data)
+	 	.then(res => {
+			res.data.resultCode === 0 && dispatch(getUserProfile(getState().auth.id));
+			return res;
+		 })
 }
 
 export default profileReducer;

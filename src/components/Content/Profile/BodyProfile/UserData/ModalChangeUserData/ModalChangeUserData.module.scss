@@ -2,10 +2,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: auto;
 	.modal{
-		height: 80%;
-		width: 100%;
-		background-color: #fff;
 		
+		width: 310px;
+		background-color: #fff;
 	}
 }
