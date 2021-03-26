@@ -53,7 +53,23 @@ const initState = {
 			like: '14'
 		},
 	],
-	profileUserData: null,
+	profileUserData: {
+							fullName: null,
+							lookingForAJOb: false,
+							lookingForAJobDescription: false,
+							userId: null,
+							photos: {large: null, small: null}, 
+							contacts: {
+											facebook: null,
+											website: null,
+											vk: null,
+											twitter: null,
+											instagram: null,
+											youtube: null,
+											github: null,
+											mainLink: null
+										},
+						},
 	userStatus: '',
 	isAvatarUploading: false,
 	isErrorUpdateAvatar: false

@@ -9,7 +9,7 @@ const Navigation = () => {
 	return (
 		<nav className={nav}>
 
-				<NavLink className={link} activeClassName={active} to='/profile'>
+				<NavLink className={link} activeClassName={active} exact to='/profile'>
 					<div className={img_wrapper}>
 						<img src={homeIcon} alt=""/>
 					</div>

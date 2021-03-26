@@ -41,7 +41,7 @@ const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 	const status = (
 			<div
 				className={`${status_user} ${isOwner && status_user_owner}`}
-				onClick={isOwner && activateEditMode}
+				onClick={isOwner ? activateEditMode : undefined}
 			>
 				{userStatus || 'No status'}
 			</div>

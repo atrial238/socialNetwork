@@ -1,11 +1,11 @@
 import React from 'react';
-import {modal, modal_wrapper} from '../HeaderProfile.module.scss';
+import {modal, modal_wrapper} from './ModalChangeUserData.module.scss';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import placeholderAvatar from '../../../../../assets/images/avatar/placeholder_avatar.jpg'
 
-const Cover = ({avatar, open, handleClose}) => {
+
+const Cover = ({ open, handleClose}) => {
 
 	return (
 		<Modal
@@ -20,7 +20,7 @@ const Cover = ({avatar, open, handleClose}) => {
 		>
 			<Fade in={open}> 
 				<div className={modal} >
-					<img  src={avatar || placeholderAvatar} alt="avatar"/>
+					
 				</div>
 			</Fade>
 		</Modal>

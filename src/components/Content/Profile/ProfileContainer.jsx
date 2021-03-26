@@ -42,6 +42,7 @@ const ProfileContainer = props => {
 		updateProfileData,
 		isOwner
 	};
+	
 	const {fullName, photos, ...rest} = profileUserData;
 
 	const bodyProfileData = {...rest, isOwner};

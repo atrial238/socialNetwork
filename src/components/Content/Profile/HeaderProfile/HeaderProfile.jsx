@@ -1,6 +1,6 @@
 import React from 'react';
 import {cover_img, gradient_bg, wrapper, avatar_container, avatar_change, 
-	avatar_wrapper, disable_btn, loading, avatar_fade, updateAvatarFail} from './Cover.module.scss';
+	avatar_wrapper, disable_btn, loading, avatar_fade, updateAvatarFail} from './HeaderProfile.module.scss';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import placeholder from '../../../../assets/images/placeholder.svg';
