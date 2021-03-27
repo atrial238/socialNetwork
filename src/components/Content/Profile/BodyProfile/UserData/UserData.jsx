@@ -33,7 +33,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 	return (
 		<div className={wrapper}>
 			<h3 ><span>About me: </span></h3>
-			<div className={aboutMe_wrapper}>{aboutMe}</div>
+			<div className={aboutMe_wrapper}>{aboutMe || "User didn't write about himself"}</div>
 			<div>
 				<h3>Skills:</h3>
 				<div className={skills_wrapper}>{skillsElem}</div>
@@ -42,7 +42,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 				<h3 className={contacts_header}>Contacts:</h3>
 				<div className={contacts_wrapper}>{contactsElem}</div>
 			</div>
-			{isOwner && <button className={edit_info}  onClick={handleOpen} >Edint information</button>}
+			{isOwner && <button className={edit_info}  onClick={handleOpen} >Edit information</button>}
 
 			<ModalChangeUserData open={open} handleClose={handleClose}>
 				<FormChangeUserData handleClose={handleClose} {...data}/>

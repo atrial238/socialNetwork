@@ -97,8 +97,8 @@ const profileReducer = (state = initState, action) => {
 			return {...state, isAvatarUploading: !state.isAvatarUploading};
 		case AVATAR_UPDATE_ERROR:
 			return {...state, isErrorUpdateAvatar: !state.isErrorUpdateAvatar};
-		case USER_DATA_UPLOAD_ERROR: 
-			return {...state, isErrorUploadUserData: action.bool} 
+		case USER_DATA_UPLOAD_ERROR:
+			return {...state, isErrorUploadUserData: action.bool}
 		default:
 			return state;
 	}

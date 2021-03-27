@@ -4,6 +4,11 @@
 	padding: 10px;
 	border-radius: 10px;
 	background-color: #3a3c3d;
+	textarea, input {
+		&:focus{
+				box-shadow: 0 0 3px 2px rgb(46, 137, 255);
+			}
+	}
 	.textarea{
 		border-radius: 5px;
 		padding: 10px;
@@ -92,6 +97,15 @@
 				align-items: center;
 				margin-left: 10px;
 			}
+			.submitting_error {
+				color: red;
+				margin-left: 10px;
+				font-size: 14px;
+			}
+			.submitting_success {
+				color: green;
+				margin-left: 10px;
+			}
 		}
 	}
 	input[name=fullName] {
@@ -100,4 +114,29 @@
 	.entire_form{
 		opacity: .5;
 	}
+	.field_wrapper{
+		position: relative;
+		.field_error{
+			position: absolute;
+			color: red;
+			background-color: rgb(211, 206, 206);
+			
+			border-radius: 3px;
+			bottom: -2px;
+			left: 10px;
+			&:after{
+				content: '';
+				position: absolute;
+				display: block;
+				width: 4%;
+				height: 50%;
+				top: 0;
+				left: 15%;
+				transform: translate(-50%, -50%) rotate(45deg);
+				background-color: rgb(211, 206, 206);
+			}
+			
+		}
+	}
+	
 }
