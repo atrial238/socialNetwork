@@ -1,5 +1,5 @@
 import React from 'react';
-import {wrapper, item, avatar}from './OneMessage.module.css';
+import {wrapper, item, avatar}from './OneMessage.module.scss';
 
 const OneMessage = ({text, pathImg}) => {
 	return (
@@ -9,7 +9,6 @@ const OneMessage = ({text, pathImg}) => {
 			</div>
 			<div className={item}>{text}</div>
 		</div>
-	
 	)
 }
 

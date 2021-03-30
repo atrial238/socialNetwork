@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { link, active, avatar } from './DialogsItem.module.css';
+import { link, active, avatar } from './DialogsItem.module.scss';
 
 const DialogsItem = ({ name, id, path }) => {
 

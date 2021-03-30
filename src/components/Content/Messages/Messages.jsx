@@ -1,16 +1,16 @@
 import React from 'react';
-import DeployMessage from './DeployMessage/DeployMessage';
+import DeployDialogs from './DeployDialogs/DeployDialogs';
 import Dialogs from './Dialogs/Dialogs';
-import {wrapper} from './Messages.module.css';
-						
-const Messages = ({messages, dialogs, sendMessageActionCreator}) => {
+import {wrapper} from './Messages.module.scss';
+
+const Messages = ({messages, dialogs, sendMessage}) => {
 	
-	const data = {messages, sendMessageActionCreator}
+	const data = {messages, sendMessage}
 	return (
 		
 		<div className={wrapper}>
 			<Dialogs dialogs={dialogs} />
-			<DeployMessage {...data} />
+			<DeployDialogs {...data} />
 		</div>
 	)
 }

@@ -1,0 +1,21 @@
+.wrapper {
+	display: flex;
+	align-items: flex-start;
+	background-color: rgba(255, 255, 255, 0.1);
+	overflow: hidden;
+	padding: 5px;
+	width: 30%;
+	font-size: 14px;
+	font-weight: 300;
+	border-radius: 7px;
+	margin-bottom: 15px;
+	.avatar {
+		height: 50px;
+		margin-right: 10px;
+		img{
+			height: 100%;
+			border-radius: 50%;
+		}
+	}
+}
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
-import { title, wrapper } from './Dialogs.module.css';
+import { wrapper } from './Dialogs.module.scss';
 
 const Dialogs = ({dialogs}) => {
 
@@ -8,7 +8,6 @@ const Dialogs = ({dialogs}) => {
 	
 	return (
 		<div className={wrapper}>
-			<h4 className={title}>Dialogs</h4>
 			<ul>
 				{dialogsElement}
 			</ul>
