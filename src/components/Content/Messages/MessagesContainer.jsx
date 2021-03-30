@@ -5,13 +5,11 @@ import { sendMessageActionCreator } from '../../../redux/message-reducer';
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import {compose} from 'redux';
 
-const MessagesContainer = props => {
-	
-	return <Messages {...props}/>
-}
-const mapStateToProps = state => ({messages: state.messages.arrMessages, dialogs: state.messages.dialogs});
+const MessagesContainer = props => <Messages {...props}/>
 
-export default compose(
-	connect(mapStateToProps, {sendMessageActionCreator}),
-	
-)(MessagesContainer);
+const mapStateToProps = state => ({
+	messages: state.messages.arrMessages, 
+	dialogs: state.messages.dialogs
+});
+
+export default connect(mapStateToProps, {sendMessageActionCreator})(MessagesContainer);

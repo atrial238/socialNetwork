@@ -18,7 +18,7 @@ const ADD_POST = 'profile_reducer/ADD_POST',
 		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR';
 		
 const addPost = (state, post) => 
-			({...state,postData: [...state.postData, {id: '6', text: post, like: '0'}]}),
+			({...state, postData: [...state.postData, {id: state.postData.length + 1, text: post, like: '0', date: new Date(Date.now())}]}),
 		setProfile = (state, profileData) => ({...state, profileUserData: profileData}),
 		deletePost = (state, id) =>
 			({...state,postData: state.postData.filter(elem => elem.id !== id)}),
@@ -29,28 +29,33 @@ const addPost = (state, post) =>
 const initState = {
 	postData: [{
 			id: '1',
-			text: 'Something really important was written here1',
-			like: '33'
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sagittis facilisis commodo. Donec vitae ante in sem auctor viverra eu.',
+			like: '33',
+			date: new Date('9/11/2020')
 		},
 		{
 			id: '2',
-			text: 'Something really important was written here2',
-			like: '3'
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+			like: '3',
+			date: new Date('10/15/2020')
 		},
 		{
 			id: '3',
-			text: 'Something really important was written here3',
-			like: '53'
+			text: 'pretium lectus quam id leo in vitae turpis massa sed elementum tempus egestas sed sed',
+			like: '53',
+			date: new Date('11/17/2020')
 		},
 		{
 			id: '4',
-			text: 'Something really important was written here4',
-			like: '63'
+			text: 'turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor leo',
+			like: '63',
+			date: new Date('12/18/2020')
 		},
 		{
 			id: '5',
-			text: 'Something really important was written here5',
-			like: '14'
+			text: 'massa sed elementum tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan sit',
+			like: '14',
+			date: new Date('10/11/2022')
 		},
 	],
 	profileUserData: {

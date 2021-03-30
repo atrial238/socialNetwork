@@ -5,9 +5,8 @@ import {required, maxLength100} from '../../../../../../../util/validateForm';
 import {form, send_btn, cancel_btn, button, btn_wrapper, field_wrapper} from '../HeaderPost.module.scss';
 
 const FormPost = ({handleSubmit, handleClose})=> {
-
 	return (
-		<form  className={form} onSubmit={handleSubmit}>
+		<form  className={form} onSubmit={handleSubmit} tabIndex='-1'>
 			<div className={field_wrapper}>
 				<Field
 					type='text'

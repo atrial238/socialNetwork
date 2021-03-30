@@ -3,8 +3,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Posts from './Posts/Posts';
-import DataUser from './DataUser/DataUser';
+
+
 import HeaderProfile from './HeaderProfile/HeaderProfile';
 import { updateProfileData, getUserProfile, getUserStatus, 
 				updateStatus, sendPost, updateAvatar } from '../../../redux/profile-reducer'
@@ -60,7 +60,6 @@ const ProfileContainer = props => {
 		<>
 			<HeaderProfile {...headerProfileData} />
 			<BodyProfile {...bodyProfileData}/>
-			<Posts postData={postData} sendPost={sendPost} />
 		</>
 	)
 }

@@ -1,15 +1,22 @@
 import React from 'react';
-import {wrapper, avatar, message} from './Post.module.scss';
+import {wrapper, avatar_img, message, like_style, userName, header, header_wrapper, date_style} from './Post.module.scss';
+import palaceHolderAvatar from '../../../../../../assets/images/avatar/placeholder_avatar.jpg';
+import {getMonthString} from '../../../../../../util/getMonthString';
 
-const Post = ({like, text}) => {
-
+const Post = ({like, text, fullName, photo, date}) => {
+	
 	return (
 		<div className={wrapper}>
-			<div className={avatar}>
-				<img src='https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/a993b6ab294b86ff28bda7e7285b3445-1585695989613/6d4736cf-5e25-4bf3-a5af-145f3ac80bd1.jpg'/>
+			<div className={header}>
+				<div className={avatar_img}><img src={photo || palaceHolderAvatar}/></div>
+				<div className={header_wrapper}>
+					<div className={userName}>{fullName}</div>
+					<div className={date_style}>{`${getMonthString(date)} ${date.getDate()}, ${date.getFullYear()}`}</div>
+				</div>
 			</div>
 			<div className={message}>{text}</div>
-			<div style={{lineHeight: '54px', marginLeft: '20px'}}>like: {like}</div>
+			<div className={like_style}>&#128151; {like}</div>
+			
 		</div>
 	)
 }

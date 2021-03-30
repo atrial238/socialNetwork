@@ -13,20 +13,30 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 	const handleClose = () => setOpen(false);
 
 	const contactsElem = Object.keys(contacts)
-		.map((socialName, index) => <div key={index}><a target='_blank' href={contacts[socialName] || '#'}><img src={socialIcons[socialName]} alt="social icon"/></a></div>
+								.map((socialName, index) => 
+									<div key={index}>
+										<a target='_blank' href={contacts[socialName] || '#'}>
+											<img src={socialIcons[socialName]} alt="social icon"/>
+										</a>
+									</div>
 	);
 
+	const getIconSrc = skillsName => skillsIcons[skillsName.replace(/\s/g, '')];
+	
 	let skillsElem = "I have no skills";
 
 	if(isOwner && lookingForAJobDescription){
+
 		skillsElem = lookingForAJobDescription.split(',')
-								.map((skillsName, index) => 
-											<div key={index}>
-												{skillsIcons[skillsName.replace(/\s/g, '')] 
-													? <img src={skillsIcons[skillsName.replace(/\s/g, '')]} alt="social icon"/>
-													: skillsName}
-											</div>)
-	}
+							.map((skillsName, index) => 
+								<div key={index}>
+									{
+										getIconSrc(skillsName)
+											? <img src={getIconSrc(skillsName)} alt="social icon"/>
+											: skillsName
+									}
+								</div>
+	)}
 	const data = {aboutMe, contacts, lookingForAJobDescription, updateProfileData, fullName};
 
 	return (
@@ -42,7 +52,6 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 				<div className={contacts_wrapper}>{contactsElem}</div>
 			</div>
 			{isOwner && <button className={edit_info}  onClick={handleOpen} >Edit information</button>}
-
 			<ModalChangeUserData open={open} handleClose={handleClose}>
 				<FormChangeUserData handleClose={handleClose} {...data}/>
 			</ModalChangeUserData>
