@@ -1,7 +1,8 @@
 import React from 'react'; 
 import { Field, reduxForm } from 'redux-form';
 import {form} from './Posts.module.css';
-import {renderField, required} from '../../../../util/rederFormField';
+import {renderField} from '../../../../util/renderFormField';
+import {required} from '../../../../util/validateForm';
 
 const FormPost = ({handleSubmit})=> {
 	return (
@@ -9,7 +10,7 @@ const FormPost = ({handleSubmit})=> {
 			<Field 
 				type='text'
 				name='post' 
-				lable='textarea'
+				typeTag='textarea'
 				component={renderField} 
 				validate={[required]}
 				placeholder='your news...' 

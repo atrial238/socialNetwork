@@ -3,7 +3,7 @@ import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import Cover from './Cover/Cover';
 import { connect } from 'react-redux';
-import { getUserProfile, getUserStatus, updateStatus, sendMessage, chabgeProfileDataThunk } from '../../../redux/profile-reducer'
+import { getUserProfile, getUserStatus, updateStatus, sendPost, chabgeProfileDataThunk } from '../../../redux/profile-reducer'
 import { Redirect, withRouter } from "react-router-dom";
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -29,7 +29,7 @@ class ProfileContainer extends Component {
 	render() {
 		// if(!this.props.match.params.userId && this.props.authData.isAuth) return <Redirect to='/login'/>
 
-		const { profileUserData, userStatus, updateStatus, postData, sendMessage, chabgeProfileDataThunk } = this.props;
+		const { profileUserData, userStatus, updateStatus, postData, sendPost, chabgeProfileDataThunk } = this.props;
 		return (
 			<div>
 				<Cover />
@@ -39,7 +39,7 @@ class ProfileContainer extends Component {
 					updateStatus={updateStatus}
 					chabgeProfileDataThunk={chabgeProfileDataThunk}
 				/>
-				<Posts postData={postData} sendMessage={sendMessage} />
+				<Posts postData={postData} sendPost={sendPost} />
 			</div>
 		)
 	}
@@ -55,7 +55,7 @@ const mapStateToProps = state => (
 );
 
 export default compose(
-	connect(mapStateToProps, { getUserProfile, getUserStatus, updateStatus, sendMessage, chabgeProfileDataThunk }),
+	connect(mapStateToProps, { getUserProfile, getUserStatus, updateStatus, sendPost, chabgeProfileDataThunk }),
 	withRouter,
 	// WithAuthRedirect
 )(ProfileContainer);

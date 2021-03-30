@@ -1,0 +1,17 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.avatar {
+	width: 50px;
+	margin-right: 20px;
+}
+
+.avatar img {
+	width: 100%;
+	border-radius: 50%;
+}
+.message {
+	font-size: 30px;
+}

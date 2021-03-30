@@ -7,7 +7,7 @@ import Posts from './Posts/Posts';
 import DataUser from './DataUser/DataUser';
 import HeaderProfile from './HeaderProfile/HeaderProfile';
 import { updateProfileData, getUserProfile, getUserStatus, 
-				updateStatus, sendMessage, updateAvatar } from '../../../redux/profile-reducer'
+				updateStatus, sendPost, updateAvatar } from '../../../redux/profile-reducer'
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import BodyProfile from './BodyProfile/BodyProfile';
 
@@ -28,13 +28,11 @@ const ProfileContainer = props => {
 		userStatus,
 		updateStatus,
 		postData,
-		sendMessage,
+		sendPost,
 		updateAvatar,
 		updateProfileData,
 		isAvatarUploading,
-		isErrorUpdateAvatar,
-		isUserDataUpload,
-		isErrorUploadUserData} = props;
+		isErrorUpdateAvatar,} = props;
 
 	const data = {
 		profileUserData,
@@ -44,28 +42,25 @@ const ProfileContainer = props => {
 		updateProfileData,
 		isOwner
 	};
-	
-	const {fullName, photos, ...rest} = profileUserData;
-
-	const bodyProfileData = {...rest, isOwner, updateProfileData, fullName, isUserDataUpload, isErrorUploadUserData};
 
 	const headerProfileData = {
 		updateAvatar, 
-		avatar: photos.large,
+		avatar: profileUserData.photos.large,
 		isOwner,
 		isAvatarUploading,
 		isErrorUpdateAvatar,
-		nameUser: fullName,
+		nameUser: profileUserData.fullName,
 		userStatus,
 		updateStatus,
 	}
-	
+
+	const bodyProfileData = {...profileUserData, isOwner, updateProfileData, postData, sendPost};
+
 	return (
 		<>
 			<HeaderProfile {...headerProfileData} />
 			<BodyProfile {...bodyProfileData}/>
-			<DataUser {...data} />
-			<Posts postData={postData} sendMessage={sendMessage} />
+			<Posts postData={postData} sendPost={sendPost} />
 		</>
 	)
 }
@@ -76,9 +71,7 @@ const mapStateToProps = state => ({
 		authData: { id: state.auth.id, isAuth: state.auth.isAuth },
 		postData: state.profile.postData,
 		isAvatarUploading: state.profile.isAvatarUploading,
-		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar,
-		isUserDataUpload: state.profile.isUserDataUpload,
-		isErrorUploadUserData: state.profile.isErrorUploadUserData
+		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar
 });
 
 const actionCreators = {
@@ -86,7 +79,7 @@ const actionCreators = {
 	getUserProfile,
 	getUserStatus,
 	updateStatus,
-	sendMessage,
+	sendPost,
 	updateAvatar
 }
 
@@ -102,12 +95,10 @@ ProfileContainer.propTypes = {
 	postData: PropTypes.array,
 	isAvatarUploading: PropTypes.bool,
 	isErrorUpdateAvatar: PropTypes.bool,
-	isErrorUploadUserData: PropTypes.bool,
-	isUserDataUpload: PropTypes.bool,
 	updateProfileData: PropTypes.func,
 	getUserProfile: PropTypes.func,
 	getUserStatus: PropTypes.func,
 	updateStatus: PropTypes.func,
-	sendMessage: PropTypes.func,
+	sendPost: PropTypes.func,
 	updateAvatar: PropTypes.func,
 }

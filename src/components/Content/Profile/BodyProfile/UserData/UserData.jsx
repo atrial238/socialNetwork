@@ -7,11 +7,9 @@ import ModalChangeUserData from './ModalChangeUserData/ModalChangeUserData';
 import FormChangeUserData from './FormChangeUserData/FormChangeUserData';
 
 const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, updateProfileData, fullName}) => {
-
+	
 	const [open, setOpen] = React.useState(false);
-
 	const handleOpen = () => setOpen(true);
-
 	const handleClose = () => setOpen(false);
 
 	const contactsElem = Object.keys(contacts)
@@ -30,6 +28,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 											</div>)
 	}
 	const data = {aboutMe, contacts, lookingForAJobDescription, updateProfileData, fullName};
+
 	return (
 		<div className={wrapper}>
 			<h3 ><span>About me: </span></h3>

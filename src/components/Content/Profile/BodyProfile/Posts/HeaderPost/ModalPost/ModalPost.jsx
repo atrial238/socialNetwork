@@ -1,11 +1,11 @@
 import React from 'react';
-import {modal, modal_wrapper} from './ModalChangeUserData.module.scss';
+import {modal_wrapper} from './ModalPost.module.scss';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 
-const ModalChangeUserData = ({open, handleClose, children}) => {
+const ModalPost = ({open, handleClose, children}) => {
 
 	return (
 		<Modal
@@ -20,4 +20,4 @@ const ModalChangeUserData = ({open, handleClose, children}) => {
 		</Modal>
 	)
 }
-export default ModalChangeUserData;
+export default ModalPost;

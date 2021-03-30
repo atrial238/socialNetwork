@@ -2,10 +2,10 @@ import React from 'react';
 import Post from './Post/Post';
 import FormPostWithReduxForm from './FormPostWithReduxForm';
 
-const Posts = ({ postData, sendMessage }) => {
+const Posts = ({ postData, sendPost }) => {
 
 	const onSubmit = (postData) => {
-		sendMessage(postData.post)
+		sendPost(postData.post)
 	}
 	const postElement = postData.map(post => <Post key={post.id} text={post.text} like={post.like} />);
 	return (

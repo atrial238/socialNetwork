@@ -1,5 +1,5 @@
 import React from 'react';
-import {wrapper, avatar, message} from './Post.module.css';
+import {wrapper, avatar, message} from './Post.module.scss';
 
 const Post = ({like, text}) => {
 
