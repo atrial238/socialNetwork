@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-
-
 import HeaderProfile from './HeaderProfile/HeaderProfile';
-import { updateProfileData, getUserProfile, getUserStatus, 
-				updateStatus, sendPost, updateAvatar } from '../../../redux/profile-reducer'
 import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import BodyProfile from './BodyProfile/BodyProfile';
+import { updateProfileData, getUserProfile, getUserStatus, 
+	updateStatus, sendPost, updateAvatar } from '../../../redux/profile-reducer';
 
 const ProfileContainer = props => {
 
 	useEffect(() => {
 		const userIdFromUrl = props.match.params.userId,
-				userIdromAuthData = props.authData.id;
-		if (!userIdFromUrl && !userIdromAuthData) props.history.push('/login')
-		props.getUserProfile(userIdFromUrl || userIdromAuthData);
-		props.getUserStatus(userIdFromUrl || userIdromAuthData);
+				userIdFromAuthData = props.authData.id;
+
+		if (!userIdFromUrl && !userIdFromAuthData) props.history.push('/login')
+			props.getUserProfile(userIdFromUrl || userIdFromAuthData);
+			props.getUserStatus(userIdFromUrl || userIdFromAuthData);
 
 	}, [props.match.params.userId]);
 
@@ -57,10 +56,10 @@ const ProfileContainer = props => {
 	const bodyProfileData = {...profileUserData, isOwner, updateProfileData, postData, sendPost};
 
 	return (
-		<>
-			<HeaderProfile {...headerProfileData} />
-			<BodyProfile {...bodyProfileData}/>
-		</>
+			<>
+				<HeaderProfile {...headerProfileData} />
+				<BodyProfile {...bodyProfileData}/>
+			</>
 	)
 }
 

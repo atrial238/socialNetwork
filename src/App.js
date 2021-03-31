@@ -29,7 +29,6 @@ class App extends Component {
 										</Route>
 									</Router>
 								: <Loading isInintAppFail={isInintAppFail}/>
-		return entireApp;
 	}
 } 
 
