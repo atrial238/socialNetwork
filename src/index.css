@@ -82,3 +82,12 @@ input {
 #root {
 	min-height:  100vh;
 }
+
+.Dialogs_wrapper__2jaIR::-webkit-scrollbar-track {
+	background: orange;        /* color of the tracking area */
+ }
+.Dialogs_wrapper__2jaIR::-webkit-scrollbar-thumb {
+	background-color: blue;    /* color of the scroll thumb */
+	border-radius: 20px;       /* roundness of the scroll thumb */
+	border: 3px solid orange;  /* creates padding around scroll thumb */
+ }

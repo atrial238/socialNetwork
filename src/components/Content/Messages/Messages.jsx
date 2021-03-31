@@ -4,14 +4,14 @@ import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.scss';
 import {Switch, Route} from 'react-router-dom';
 
-const Messages = ({messages, dialogs, sendMessage, getPenPals}) => {
+const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 
 	
 	
 
 	
 
-	const data = {messages, sendMessage, dialogs, getPenPals};
+	const data = {messages, sendMessage, dialogs, getPenPals, authUserAvatar};
 	return (
 		<div className={wrapper}>
 			<Dialogs dialogs={dialogs}  />

@@ -1,13 +1,14 @@
 import React from 'react';
-import {wrapper, item, avatar}from './OneMessage.module.scss';
+import {wrapper, body_message, avatar, auth_user_style, avatar_wrapper}from './OneMessage.module.scss';
 
-const OneMessage = ({text, pathImg}) => {
+const OneMessage = ({text, pathImg, isAuthUser}) => {
+	
 	return (
-		<div className={wrapper}>
+		<div className={`${wrapper} ${(isAuthUser && auth_user_style) || ''}`}>
 			<div className={avatar}>
-				<img src={pathImg}/>
+				<div className={avatar_wrapper}><img src={pathImg}/></div>
 			</div>
-			<div className={item}>{text}</div>
+			<div className={body_message}>{text}</div>
 		</div>
 	)
 }

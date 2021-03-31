@@ -1,9 +1,11 @@
 .wrapper {
 	border-right: 1px solid rgba(95, 95, 95, .7);
 	margin-right: 20px;
-	flex: 0 1 17%;
+	flex: 0 0 310px;
 	padding: 10px;
+	background-color: #1f2022;
 	
+	height: calc(100vh - 60px);
 	li {
 		color: #fff;
 		margin-bottom: 25px;
@@ -12,6 +14,9 @@
 		display: flex;
 		align-items: center;
 	}
+}
+.some {
+	height: 100px;
 }
 
 

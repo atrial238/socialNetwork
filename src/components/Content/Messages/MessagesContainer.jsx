@@ -9,7 +9,8 @@ const MessagesContainer = props => <Messages {...props}/>
 
 const mapStateToProps = state => ({
 	messages: state.messages.arrMessages, 
-	dialogs: state.messages.dialogs
+	dialogs: state.messages.dialogs,
+	authUserAvatar: state.auth.avatar
 });
 
 export default connect(mapStateToProps, {sendMessage, getPenPals})(MessagesContainer);

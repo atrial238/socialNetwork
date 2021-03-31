@@ -4,7 +4,7 @@ import OneMessage from './OneMessage/OneMessage';
 import FormMessage from './FormMessage/FormMessage';
 import { withRouter, useParams} from 'react-router-dom';
 
-const DeployDialogs = ({ messages, sendMessage, dialogs, getPenPals, match}) => {
+const DeployDialogs = ({sendMessage, dialogs, getPenPals, authUserAvatar}) => {
 	const fakePenPal = [16178, 15455, 15349, 15293];
 	const {userId} = useParams();
 	// const [isLoadingPenPal, setLoadingPenPal] = useState(false);
@@ -21,18 +21,15 @@ const DeployDialogs = ({ messages, sendMessage, dialogs, getPenPals, match}) => 
 		
 	}, [userId])
 
-	
-		
-		const user = dialogs.find(user => {
+		const penPal = dialogs.find(user => {
 			return user.id === +userId ? user : null;
 			})
 		
-	
-
 	let arrMessagesElements;
-	if(user){
-		arrMessagesElements = user.messages.map(elem => elem.penPal ? elem.penPal.map((message, index) => <OneMessage key={index} text={message}/>) 
-																						: elem.authUser.map((message, index) => <OneMessage key={index} text={message}/>)  );
+	if(penPal){
+		arrMessagesElements = 
+		penPal.messages.map(elem => elem.penPal ? elem.penPal.map((message, index) => <OneMessage key={index} text={message} pathImg={penPal.avatar} isAuthUser={false}/>) 
+															: elem.authUser.map((message, index) => <OneMessage key={index} text={message} pathImg={authUserAvatar} isAuthUser={true}/>)  );
 
 	}
 		
@@ -41,7 +38,7 @@ const DeployDialogs = ({ messages, sendMessage, dialogs, getPenPals, match}) => 
 			<div>
 				{arrMessagesElements}
 			</div>
-			<FormMessage sendMessage={sendMessage}/>
+			<FormMessage sendMessage={sendMessage} penPalId={penPal && penPal.id}/>
 		</div>
 	)
 }
