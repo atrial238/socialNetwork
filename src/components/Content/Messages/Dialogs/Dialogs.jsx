@@ -1,20 +1,18 @@
-import React, {useEffect}from 'react';
+import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
 import { wrapper, some } from './Dialogs.module.scss';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {LoadingPenPal} from '../../../common/Loading/LoadingPenPal/LoadingPenPal' 
 
-const Dialogs = ({dialogs, getPenPals}) => {
+const Dialogs = ({dialogs, isPenPalLoading, isPenPalLoadingFail}) => {
 	
 	const dialogsElement = dialogs.map(dialog => <DialogsItem name={dialog.name} key={dialog.id} id={dialog.id} avatar={dialog.avatar} />)
 	
 	return (
-		<Scrollbars className={some} style={{ width: 310, height: 100}}>
 			<div className={wrapper}>
 				<ul>
-					{dialogsElement}
+					{isPenPalLoading && <LoadingPenPal /> || isPenPalLoadingFail && 'Something went wrong' || dialogsElement}
 				</ul>
 			</div>
-		</Scrollbars>
 	)
 }
 
