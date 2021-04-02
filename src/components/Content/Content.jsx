@@ -2,7 +2,7 @@ import React, {Suspense} from 'react';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MessagesContainer from './Messages/MessagesContainer';
 import { content_container } from './Content.module.scss';
-import FindUsersContainer from './FindUsers/FindUsersContainer'
+import FindUsersContainer from './FindUsersContainer/FindUsersContainer'
 import ProfileContainer from './Profile/ProfileContainer';
 // const ProfileContainerWithHook = React.lazy(() => import('./Profile/ProfileContainerWithHook'));
 

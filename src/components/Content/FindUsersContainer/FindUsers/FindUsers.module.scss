@@ -1,0 +1,14 @@
+.wrapper{
+	margin-bottom: 30px;
+	min-height: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.body{
+		display: flex;
+		flex-wrap: wrap;
+		width: 1080px;
+		margin: 0 -20px;
+	}
+}
+
