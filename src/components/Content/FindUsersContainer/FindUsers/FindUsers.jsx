@@ -1,14 +1,14 @@
 import React from 'react';
 import Users from './Users/Users';
-import { wrapper, body } from './FindUsers.module.scss';
-import Loading from '../../../common/Loading/Loading';
 import Pagination from '../../../common/Pagination/Pagination';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
+import { wrapper, body} from './FindUsers.module.scss';
 
 const FindUsers = ({friendsArrFinded, 
 						numberCurrentPage,friendPerPage,
 						totalFriend, setPage, isLoading, isUserLoadingFail}) => {
 
+// make preloader
 	const loadingProgressAvatar = (
 				<LoadingProgressContent height={95}>
 					<rect x="0" y="0" rx="50" ry="50" width="100" height="95" />
@@ -25,9 +25,18 @@ const FindUsers = ({friendsArrFinded,
 			},
 			placeholderContent = Array.from({length: friendPerPage}, () => palaceholderObj);
 
+// preloader or content will be displayed
 	const allFriendsElement = isLoading 
 	 										? placeholderContent.map(placeholderData =><Users key={Math.random()} {...placeholderData}/>)
 											: friendsArrFinded.map(friendData =><Users key={friendData.id} {...friendData} isLoading={isLoading}/>)
+
+// props for Pagination
+	const propsPagination = {
+		totalItems: totalFriend,
+		itemsPerPage: friendPerPage,
+		numberCurrentPage: numberCurrentPage,
+		setPage: setPage,
+	}
 
 	return (
 		<>
@@ -38,12 +47,7 @@ const FindUsers = ({friendsArrFinded,
 						: <div className={body}>{allFriendsElement}</div>
 				}
 			</div>
-			<Pagination 
-				totalItems={totalFriend}
-				itemsPerPage={friendPerPage}
-				numberCurrentPage={numberCurrentPage}
-				setPage={setPage}
-			/>
+			<Pagination {...propsPagination} />
 		</>
 	)
 }

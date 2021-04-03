@@ -25,13 +25,35 @@
 	}
 	button {
 		cursor: pointer;
-		padding: 5px;
+		width: 20px;
+		height: 20px;
+		background-color: transparent;
+		img{
+			width: 100%;
+			height: 100%;
+		}
+		&.disabl_btn{
+			opacity: .3;
+			cursor: auto;
+		}
 	}
 	.currentPageClass {
 		background-color: #696868;
 		box-shadow: 0 0 2px 1px #00b8ff;
 		color: #000;
 		opacity: 1;
+	}
+	.first, .last, .next, .previous {
+		
+	}
+	.next, .last {
+		transform: rotate(180deg);
+	}
+	.next{
+		margin-right: 10px;
+	}
+	.previous {
+		margin-left: 10px;
 	}
 }
 
