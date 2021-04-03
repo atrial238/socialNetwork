@@ -1,0 +1,39 @@
+.pagination{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	ul{
+		display: flex;
+		min-width: 400px;
+		overflow: hidden;
+		padding: 10px;
+		li {
+			background-color: #383838;
+			padding: 0px 12px;
+			cursor: pointer;
+			border-radius: 5px;
+			list-style: none;
+			margin-right: 10px;
+			color: #fff;
+			font-size: 14px;
+			opacity: .7;
+			line-height: 25px;
+			&:last-child{
+				margin-right: 0px;
+			}
+		}
+	}
+	button {
+		cursor: pointer;
+		padding: 5px;
+	}
+	.currentPageClass {
+		background-color: #696868;
+		box-shadow: 0 0 2px 1px #00b8ff;
+		color: #000;
+		opacity: 1;
+	}
+}
+
+
+

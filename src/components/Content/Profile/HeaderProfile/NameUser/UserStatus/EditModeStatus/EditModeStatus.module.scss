@@ -68,7 +68,10 @@
 				opacity: .3;
 			}
 		}
-		&.button_fade{
+		&_save{
+			background-color: #00B8FF;
+		}
+		&_fade{
 			opacity: .5;
 			cursor: auto;
 			&:hover {

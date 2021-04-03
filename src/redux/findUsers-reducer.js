@@ -84,11 +84,9 @@ export const getUsers = (page, friendPerPage) => async (dispatch) => {
 		dispatch(setLoadingAnimation(false));
 		dispatch(onSetUsers(res.items));
 		dispatch(setTotalCount(res.totalCount));
-	}
-	catch(e){
+	}catch(e){
 		dispatch(setUserLoadingFail(true)); 
 	}
-	
 	
 }
 export default findUsersReducer;

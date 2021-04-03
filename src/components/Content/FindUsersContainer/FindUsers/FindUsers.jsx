@@ -32,7 +32,11 @@ const FindUsers = ({friendsArrFinded,
 	return (
 		<>
 			<div className={wrapper}>
-				{isUserLoadingFail ? <div>Something went wrong</div> : <div className={body}>{allFriendsElement}</div>}
+				{
+					isUserLoadingFail 
+						? <div>Something went wrong</div> 
+						: <div className={body}>{allFriendsElement}</div>
+				}
 			</div>
 			<Pagination 
 				totalItems={totalFriend}
