@@ -1,3 +1,7 @@
+.wrapper {
+	display: flex;
+
+}
 .link {
 	text-decoration: none;
 	color: #fff;
@@ -10,8 +14,11 @@
 .avatar_style{
 	width: 50px;
 	margin-right: 10px;
+	display: flex;
+	align-items: center;
 	img{
 		width: 100%;
 		border-radius: 50%;
+		margin-right: 10px;
 	}
 }
