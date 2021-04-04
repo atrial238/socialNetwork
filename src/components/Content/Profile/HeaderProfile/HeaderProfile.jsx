@@ -1,26 +1,54 @@
 import React from 'react';
-import {cover_img, gradient_bg, wrapper, avatar_container, avatar_change, 
-	avatar_wrapper, disable_btn, loading, avatar_fade, updateAvatarFail} from './HeaderProfile.module.scss';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import placeholder from '../../../../assets/images/placeholder.svg';
 import LoadingSmall from '../../../common/LoadingSmall/LoadingSmall';
 import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
 import NameUser from './NameUser/NameUser';
+import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade,
+			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail,
+			avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} from './HeaderProfile.module.scss';
 
-const HeaderProfile = props => {
-	const {updateAvatar, avatar,  isOwner, isAvatarUploading, isErrorUpdateAvatar, ...nameUserData} = props;
-
+const HeaderProfile = ({updateAvatar, avatar, isUserFollow, followUser, 
+									unfollowUser, userId, isUserFollowUploading, isUserFollowUploadFail,
+										isOwner, isAvatarUploading, isErrorUpdateAvatar, ...nameUserProps}) => {
+	
+// handle modal window for view full size avatar
 	const [open, setOpen] = React.useState(false);
-
 	const handleOpen = () => setOpen(true);
-
 	const handleClose = () => setOpen(false);
 
+// button for update avatar
 	const btnChangeAvatar = (
 		<div className={`${avatar_change} ${ isAvatarUploading && disable_btn }`} >
 			<label htmlFor="updateAvatar"><img src={photoIcons}/></label>
 			<input disabled={isAvatarUploading} id='updateAvatar' onChange={(e)=>updateAvatar(e.target.files[0])} type='file'/>
+		</div>
+	)
+
+// props for button follow / unfollow user
+	const btnUnfollowProps = {
+			id:'fU',
+			disabled: isUserFollowUploading,
+			className: btn_unfollow,
+			onClick: () => unfollowUser(userId)
+		},
+		btnFollowProps = {
+			id:'fU',
+			disabled: isUserFollowUploading,
+			className: btn_follow,
+			onClick: () => followUser(userId),
+		} 
+
+// button for follow / unfollow user
+	const btnFollowUnfollow = (
+		<div className={wrapper_btn}>
+			<div className={button}>
+				<label htmlFor="fU" className={isUserFollowUploading ? btn_fade : ''}></label>
+				{isUserFollowUploading && <div className={upload_process}><LoadingSmall size={20} /></div>}
+				{isUserFollowUploadFail && <div className={upload_fail}>Something went wrong</div>}
+				{isUserFollow ? <button {...btnUnfollowProps}>Unfriend</button> : <button {...btnFollowProps}>Add Friend</button>}
+			</div>
 		</div>
 	)
 
@@ -31,7 +59,7 @@ const HeaderProfile = props => {
 				<div className={avatar_container}>
 					
 						<div className={`${avatar_wrapper} ${isAvatarUploading && avatar_fade}`}>
-							<img  onClick={handleOpen} src={avatar || (isOwner && placeholder) || placeholder_avatar} alt="avatar"/>
+							<img onClick={handleOpen} src={avatar || (isOwner && placeholder) || placeholder_avatar} alt="avatar"/>
 						</div>
 
 						<ModalVeiwPictrue avatar={avatar} open={open} handleClose={handleClose}/>
@@ -45,7 +73,8 @@ const HeaderProfile = props => {
 				</div>
 			</div>
 			<div className={gradient_bg}></div>
-			<NameUser {...nameUserData} isOwner={isOwner}/>
+			<NameUser {...nameUserProps} isOwner={isOwner}/>
+			{!isOwner && btnFollowUnfollow}
 		</div>
 	)
 }

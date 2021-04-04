@@ -5,7 +5,7 @@ import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressCon
 import { wrapper, body} from './FindUsers.module.scss';
 
 const FindUsers = ({friendsArrFinded, 
-						numberCurrentPage,friendPerPage,
+						numberCurrentPage, friendPerPage,
 						totalFriend, setPage, isLoading, isUserLoadingFail}) => {
 
 // make preloader
@@ -27,8 +27,13 @@ const FindUsers = ({friendsArrFinded,
 
 // preloader or content will be displayed
 	const allFriendsElement = isLoading 
-	 										? placeholderContent.map(placeholderData =><Users key={Math.random()} {...placeholderData}/>)
-											: friendsArrFinded.map(friendData =><Users key={friendData.id} {...friendData} isLoading={isLoading}/>)
+										? placeholderContent.map(placeholderData =><Users key={Math.random()} {...placeholderData}/>)
+										: friendsArrFinded.map(friendData => 
+											<Users 
+												key={friendData.id} 
+												{...friendData} 
+												isLoading={isLoading}
+											/>)
 
 // props for Pagination
 	const propsPagination = {

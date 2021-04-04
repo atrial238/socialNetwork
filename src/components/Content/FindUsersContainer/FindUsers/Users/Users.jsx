@@ -4,8 +4,7 @@ import placeholderAvatar from '../../../../../assets/images/avatar/placeholder_a
 import { wrapper, img, body, header, status_style, fullname} from './Users.module.scss'
 
 const Users = ({id, name, status, photos, placeholder, isLoading}) => {
-	// const button = followed ? <button disabled={isButtonDisable} className={b uttonClass} onClick={ () => unfollow(id) } >Unfollow</button>
-	// 								: <button disabled={isButtonDisable} className={buttonClass} onClick={ () => follow(id) } >Follow</button>;
+
 	const avatar = isLoading
 								? placeholder.loadingProgressAvatar
 								: <img src={photos.small === null ? placeholderAvatar : photos.small} />;

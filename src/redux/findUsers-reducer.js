@@ -1,39 +1,29 @@
 import {usersAPI} from '../api/api';
 
-const followUnfollow = (userId) => ({type: FOLLOW_UNFOLLOW, userId}),
-		onSetUsers = (usersArr) => ({type: SET_USERS, usersArr}),
+//action creators
+const onSetUsers = (usersArr) => ({type: SET_USERS, usersArr}),
 		setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage}),
 		setTotalCount = (totalCount) => ({type: TOTAL_COUNT, totalCount}),
 		setLoadingAnimation = (isLoad) => ({type: LOADING, isLoad}),
-		setButtonDisabled = (id) => ({type: DISABLE_BUTTON, id}),
-		setUserLoadingFail = (bool) => ({type: USER_LOADING_FAIL, bool});
-
-const FOLLOW_UNFOLLOW = 'FOLLOW_UNFOLLOW',
-		SET_USERS = 'findUsers_reducer/SET_USERS',
+		setUserLoadingFail = (boolean) => ({type: USER_LOADING_FAIL, boolean});
+		
+//type for action
+const SET_USERS = 'findUsers_reducer/SET_USERS',
 		CURRENT_PAGE = 'findUsers_reducer/CURRENT_PAGE',
 		TOTAL_COUNT = 'findUsers_reducer/TOTAL_COUNT',
 		LOADING = 'findUsers_reducer/LOADING',
-		DISABLE_BUTTON = 'findUsers_reducer/DISABLE_BUTTON',
 		USER_LOADING_FAIL = 'findUsers_reducer/USER_LOADING_FAIL';
-
-const followUnfollowUser = (state, userId) => {
-			return {...state, 
-						users: state.users.map(friend => 
-							friend.id === userId ? {...friend, followed: !friend.followed} : friend)};
-		},
-		setUsers = (state, usersArr) => {
+		
+// helper functions for the reducer to be smaller
+const setUsers = (state, usersArr) => {
 			return {...state, users: usersArr.map(user => ({...user, isButtonDisable: false}))}
 		},
 		setActivePage = (state, currentPage) => ({...state, numberCurrentPage: currentPage}),
 		setTotalUser = (state, totalCount) => ({...state, totalFriend: totalCount}),
-		setLoadingProcces = (state, isLoad) => ({...state, isLoading: isLoad}),
-		toggleButton = (state, id) => {
-			return {
-				...state,
-				users: state.users.map(user => user.id === id ? {...user,  isButtonDisable: !user.isButtonDisable} : user)
-			}
-		}
+		setLoadingProcces = (state, isLoad) => ({...state, isLoading: isLoad});
+		
 
+// initial state
 const initState = {
 	users: [],
 	numberCurrentPage: 1,
@@ -43,11 +33,9 @@ const initState = {
 	isUserLoadingFail: false
 }
 
+// reducer
 const findUsersReducer = (state = initState, action) => {
-	
 	switch (action.type) {
-		case FOLLOW_UNFOLLOW:
-			return  followUnfollowUser(state, action.userId);
 		case SET_USERS:
 			return setUsers(state, action.usersArr);
 		case CURRENT_PAGE:
@@ -56,28 +44,17 @@ const findUsersReducer = (state = initState, action) => {
 			return setTotalUser(state, action.totalCount);
 		case LOADING: 
 			return setLoadingProcces(state, action.isLoad);
-		case DISABLE_BUTTON:
-			return toggleButton(state, action.id);
 		case USER_LOADING_FAIL:
-			return {...state, isUserLoadingFail: action.bool};
+			return {...state, isUserLoadingFail: action.boolean};
 		default:
 			return state;
 	}
 }
 
-const followUnfollowHelper = async (id, methodAPI, dispatch) => {
-	dispatch(setButtonDisabled(id));
-	const res = await methodAPI(id);
-	dispatch(setButtonDisabled(id));
-	if(!res.resultCode) dispatch(followUnfollow(id));
-}
-
-export const follow = (id) => (dispatch) => followUnfollowHelper(id, usersAPI.follow,  dispatch);
-export const unfollow = (id) => (dispatch) => followUnfollowHelper(id, usersAPI.unfollow,  dispatch);
-
-
+// thunk
 export const getUsers = (page, friendPerPage) => async (dispatch) => {
 	try{
+		dispatch(setUserLoadingFail(false))
 		dispatch(setCurrentPage(page));
 		dispatch(setLoadingAnimation(true));
 		const res = await usersAPI.getUsers(page, friendPerPage)
@@ -87,6 +64,5 @@ export const getUsers = (page, friendPerPage) => async (dispatch) => {
 	}catch(e){
 		dispatch(setUserLoadingFail(true)); 
 	}
-	
 }
 export default findUsersReducer;

@@ -115,6 +115,78 @@
 		background: linear-gradient(#8a96b3, 40%, #1f2020);
 		z-index: 1;
 	}
+	&_btn {
+		position: relative;
+		z-index: 2;
+		max-width: 1080px;
+		margin: 0 auto;
+		border-top: 1px solid rgb(100, 100, 100);
+		padding: 10px;
+		.button {
+			display: inline-block;
+			position: relative;
+			button{
+				padding: 7px;
+				border-radius: 5px;
+				color: #fff;
+				&.btn_follow{
+					background-color: #00B8FF;
+					color: #000;
+				}
+				&.btn_unfollow{
+					background-color: #4E4F50;
+				}
+			}
+			label {
+				position: absolute;
+				display: block;
+				width: 100%;
+				height: 100%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: rgba(255, 255, 255, 0);
+				transition: all .4s ease;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			&:hover {
+				label {
+					background-color: rgba(255, 255, 255, .2);
+				}
+			}
+			.upload_process{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 50%;
+				right: 0;
+				transform: translate(100%, -50%);
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				padding-left: 10px;
+			}
+			.upload_fail{
+				position: absolute;
+				width: 300%;
+				height: 100%;
+				top: 50%;
+				right: 0;
+				transform: translate(100%, -50%);
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				padding-left: 10px;
+				font-size: 14px;
+				font-weight: 300;
+				color: red;
+			}
+			.btn_fade{
+				cursor: unset;
+			}
+		}
+	}
 }
 
 .modal_wrapper{

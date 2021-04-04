@@ -23,7 +23,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 
 	const getIconSrc = skillsName => skillsIcons[skillsName.replace(/\s/g, '')];
 	
-	let skillsElem = "I have no skills";
+	let skillsElem = "User have no skills";
 
 	if(isOwner && lookingForAJobDescription){
 

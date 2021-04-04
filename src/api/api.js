@@ -12,14 +12,7 @@ export const usersAPI = {
 		return instance.get(`users?page=${currentPage}&count=${friendPerPage}` )
 			.then(res => res.data);
 	},
-	follow(id){
-		return instance.post('follow/' + id)
-			.then(res => res.data)
-	},
-	unfollow(id){
-		return instance.delete('follow/' + id)
-			.then(res => res.data)
-	}
+	
 }
 
 export const profileAPI = {
@@ -28,6 +21,15 @@ export const profileAPI = {
 	},
 	getUserStatus(id){
 		return instance.get('/profile/status/' + id)
+	},
+	getIsUserFollowed(id){
+		return instance.get('/follow/' + id)
+	},
+	followUser(id){
+		return instance.post('/follow/' + id)
+	},
+	unfollowUser(id){
+		return instance.delete('/follow/' + id)
 	},
 	updateUserStatus(status){
 		return instance.put('/profile/status', {status})

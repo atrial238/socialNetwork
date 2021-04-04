@@ -43,7 +43,7 @@ const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 				className={`${status_user} ${isOwner && status_user_owner}`}
 				onClick={isOwner ? activateEditMode : undefined}
 			>
-				{userStatus || 'No status'}
+				{userStatus || "User didn't write status"}
 			</div>
 	)
 	return isStatusEdit ? <EditModeStatus {...dataEditMode}/> : status

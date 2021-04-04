@@ -1,31 +1,41 @@
 import {profileAPI} from '../api/api';
 import {setAvatarSrcOnHeader} from './auth-reucer';
 
+// action creators
 export const sendPost = post => ({type: ADD_POST, post});
 export const deletePostAC = id => ({type: DELETE_POST, id})
 export const setDataProfile = profile => ({type: SET_PROFILE, profile});
 const setUserStatus = status => ({type: USER_STATUS, status}),
 		setAvatarSrc = url => ({type: SET_AVATAR_SRC, url}),
 		setIsAvatarUploading = () => ({type: IS_AVATAR_UPLOAD}),
-		setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR});
+		setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR}),
+		setIsUserFollow = (boolean) => ({type: IS_USER_FOLLOW, boolean}),
+		setIsUserFollowUploading = (boolean) => ({type: IS_USER_FOLLOW_UPLOADING, boolean}),
+		setIsUserFollowUploadFail = (boolean) => ({type: IS_USER_FOLLOW_UPLOAD_FAIL, boolean});
 
+// type for action
 const ADD_POST = 'profile_reducer/ADD_POST',
 		SET_PROFILE = 'profile_reducer/SET_PROFILE',
 		USER_STATUS = 'profile_reducer/USER_STATUS',
 		DELETE_POST = 'profile_reducer/DELETE_POST',
 		SET_AVATAR_SRC = 'profile_reducer/SET_AVATAR_SRC',
 		IS_AVATAR_UPLOAD ='profile_reducer/IS_AVATAR_UPLOAD',
-		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR';
-		
+		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR',
+		IS_USER_FOLLOW = 'profile_reducer/IS_USER_FOLLOW',
+		IS_USER_FOLLOW_UPLOADING = 'profile_reducer/IS_USER_FOLLOW_UPLOADING',
+		IS_USER_FOLLOW_UPLOAD_FAIL = 'profile_reducer/IS_USER_FOLLOW_UPLOAD_FAIL';
+
+// helper functions for the reducer to be smaller
 const addPost = (state, post) => 
 			({...state, postData: [...state.postData, {id: state.postData.length + 1, text: post, like: '0', date: new Date(Date.now())}]}),
 		setProfile = (state, profileData) => ({...state, profileUserData: profileData}),
 		deletePost = (state, id) =>
-			({...state,postData: state.postData.filter(elem => elem.id !== id)}),
+			({...state, postData: state.postData.filter(elem => elem.id !== id)}),
 		setStatus = (state, status) => ({...state, userStatus: status}),
 		setAvatar = (state, image) => 
 			({...state, profileUserData: {...state.profileUserData, photos: image}});
 
+// initial state
 const initState = {
 	postData: [{
 			id: '1',
@@ -76,12 +86,15 @@ const initState = {
 					},
 	},
 	userStatus: '',
+	isUserFollow: true,
+	isUserFollowUploading: false,
+	isUserFollowUploadFail: false,
 	isAvatarUploading: false,
 	isErrorUpdateAvatar: false,
 }
 
+// reducer
 const profileReducer = (state = initState, action) => {
-
 	switch (action.type) {
 		case ADD_POST:
 			return addPost(state, action.post);
@@ -97,11 +110,18 @@ const profileReducer = (state = initState, action) => {
 			return {...state, isAvatarUploading: !state.isAvatarUploading};
 		case AVATAR_UPDATE_ERROR:
 			return {...state, isErrorUpdateAvatar: !state.isErrorUpdateAvatar};
+		case IS_USER_FOLLOW:
+			return {...state, isUserFollow: action.boolean};
+		case IS_USER_FOLLOW_UPLOADING:
+			return {...state, isUserFollowUploading: action.boolean}
+		case IS_USER_FOLLOW_UPLOAD_FAIL:
+			return {...state, isUserFollowUploadFail: action.boolean}
 		default:
 			return state;
 	}
 }
 
+// thunk get data user
 export const getUserProfile = (userId) => async (dispatch) => {
 	const res = await profileAPI.getUserProfile(userId)
 	dispatch(setDataProfile(res.data))
@@ -112,7 +132,13 @@ export const getUserStatus = (id) => async (dispatch) => {
 	const res = await profileAPI.getUserStatus(id)
 	dispatch(setUserStatus(res.data));
 }
+export const getIsUserFollowed = (id) => async (dispatch) => {
+	
+	const res = await profileAPI.getIsUserFollowed(id)
+	dispatch(setIsUserFollow(res.data))
+}
 
+// thunk update data user
 export const updateStatus = (status) => (dispatch) => {
 	 return profileAPI.updateUserStatus(status)
 				.then(res => res.data.resultCode === 0 && dispatch(setUserStatus(status)))
@@ -140,5 +166,25 @@ export const updateProfileData = data => (dispatch, getState) => {
 			return res;
 	})
 }
+
+const followUnfollowUser = async (id, methodAPI, dispatch, boolean) => {
+	dispatch(setIsUserFollowUploading(true));
+	dispatch(setIsUserFollowUploadFail(false));
+	try{
+		const res = await methodAPI(id)
+		if(res.data.resultCode === 0){
+			dispatch(setIsUserFollow(boolean));
+			dispatch(setIsUserFollowUploading(false));
+		}
+	}catch(e){
+		console.log(1)
+		dispatch(setIsUserFollowUploading(false))
+		dispatch(setIsUserFollowUploadFail(true))
+		setTimeout(()=> dispatch(setIsUserFollowUploadFail(false)), 3000);
+	}
+	
+}
+export const followUser = (id) => (dispatch) => followUnfollowUser(id, profileAPI.followUser, dispatch, true);
+export const unfollowUser = (id) => (dispatch) => followUnfollowUser(id, profileAPI.unfollowUser, dispatch, false);
 
 export default profileReducer;
