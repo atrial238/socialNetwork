@@ -5,14 +5,31 @@ import placeholder from '../../../../assets/images/placeholder.svg';
 import LoadingSmall from '../../../common/LoadingSmall/LoadingSmall';
 import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
 import NameUser from './NameUser/NameUser';
-import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade,
-			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail,
+import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
+import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_name,
+			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail, error_occure,
 			avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} from './HeaderProfile.module.scss';
 
-const HeaderProfile = ({updateAvatar, avatar, isUserFollow, followUser, 
-									unfollowUser, userId, isUserFollowUploading, isUserFollowUploadFail,
-										isOwner, isAvatarUploading, isErrorUpdateAvatar, ...nameUserProps}) => {
-	
+const HeaderProfile = props => {
+
+// destructuring props
+const {  updateAvatar, 
+			avatar,
+			isUserFollow,
+			followUser,
+			isProfileUserUploading,
+			isProfileUserUploadFail,
+			isUserStatusUploading,
+			isUserStatusUploadFail,
+			unfollowUser,
+			userId,
+			isUserFollowUploading,
+			isUserFollowUploadFail,
+			isOwner,
+			isAvatarUploading,
+			isErrorUpdateAvatar,
+			...nameUserProps} = props;
+
 // handle modal window for view full size avatar
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
@@ -52,14 +69,35 @@ const HeaderProfile = ({updateAvatar, avatar, isUserFollow, followUser,
 		</div>
 	)
 
+// make preloader
+	const preloaderAvatar = (
+		<LoadingProgressContent height={200} width={200}>
+			<rect x="2.5" y="2.5" rx="100" ry="100" width="195" height="195" />
+		</LoadingProgressContent>
+	),
+	preloaderName = (
+		<div className={preloader_name}>
+			<LoadingProgressContent height={70} width={250}>
+				<rect x="0" y="0" rx="5" ry="5" width="250" height="30" />
+				<rect x="25" y="50" rx="5" ry="5" width="200" height="20" />
+			</LoadingProgressContent>
+		</div>
+	)
+	
 	return (
 		<div className={wrapper}>
 			<div className={cover_img}>
 				<img src='https://peakvisor.com/img/news/french-mountains.jpg'/>
+
 				<div className={avatar_container}>
-					
 						<div className={`${avatar_wrapper} ${isAvatarUploading && avatar_fade}`}>
-							<img onClick={handleOpen} src={avatar || (isOwner && placeholder) || placeholder_avatar} alt="avatar"/>
+							{ 
+								isProfileUserUploading 
+									? preloaderAvatar 
+									: isProfileUserUploadFail 
+									? <img src={placeholder_avatar} alt="avatar"/> 
+									: <img onClick={handleOpen} src={avatar || placeholder_avatar} alt="avatar"/> 
+							}
 						</div>
 
 						<ModalVeiwPictrue avatar={avatar} open={open} handleClose={handleClose}/>
@@ -71,9 +109,16 @@ const HeaderProfile = ({updateAvatar, avatar, isUserFollow, followUser,
 						{isErrorUpdateAvatar && <div className={updateAvatarFail}>Update avatar failed</div>}
 						
 				</div>
+				
 			</div>
 			<div className={gradient_bg}></div>
-			<NameUser {...nameUserProps} isOwner={isOwner}/>
+			{
+				isProfileUserUploading && isUserStatusUploading 
+					? preloaderName 
+					: isProfileUserUploadFail || isUserStatusUploadFail
+					? <div className={error_occure}>Can't fetch status or profile data</div>
+					: <NameUser {...nameUserProps} isOwner={isOwner}/>
+			}
 			{!isOwner && btnFollowUnfollow}
 		</div>
 	)

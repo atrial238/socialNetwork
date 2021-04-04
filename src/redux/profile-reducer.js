@@ -11,7 +11,11 @@ const setUserStatus = status => ({type: USER_STATUS, status}),
 		setErrorUpdateAvatar = () => ({type: AVATAR_UPDATE_ERROR}),
 		setIsUserFollow = (boolean) => ({type: IS_USER_FOLLOW, boolean}),
 		setIsUserFollowUploading = (boolean) => ({type: IS_USER_FOLLOW_UPLOADING, boolean}),
-		setIsUserFollowUploadFail = (boolean) => ({type: IS_USER_FOLLOW_UPLOAD_FAIL, boolean});
+		setIsUserFollowUploadFail = (boolean) => ({type: IS_USER_FOLLOW_UPLOAD_FAIL, boolean}),
+		setIsProfileUserUploading = (boolean) => ({type: PROFILE_UPLOADING, boolean}),
+		setIsProfileUserUploadFail = (boolean) => ({type: PROFILE_UPLOAD_FAIL, boolean}),
+		setIsUserStatusUploading = (boolean) => ({type: STATUS_UPLOADING, boolean}),
+		setIsUserStatusUploadFail = (boolean) => ({type: STATUS_UPLOAD_FAIL, boolean});
 
 // type for action
 const ADD_POST = 'profile_reducer/ADD_POST',
@@ -23,7 +27,11 @@ const ADD_POST = 'profile_reducer/ADD_POST',
 		AVATAR_UPDATE_ERROR = 'profile_reducer/AVATAR_UPDATE_ERROR',
 		IS_USER_FOLLOW = 'profile_reducer/IS_USER_FOLLOW',
 		IS_USER_FOLLOW_UPLOADING = 'profile_reducer/IS_USER_FOLLOW_UPLOADING',
-		IS_USER_FOLLOW_UPLOAD_FAIL = 'profile_reducer/IS_USER_FOLLOW_UPLOAD_FAIL';
+		IS_USER_FOLLOW_UPLOAD_FAIL = 'profile_reducer/IS_USER_FOLLOW_UPLOAD_FAIL',
+		PROFILE_UPLOADING = 'profile_reducer/PROFILE_UPLOADING',
+		PROFILE_UPLOAD_FAIL = 'profile_reducer/PROFILE_UPLOAD_FAIL',
+		STATUS_UPLOADING = 'profile_reducer/STATUS_UPLOADING',
+		STATUS_UPLOAD_FAIL = 'profile_reducer/STATUS_UPLOAD_FAIL';
 
 // helper functions for the reducer to be smaller
 const addPost = (state, post) => 
@@ -91,6 +99,10 @@ const initState = {
 	isUserFollowUploadFail: false,
 	isAvatarUploading: false,
 	isErrorUpdateAvatar: false,
+	isProfileUserUploading: false,
+	isProfileUserUploadFail: false,
+	isUserStatusUploading: false,
+	isUserStatusUploadFail: false,
 }
 
 // reducer
@@ -113,32 +125,62 @@ const profileReducer = (state = initState, action) => {
 		case IS_USER_FOLLOW:
 			return {...state, isUserFollow: action.boolean};
 		case IS_USER_FOLLOW_UPLOADING:
-			return {...state, isUserFollowUploading: action.boolean}
+			return {...state, isUserFollowUploading: action.boolean};
 		case IS_USER_FOLLOW_UPLOAD_FAIL:
-			return {...state, isUserFollowUploadFail: action.boolean}
+			return {...state, isUserFollowUploadFail: action.boolean};
+		case PROFILE_UPLOADING:
+			return {...state, isProfileUserUploading: action.boolean}
+		case PROFILE_UPLOAD_FAIL:
+			return {...state, isProfileUserUploadFail: action.boolean}
+		case STATUS_UPLOADING:
+			return {...state, isUserStatusUploading: action.boolean}
+		case STATUS_UPLOAD_FAIL:
+			return {...state, isUserStatusUploadFail: action.boolean}
 		default:
 			return state;
 	}
 }
 
-// thunk get data user
+// thunks get data user
 export const getUserProfile = (userId) => async (dispatch) => {
-	const res = await profileAPI.getUserProfile(userId)
-	dispatch(setDataProfile(res.data))
-	return res;
+	try {
+		dispatch(setIsProfileUserUploadFail(false));
+		dispatch(setIsProfileUserUploading (true))
+		const res = await profileAPI.getUserProfile(userId)
+
+		if(res.status === 200){
+		
+			dispatch(setDataProfile(res.data));
+			dispatch(setIsProfileUserUploading (false));
+		}
+		return res;
+	}catch(e){
+		dispatch(setIsProfileUserUploading (false));
+		dispatch(setIsProfileUserUploadFail(true));
+	}
 }
 
 export const getUserStatus = (id) => async (dispatch) => {
-	const res = await profileAPI.getUserStatus(id)
-	dispatch(setUserStatus(res.data));
+	try {
+		dispatch(setIsUserStatusUploadFail (false));
+		dispatch(setIsUserStatusUploading (true));
+		const res = await profileAPI.getUserStatus(id)
+		if(res.status === 200) {
+			dispatch(setIsUserStatusUploading (false));
+			dispatch(setUserStatus(res.data));
+		}
+	}catch(e){
+		dispatch(setIsUserStatusUploadFail (true));
+		dispatch(setIsUserStatusUploading (false));
+	}
 }
+
 export const getIsUserFollowed = (id) => async (dispatch) => {
-	
 	const res = await profileAPI.getIsUserFollowed(id)
 	dispatch(setIsUserFollow(res.data))
 }
 
-// thunk update data user
+// thunks update data user
 export const updateStatus = (status) => (dispatch) => {
 	 return profileAPI.updateUserStatus(status)
 				.then(res => res.data.resultCode === 0 && dispatch(setUserStatus(status)))
@@ -167,6 +209,7 @@ export const updateProfileData = data => (dispatch, getState) => {
 	})
 }
 
+// helper function to avoid duplicate code in followUser and unfollowUser
 const followUnfollowUser = async (id, methodAPI, dispatch, boolean) => {
 	dispatch(setIsUserFollowUploading(true));
 	dispatch(setIsUserFollowUploadFail(false));
@@ -177,7 +220,6 @@ const followUnfollowUser = async (id, methodAPI, dispatch, boolean) => {
 			dispatch(setIsUserFollowUploading(false));
 		}
 	}catch(e){
-		console.log(1)
 		dispatch(setIsUserFollowUploading(false))
 		dispatch(setIsUserFollowUploadFail(true))
 		setTimeout(()=> dispatch(setIsUserFollowUploadFail(false)), 3000);

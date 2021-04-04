@@ -37,10 +37,7 @@ const authReducer = (state = stateInit, action) => {
 export const getAuthData = () => (dispatch) => {
 
 	return authAPI.isAuthorization()
-		.then(res => res.data.resultCode === 0 
-							? dispatch(setAuthUserData(res.data))
-							: res
-		)
+		.then(res => res.data.resultCode === 0 ? dispatch(setAuthUserData(res.data)) : res)
 		.catch(error => error)
 }
 

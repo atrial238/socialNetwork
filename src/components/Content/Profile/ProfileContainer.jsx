@@ -23,9 +23,9 @@ const ProfileContainer = props => {
 
 	}, [props.match.params.userId]);
 
-// splitting props
 	const isOwner = props.match.params.userId === undefined;
 
+// destructuring props
 	const { profileUserData,
 				userStatus,
 				updateStatus,
@@ -39,8 +39,13 @@ const ProfileContainer = props => {
 				followUser, 
 				unfollowUser,
 				isUserFollowUploading,
-				isUserFollowUploadFail} = props;
+				isUserFollowUploadFail,
+				isProfileUserUploading,
+				isProfileUserUploadFail,
+				isUserStatusUploading,
+				isUserStatusUploadFail} = props;
 
+// splitting props
 	const headerProfileProps = {
 			updateAvatar, 
 			avatar: profileUserData.photos.large,
@@ -55,10 +60,14 @@ const ProfileContainer = props => {
 			unfollowUser,
 			userId: profileUserData.userId,
 			isUserFollowUploading,
-			isUserFollowUploadFail
+			isUserFollowUploadFail,
+			isProfileUserUploading,
+			isProfileUserUploadFail,
+			isUserStatusUploading,
+			isUserStatusUploadFail
 	}
 
-	const bodyProfileProps = {...profileUserData, isOwner, updateProfileData, postData, sendPost};
+	const bodyProfileProps = {...profileUserData, isOwner, updateProfileData, postData, sendPost, isProfileUserUploading};
 
 	return (
 			<>
@@ -77,8 +86,11 @@ const mapStateToProps = state => ({
 		isErrorUpdateAvatar: state.profile.isErrorUpdateAvatar,
 		isUserFollow: state.profile.isUserFollow,
 		isUserFollowUploading: state.profile.isUserFollowUploading,
-		isUserFollowUploadFail: state.profile.isUserFollowUploadFail
-
+		isUserFollowUploadFail: state.profile.isUserFollowUploadFail,
+		isProfileUserUploading: state.profile.isProfileUserUploading,
+		isProfileUserUploadFail: state.profile.isProfileUserUploadFail,
+		isUserStatusUploading: state.profile.isUserStatusUploading,
+		isUserStatusUploadFail: state.profile.isUserStatusUploadFail,
 });
 
 const actionCreators = {

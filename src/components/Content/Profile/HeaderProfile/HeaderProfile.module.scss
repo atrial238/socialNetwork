@@ -1,5 +1,6 @@
 .wrapper{
 	position: relative;
+	// padding-bottom: 10px;
 	.cover_img{
 		height: 350px;
 		position: relative;
@@ -186,6 +187,19 @@
 				cursor: unset;
 			}
 		}
+	}
+	.preloader_name, .error_occure{
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 30px;
+		margin-bottom: 10px;
+	}
+	.error_occure{
+		color: red;
+		font-weight: 300;
 	}
 }
 
