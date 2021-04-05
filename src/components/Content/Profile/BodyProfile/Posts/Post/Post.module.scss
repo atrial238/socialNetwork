@@ -1,4 +1,5 @@
 .wrapper {
+	max-width: 637px;
 	margin-bottom: 20px;
 	background-color: #242526;
 	border-radius: 7px;
@@ -33,14 +34,21 @@
 		}
 	}
 	.message {
+		width: 100%;
 		font-size: 14px;
-		flex: 1 1 auto;
 		padding: 10px;
 		border-radius: 7px;
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		min-height: 70px;
 		margin-bottom: 10px;
 		font-weight: 300;
+		
+		span{
+			width:100%;
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 	.like_style{
 		margin-right: 20px;

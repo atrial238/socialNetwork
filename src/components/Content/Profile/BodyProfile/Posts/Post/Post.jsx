@@ -23,7 +23,7 @@ const Post = ({like, text, fullName, photo, date, isProfileUserUploading}) => {
 					<div className={date_style}>{`${getMonthString(date)} ${date.getDate()}, ${date.getFullYear()}`}</div>
 				</div>
 			</div>
-			<div className={message}>{text}</div>
+			<div className={message}><span>{text}</span></div>
 			<div className={like_style}>&#128151; {like}</div>
 		</div>
 	)

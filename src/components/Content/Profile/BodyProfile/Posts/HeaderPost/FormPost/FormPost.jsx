@@ -13,7 +13,7 @@ const FormPost = ({handleSubmit, handleClose})=> {
 					name='post'
 					typeTag='textarea'
 					component={renderField}
-					validate={[required, maxLength100]}
+					validate={[required]}
 					errorMessage='Write something here...'
 				/>
 			</div>

@@ -12,7 +12,7 @@ const OneMessage = ({text, pathImg, isAuthUser, id}) => {
 				</NavLink>
 				
 			</div>
-			<div className={body_message}>{text}</div>
+			<div className={body_message}><span>{text}</span></div>
 		</div>
 	)
 }

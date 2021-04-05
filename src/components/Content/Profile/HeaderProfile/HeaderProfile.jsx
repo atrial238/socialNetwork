@@ -9,6 +9,7 @@ import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressCon
 import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_name,
 			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail, error_occure,
 			avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} from './HeaderProfile.module.scss';
+import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
 
 const HeaderProfile = props => {
 
@@ -117,7 +118,7 @@ const {  updateAvatar,
 					? preloaderName 
 					: isProfileUserUploadFail || isUserStatusUploadFail
 					? <div className={error_occure}>Can't fetch status or profile data</div>
-					: <NameUser {...nameUserProps} isOwner={isOwner}/>
+					: <ErrorBoundary><NameUser {...nameUserProps} isOwner={isOwner}/></ErrorBoundary>
 			}
 			{!isOwner && btnFollowUnfollow}
 		</div>

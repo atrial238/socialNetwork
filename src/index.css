@@ -37,6 +37,7 @@ body {
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	font-family: 'Roboto', sans-serif;
+	overflow-y: scroll;
 }
 input,
 button,

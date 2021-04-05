@@ -2,6 +2,7 @@ import React from 'react';
 import {wrapper, content} from './BodyProfile.module.scss';
 import UserData from './UserData/UserData';
 import Posts from './Posts/Posts';
+import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
 
 const BodyProfile = (props) => {
 
@@ -14,8 +15,10 @@ const BodyProfile = (props) => {
 	return (
 		<div className={wrapper}>
 			<div className={content}>
-				<UserData {...data}/>
-				<Posts {...postsData}/>
+				<ErrorBoundary>
+					<UserData {...data}/>
+					<Posts {...postsData}/>
+				</ErrorBoundary>
 			</div>
 		</div>
 	)

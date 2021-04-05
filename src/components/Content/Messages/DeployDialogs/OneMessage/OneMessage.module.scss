@@ -30,10 +30,10 @@
 				border-radius: 50%;
 			}
 		}
-		
 	}
 	.body_message{
-		flex: 1 1 auto;
+		flex: 1 1 300px;
+		max-width: 300px;
 		border-radius: 7px;
 		background-color: #303031;
 		min-height: 50px;
@@ -56,6 +56,13 @@
 			background-color: #18191A;
 			z-index: 2;
 			border-bottom-right-radius: 50%;
+		}
+		span{
+			display: block;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
 		}
 	}
 }

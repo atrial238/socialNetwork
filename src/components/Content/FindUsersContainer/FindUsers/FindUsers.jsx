@@ -3,6 +3,7 @@ import Users from './Users/Users';
 import Pagination from '../../../common/Pagination/Pagination';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
 import { wrapper, body} from './FindUsers.module.scss';
+import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
 
 const FindUsers = ({friendsArrFinded, 
 						numberCurrentPage, friendPerPage,
@@ -45,14 +46,20 @@ const FindUsers = ({friendsArrFinded,
 
 	return (
 		<>
-			<div className={wrapper}>
-				{
-					isUserLoadingFail 
-						? <div>Something went wrong</div> 
-						: <div className={body}>{allFriendsElement}</div>
-				}
-			</div>
-			<Pagination {...propsPagination} />
+			<ErrorBoundary>
+				
+				<div className={wrapper}>
+					{
+						isUserLoadingFail 
+							? <div>Something went wrong</div> 
+							: <div className={body}>{allFriendsElement}</div>
+					}
+				</div>
+			</ErrorBoundary>
+
+			<ErrorBoundary>
+				<Pagination {...propsPagination} />
+			</ErrorBoundary>
 		</>
 	)
 }

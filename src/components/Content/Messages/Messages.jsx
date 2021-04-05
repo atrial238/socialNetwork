@@ -3,6 +3,7 @@ import DeployDialogs from './DeployDialogs/DeployDialogs';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.scss';
 import {Route} from 'react-router-dom';
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
 
 const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 
@@ -29,8 +30,15 @@ const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) 
 
 	return (
 		<div className={wrapper}>
-			<Dialogs {...dataDialogs}/>
-			<Route path='/messages/:userId?' children={<DeployDialogs {...dataDeployDialogs} />} />
+
+			<ErrorBoundary>
+				<Dialogs {...dataDialogs}/>
+			</ErrorBoundary>
+			
+			<ErrorBoundary>
+				<Route path='/messages/:userId?' children={<DeployDialogs {...dataDeployDialogs} />} />
+			</ErrorBoundary>
+			
 		</div>
 	)
 }

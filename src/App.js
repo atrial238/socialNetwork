@@ -6,19 +6,20 @@ import Loading from './components/common/Loading/Loading';
 import Content from './components/Content/Content';
 import Login from './components/Login/Login';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Sidebar from './components/Sidebar/Sidebar';
 import {initializedThunk} from './redux/app-reducer';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
 	componentDidMount = () => this.props.initializedThunk();
 	
 	render(){
-		const {isInintApp, friends, isAuth, isInintAppFail} = this.props;
+		const {isInintApp, isAuth, isInintAppFail} = this.props;
 		
 		const entireApp = <div className='app_wrapper'>
-									<HeaderContainer/>
-									{/* <Sidebar friends={friends}/> */}
+									<ErrorBoundary>
+										<HeaderContainer/>
+									</ErrorBoundary>
 									<Content className='app_wrapper_content'/>
 								</div>
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { wrapper } from './DeployDialogs.module.scss';
 import OneMessage from './OneMessage/OneMessage';
 import FormMessage from './FormMessage/FormMessage';
@@ -31,7 +31,7 @@ const DeployDialogs = ({sendMessage, dialogs, authUserAvatar}) => {
 			<div>
 				{arrMessagesElements ? arrMessagesElements : <div>Сhoose a user with whom you will correspond</div>}
 			</div>
-			<FormMessage sendMessage={sendMessage} penPalId={penPal && penPal.id}/>
+			{arrMessagesElements && <FormMessage sendMessage={sendMessage} penPalId={penPal && penPal.id}/>}
 		</div>
 	)
 }
