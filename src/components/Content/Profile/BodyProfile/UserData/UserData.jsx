@@ -8,10 +8,12 @@ import FormChangeUserData from './FormChangeUserData/FormChangeUserData';
 
 const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, updateProfileData, fullName}) => {
 	
+// handle modal widow for edit user information
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
+// make elements with icons for every contacts(facebook, website, vk, twitter, instagram, youtube, github, others)
 	const contactsElem = Object.keys(contacts)
 								.map((socialName, index) => 
 									<div key={index}>
@@ -21,6 +23,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 									</div>
 	);
 
+// make elements with icons for every skills
 	const getIconSrc = skillsName => skillsIcons[skillsName.replace(/\s/g, '')];
 	
 	let skillsElem = "User have no skills";
@@ -37,6 +40,8 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 									}
 								</div>
 	)}
+
+// props for form edit user information
 	const data = {aboutMe, contacts, lookingForAJobDescription, updateProfileData, fullName};
 
 	return (

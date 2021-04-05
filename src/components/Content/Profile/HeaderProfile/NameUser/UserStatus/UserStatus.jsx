@@ -4,15 +4,18 @@ import EditModeStatus from './EditModeStatus/EditModeStatus';
 
 const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 
-	useEffect(() => setStatus(userStatus), [userStatus]);
-
+// state
 	const [isStatusEdit, setIsStatusEdit] = useState(false),
 			[isStatusUpload, setIsStatusUpload] = useState(false),
 			[temporaryStatus, setStatus] = useState(userStatus),
 			[isError, setIsError] = useState(false);
 
-	const activateEditMode = () => setIsStatusEdit(true);
+	useEffect(() => setStatus(userStatus), [userStatus]);
 
+	const activateEditMode = () => setIsStatusEdit(true),
+			setTemporaryStatus = (e) => setStatus(e.currentTarget.value);
+
+// post status to server and handle errors
 	const deactivateEditMode = () => {
 			setIsStatusUpload(true)
 			updateStatus(temporaryStatus)
@@ -26,9 +29,8 @@ const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 				.then(() => setIsStatusUpload(false))
 				.then(() => setIsStatusEdit(false))
 	};
-	
-	const setTemporaryStatus = (e) => setStatus(e.currentTarget.value) 
 
+// props for edit mode status
 	const dataEditMode = {
 			temporaryStatus,
 			setTemporaryStatus,

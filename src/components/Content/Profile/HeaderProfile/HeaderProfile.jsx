@@ -2,14 +2,14 @@ import React from 'react';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import placeholder from '../../../../assets/images/placeholder.svg';
-import LoadingSmall from '../../../common/LoadingSmall/LoadingSmall';
+import LoadingSmall from '../../../common/Loading/LoadingSmall/LoadingSmall';
 import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
 import NameUser from './NameUser/NameUser';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
 import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_name,
 			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail, error_occure,
 			avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} from './HeaderProfile.module.scss';
-import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
 
 const HeaderProfile = props => {
 

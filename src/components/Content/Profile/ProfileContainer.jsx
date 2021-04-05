@@ -8,7 +8,7 @@ import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import BodyProfile from './BodyProfile/BodyProfile';
 import { updateProfileData, getUserProfile, getUserStatus, getIsUserFollowed,
 	updateStatus, sendPost, updateAvatar, followUser, unfollowUser } from '../../../redux/profile-reducer';
-import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 
 const ProfileContainer = props => {
 
@@ -75,8 +75,6 @@ const ProfileContainer = props => {
 				<ErrorBoundary><BodyProfile {...bodyProfileProps}/></ErrorBoundary>
 			</>
 	)
-	
-	
 }
 
 const mapStateToProps = state => ({

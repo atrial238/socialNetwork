@@ -2,7 +2,7 @@ import React from 'react';
 import {wrapper, content} from './BodyProfile.module.scss';
 import UserData from './UserData/UserData';
 import Posts from './Posts/Posts';
-import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
 
 const BodyProfile = (props) => {
 

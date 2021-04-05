@@ -1,17 +1,19 @@
 import React from 'react';
 import {status_input, buttons_wrapper, button, input_fade,
 				 button_fade, wrapper_input, loading_spinner, button_save } from './EditModeStatus.module.scss';
-import LoadingSmall from '../../../../../../common/LoadingSmall/LoadingSmall';
+import LoadingSmall from '../../../../../../common/Loading/LoadingSmall/LoadingSmall';
 
 const EditModeStatus = ({ temporaryStatus, setTemporaryStatus, isStatusEdit, 
 									isError, isStatusUpload, deactivateEditMode, setIsStatusEdit }) => {
 
+//props for button save
 	const dataButton = {
 		className: `${button} ${isStatusUpload && button_fade} ${button_save}`,
 		onClick: deactivateEditMode,
 		disabled: isStatusUpload
 	}
-	
+
+//props for textarea
 	const dataTextarea = {
 		autoFocus: true,
 		type: "text",

@@ -5,7 +5,7 @@ import {wrapper, textarea, button, buttons_wrapper, save_btn,
 			  submitting_process, buttons_save_wrapper, 
 			  submitting_error, submitting_success, field_error, field_wrapper} from './FormChangeUserData.module.scss';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
-import LoadingSmall from '../../../../../common/LoadingSmall/LoadingSmall';
+import LoadingSmall from '../../../../../common/Loading/LoadingSmall/LoadingSmall';
 import {maxLength20, maxLength100} from '../../../../../../util/validateForm';
 
 const FormChangeUserData = ({aboutMe, handleClose, contacts, lookingForAJobDescription, updateProfileData, fullName}) => {

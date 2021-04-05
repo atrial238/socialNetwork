@@ -3,7 +3,7 @@ import Users from './Users/Users';
 import Pagination from '../../../common/Pagination/Pagination';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
 import { wrapper, body} from './FindUsers.module.scss';
-import ErrorBoundary from '../../../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
 
 const FindUsers = ({friendsArrFinded, 
 						numberCurrentPage, friendPerPage,

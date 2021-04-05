@@ -3,7 +3,7 @@ import DeployDialogs from './DeployDialogs/DeployDialogs';
 import Dialogs from './Dialogs/Dialogs';
 import {wrapper} from './Messages.module.scss';
 import {Route} from 'react-router-dom';
-import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 
 const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 
