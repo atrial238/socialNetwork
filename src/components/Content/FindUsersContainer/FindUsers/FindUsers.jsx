@@ -11,13 +11,13 @@ const FindUsers = ({friendsArrFinded,
 
 // make preloader
 	const loadingProgressAvatar = (
-				<LoadingProgressContent height={95}>
-					<rect x="0" y="0" rx="50" ry="50" width="100" height="95" />
+				<LoadingProgressContent height={100} width={100}>
+					<rect x="0" y="0" rx="50" ry="50" width="100" height="100" />
 				</LoadingProgressContent>
 			),
 			loadingProgressName = (
-				<LoadingProgressContent height={95}>
-					<rect x="0" y="35" rx="10" ry="10" width="180" height="30" />
+				<LoadingProgressContent height={95} width={155}>
+					<rect x="0" y="35" rx="10" ry="10" width="155" height="30" />
 				</LoadingProgressContent>
 			),
 			palaceholderObj = {
@@ -27,7 +27,7 @@ const FindUsers = ({friendsArrFinded,
 			placeholderContent = Array.from({length: friendPerPage}, () => palaceholderObj);
 
 // preloader or content will be displayed
-	const allFriendsElement = isLoading 
+	const allFriendsElement = isLoading
 										? placeholderContent.map(placeholderData =><Users key={Math.random()} {...placeholderData}/>)
 										: friendsArrFinded.map(friendData => 
 											<Users 
@@ -55,7 +55,6 @@ const FindUsers = ({friendsArrFinded,
 					}
 				</div>
 			</ErrorBoundary>
-
 			<ErrorBoundary>
 				<Pagination {...propsPagination} />
 			</ErrorBoundary>
