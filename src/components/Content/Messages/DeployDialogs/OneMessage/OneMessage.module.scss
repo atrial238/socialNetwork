@@ -2,12 +2,15 @@
 	display: flex;
 	align-items: flex-end;
 	overflow: hidden;
-	width: 30%;
+	max-width: 400px;
 	font-size: 14px;
 	font-weight: 300;
 	margin-bottom: 15px;
 	&.auth_user_style{
 		margin-left: 70px;
+		@media (max-width: 460px){
+			margin-left: 20px;
+		}
 		.body_message{
 			background-color: #018cc4;
 			&:after {
@@ -32,8 +35,7 @@
 		}
 	}
 	.body_message{
-		flex: 1 1 300px;
-		max-width: 300px;
+		width: 74%;
 		border-radius: 7px;
 		background-color: #303031;
 		min-height: 50px;
@@ -59,9 +61,12 @@
 		}
 		span{
 			display: block;
+			// max-width: 100%;
 			width: 100%;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			position: relative;
+			z-index: 3;
 
 		}
 	}

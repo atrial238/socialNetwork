@@ -1,3 +1,9 @@
 .wrapper {
-	flex: 0 1 65%;
+	max-width: 65%;
+	// flex: 0 1 65%;
+	
+	@media (max-width: 770px){
+		flex: 1 1 auto;
+		max-width: 100%;
+	}
 }

@@ -14,7 +14,7 @@ const Content = () => {
 				<Route exact path='/' render={() => <ProfileContainer/>}/>
 				<Route exact path='/profile/:userId?' render={() => <ProfileContainer/>}/>
 				<Route exact path='/messages/:userId?' render={() => <MessagesContainer />}/>
-				<Route exact path='/findUsers' render={() => <FindUsersContainer />}/>
+				<Route exact path='/findUsers' render={() => <FindUsersContainer />}/> 
 				<Route path='*' render={()=> <Page404 />}/>
 			</Switch>
 		</div>

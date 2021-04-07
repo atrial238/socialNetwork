@@ -1,10 +1,13 @@
 .wrapper {
-	max-width: 637px;
+	max-width: 100%;
 	margin-bottom: 20px;
 	background-color: #242526;
 	border-radius: 7px;
 	padding: 10px;
 	min-height: 150px;
+	@media (max-width: 770px) {
+		max-width: 100%;
+	}
 	.header {
 		margin-bottom: 10px;
 		display: flex;
@@ -34,7 +37,7 @@
 		}
 	}
 	.message {
-		width: 100%;
+		max-width: 100%;
 		font-size: 14px;
 		padding: 10px;
 		border-radius: 7px;
@@ -42,9 +45,8 @@
 		min-height: 70px;
 		margin-bottom: 10px;
 		font-weight: 300;
-		
 		span{
-			width:100%;
+			max-width: 100%;
 			display: block;
 			overflow: hidden;
 			text-overflow: ellipsis;

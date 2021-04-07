@@ -1,11 +1,14 @@
 .status_user {
 	margin-bottom: 10px;
 	font-weight: 300;
-
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0 15px;
 	&.status_user_owner {
 		cursor: pointer;
 		color: rgb(46, 137, 255);
-
 		&:hover {
 			text-decoration: underline;
 		}

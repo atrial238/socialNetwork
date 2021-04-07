@@ -2,7 +2,7 @@ import React from 'react';
 import Users from './Users/Users';
 import Pagination from '../../../common/Pagination/Pagination';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
-import { wrapper, body} from './FindUsers.module.scss';
+import {content, wrapper, body} from './FindUsers.module.scss';
 import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
 
 const FindUsers = ({friendsArrFinded, 
@@ -45,10 +45,9 @@ const FindUsers = ({friendsArrFinded,
 	}
 
 	return (
-		<>
+		<div className={wrapper}>
 			<ErrorBoundary>
-				
-				<div className={wrapper}>
+				<div className={content}>
 					{
 						isUserLoadingFail 
 							? <div>Something went wrong</div> 
@@ -60,7 +59,7 @@ const FindUsers = ({friendsArrFinded,
 			<ErrorBoundary>
 				<Pagination {...propsPagination} />
 			</ErrorBoundary>
-		</>
+		</div>
 	)
 }
 export default FindUsers;

@@ -13,9 +13,8 @@ const Users = ({id, name, status, photos, placeholder, isLoading}) => {
 								? placeholder.loadingProgressName
 								: (<>
 										<div className={fullname}>{name}</div>
-										<div className={status_style}>{status === null ? 'status' : status}</div>
+										<div className={status_style}>{status === null ? 'status' : status }</div>
 									</>)
-	
 	return (
 		<>
 			<div className={wrapper}>

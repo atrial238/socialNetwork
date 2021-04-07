@@ -1,6 +1,6 @@
 import React from 'react';
 import {wrapper, contacts_wrapper, contacts_header, 
-				skills_wrapper, live, edit_info, aboutMe_wrapper} from './UserData.module.scss';
+				skills_wrapper, edit_info, aboutMe_wrapper} from './UserData.module.scss';
 import socialIcons from './srcSocialIcons';
 import skillsIcons from './srcSkillsIcons';
 import ModalChangeUserData from './ModalChangeUserData/ModalChangeUserData';
@@ -47,7 +47,7 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 	return (
 		<div className={wrapper}>
 			<h3 ><span>About me: </span></h3>
-			<div className={aboutMe_wrapper}>{aboutMe || "User didn't write about himself"}</div>
+			<div className={aboutMe_wrapper}><span>{aboutMe || "User didn't write about himself"}</span></div>
 			<div>
 				<h3>Skills:</h3>
 				<div className={skills_wrapper}>{skillsElem}</div>
