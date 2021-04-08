@@ -11,9 +11,6 @@ import pathImage10 from '../../../assets/images/bg_login_page/10.jpg';
 import pathImage11 from '../../../assets/images/bg_login_page/11.jpg';
 import pathImage12 from '../../../assets/images/bg_login_page/12.jpg';
 import pathImage13 from '../../../assets/images/bg_login_page/13.jpg';
-import pathImage14 from '../../../assets/images/bg_login_page/14.jpg';
-import pathImage15 from '../../../assets/images/bg_login_page/15.jpg';
-
 
 export  const pathAllImage = [pathImage1,pathImage2,pathImage3,pathImage4,pathImage5,pathImage6,pathImage7,pathImage8,
-	pathImage9,pathImage10,pathImage11,pathImage12,pathImage13,pathImage14,pathImage15];
+	pathImage9,pathImage10,pathImage11,pathImage12,pathImage13];
