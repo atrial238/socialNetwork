@@ -11,8 +11,8 @@ const FindUsers = ({friendsArrFinded,
 
 // make preloader
 	const loadingProgressAvatar = (
-				<LoadingProgressContent height={100} width={100}>
-					<rect x="0" y="0" rx="50" ry="50" width="100" height="100" />
+				<LoadingProgressContent height={97} width={97}>
+					<rect x="0" y="0" rx="48.5" ry="48.5" width="97" height="97" />
 				</LoadingProgressContent>
 			),
 			loadingProgressName = (

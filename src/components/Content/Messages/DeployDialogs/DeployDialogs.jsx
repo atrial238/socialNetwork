@@ -26,13 +26,16 @@ const DeployDialogs = ({sendMessage, dialogs, authUserAvatar, isMobaleView, hist
 				: elem.authUser.map((message, index) => 
 					<OneMessage key={index} text={message} pathImg={authUserAvatar} id={''}  isAuthUser={true}/>)  );
 	}
-		
+
 	return (
 		<div className={wrapper}>
-			
 			<div>
 				{isMobaleView && <div className={back} onClick={()=> history.push('/messages')}><div><img src={backIcons} alt='back'/></div></div>}
-				{arrMessagesElements ? <div className={wrapper_message}>{arrMessagesElements}</div> : <div style={{padding: '10px'}}>Сhoose a user with whom you will correspond</div>}
+				{
+					arrMessagesElements 
+						? <div className={wrapper_message}>{arrMessagesElements}</div> 
+						: <div style={{padding: '10px'}}>Сhoose a user with whom you will correspond</div>
+				}
 			</div>
 			{arrMessagesElements && <FormMessage sendMessage={sendMessage} penPalId={penPal && penPal.id}/>}
 		</div>

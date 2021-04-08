@@ -11,7 +11,6 @@ const OneMessage = ({text, pathImg, isAuthUser, id}) => {
 				<NavLink to={'/profile/' + id}>
 					<div className={avatar_wrapper}><img src={pathImg || placeHolderAvatar}/></div>
 				</NavLink>
-				
 			</div>
 			<div className={body_message}><span>{text}</span></div>
 		</div>
