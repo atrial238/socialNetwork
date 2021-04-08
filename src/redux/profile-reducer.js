@@ -35,7 +35,7 @@ const ADD_POST = 'profile_reducer/ADD_POST',
 
 // helper functions for the reducer to be smaller
 const addPost = (state, post) => 
-			({...state, postData: [...state.postData, {id: state.postData.length + 1, text: post, like: '0', date: new Date(Date.now())}]}),
+			({...state, postData: [{id: state.postData.length + 1, text: post, like: '0', date: new Date(Date.now())}, ...state.postData]}),
 		setProfile = (state, profileData) => ({...state, profileUserData: profileData}),
 		deletePost = (state, id) =>
 			({...state, postData: state.postData.filter(elem => elem.id !== id)}),
@@ -209,7 +209,7 @@ export const updateProfileData = data => (dispatch, getState) => {
 	})
 }
 
-// helper function to avoid duplicate code in followUser and unfollowUser
+// helper function to avoid duplicate code in followUser and unfollowUser thunk
 const followUnfollowUser = async (id, methodAPI, dispatch, boolean) => {
 	dispatch(setIsUserFollowUploading(true));
 	dispatch(setIsUserFollowUploadFail(false));
