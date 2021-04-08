@@ -31,7 +31,7 @@ const FormLogin = ({onSubmit, captcha}) => {
 
 					<div className={field}>
 						<Field 
-							type="text" 
+							type="password" 
 							name='password'
 							typeTag='input'
 							placeholder='password'
