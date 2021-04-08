@@ -11,6 +11,9 @@
 		padding: 0px 10px;
 		line-height: 40px;
 		border-radius: 3px;
+		@media(max-width: 770px){
+			display: none;
+		}
 		span{
 			width: 100%;
 			height: 100%;
@@ -28,8 +31,12 @@
 			}
 		}
 	}
-}
-.errorBorder{
-	border: 2px solid #BE4B49;
-	border-radius: 5px;
+	&.errorBorder{
+		border: 2px solid #BE4B49;
+		border-radius: 7px;
+		input::placeholder{
+			color: red;
+		}
+	}
+	
 }
