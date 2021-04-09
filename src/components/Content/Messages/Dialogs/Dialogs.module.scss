@@ -13,12 +13,13 @@
 		list-style-type: none;
 		display: flex;
 		align-items: center;
+		word-wrap: break-word;
+		width: 100%;
 	}
 	@media(max-width: 770px){
 		border-right:0;
 		margin-right: 0px;
 		flex: 1 1 100%;
-		
 	}
 }
 

@@ -1,24 +1,27 @@
-.wrapper {
-	display: flex;
-
-}
 .link {
 	text-decoration: none;
 	color: #fff;
 	font-size: 16px;
+	width: 100%;
 	&.active {
 		color: #00B8FF;
 	}
-}
-
-.avatar_style{
-	width: 50px;
-	margin-right: 10px;
-	display: flex;
-	align-items: center;
-	img{
+	.avatar_style{
 		width: 100%;
-		border-radius: 50%;
-		margin-right: 10px;
+		display: flex;
+		align-items: center;
+		> div {
+			width: 50px;
+			margin-right: 10px;
+		}
+		img{
+			width: 100%;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+		span{
+			width: 70%;
+		}
 	}
 }
+

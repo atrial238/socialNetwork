@@ -3,8 +3,7 @@
 	font-weight: 300;
 	width: 100%;
 	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	word-wrap: break-word;
 	padding: 0 15px;
 	&.status_user_owner {
 		cursor: pointer;

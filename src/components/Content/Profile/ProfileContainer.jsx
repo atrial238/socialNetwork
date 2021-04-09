@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import HeaderProfile from './HeaderProfile/HeaderProfile';
-import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import BodyProfile from './BodyProfile/BodyProfile';
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 import { updateProfileData, getUserProfile, getUserStatus, getIsUserFollowed,
 	updateStatus, sendPost, updateAvatar, followUser, unfollowUser } from '../../../redux/profile-reducer';
-import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
+
 
 const ProfileContainer = props => {
 

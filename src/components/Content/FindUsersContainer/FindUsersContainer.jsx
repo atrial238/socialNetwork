@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {compose} from 'redux';
 import FindUsers from './FindUsers/FindUsers';
-import WithAuthRedirect from '../../../hoc/withAuthRedirect';
 import { getUsers} from "../../../redux/findUsers-reducer";
 import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
 

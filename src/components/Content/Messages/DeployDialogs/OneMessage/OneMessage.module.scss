@@ -35,7 +35,7 @@
 		}
 	}
 	.body_message{
-		width: 74%;
+		width: 73%;
 		border-radius: 7px;
 		background-color: #303031;
 		min-height: 50px;
@@ -61,10 +61,8 @@
 		}
 		span{
 			display: block;
-			// max-width: 100%;
 			width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			word-wrap: break-word;
 			position: relative;
 			z-index: 3;
 

@@ -1,14 +1,11 @@
 .wrapper {
-	
 	border-radius: 7px;
 	background-color: #242526;
 	padding: 10px;
 	width: 33%;
 	@media (max-width: 770px){
-		// flex: 0 1 auto;
 		margin-bottom: 40px;
 		width: 100%;
-
 	}
 	h3 {
 		margin-bottom: 10px;
@@ -38,8 +35,7 @@
 		padding: 10px;
 		span {
 			width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			word-wrap: break-word;
 		}
 	}
 	.edit_info {

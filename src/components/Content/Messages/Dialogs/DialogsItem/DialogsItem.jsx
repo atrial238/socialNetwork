@@ -7,7 +7,10 @@ const DialogsItem = ({ name, id, avatar }) => {
 	return (
 		<li>
 			<NavLink className={link} activeClassName={active} to={`/messages/${id}`}>
-				<div className={avatar_style}><img src={avatar}/><span>{name}</span></div>
+				<div className={avatar_style}>
+					<div><img src={avatar} alt='avatar'/></div>
+					<span>{name}</span>
+				</div>
 			</NavLink>
 		</li>
 	)
