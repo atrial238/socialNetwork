@@ -9,7 +9,7 @@ import {field, field_checkbox, error} from './FormLogin.module.scss';
 const FormLogin = ({onSubmit, captcha}) => {
 
 	return (
-		<Form onSubmit={onSubmit}>
+		<Form onSubmit={onSubmit} initialValues={{email: 'free@samuraijs.com', password: 'free'}}>
 			
 			{({handleSubmit, submitError, submitting}) => (
 				
