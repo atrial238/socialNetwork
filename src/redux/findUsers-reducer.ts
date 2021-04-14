@@ -57,7 +57,7 @@ function findUsersReducer  (state = initState, action: any) {
 // thunk
 export const getUsers = (page: number, friendPerPage: number) => async (dispatch: any) => {
 	try{
-		dispatch(setUserLoadingFail(false))
+		dispatch(setUserLoadingFail(false));
 		dispatch(setCurrentPage(page));
 		dispatch(setLoadingAnimation(true));
 		const res = await usersAPI.getUsers(page, friendPerPage)
@@ -65,7 +65,7 @@ export const getUsers = (page: number, friendPerPage: number) => async (dispatch
 		dispatch(onSetUsers(res.items));
 		dispatch(setTotalCount(res.totalCount));
 	}catch(e){
-		dispatch(setUserLoadingFail(true)); 
+		dispatch(setUserLoadingFail(true));
 	}
 }
 export default findUsersReducer;
