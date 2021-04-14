@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import {compose} from 'redux';
 import FindUsers from './FindUsers/FindUsers';
-import { getUsers} from "../../../redux/findUsers-reducer";
+import { getUsers} from "../../../redux/findUsers-reducer.ts";
 import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
 
 

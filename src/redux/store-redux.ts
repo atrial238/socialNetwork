@@ -6,6 +6,7 @@ import findUsersReducer from './findUsers-reducer';
 import authReducer from './auth-reucer';
 import thunkMiddleWare from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
+import { configureStore } from '@reduxjs/toolkit';
 import initApp from './app-reducer';
 
 const reducers = combineReducers({
@@ -18,9 +19,14 @@ const reducers = combineReducers({
 	app: initApp
 })
 
+declare global {
+	interface Window {
+	  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+	}
+}
 
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers,  composeEnhancers(applyMiddleware(thunkMiddleWare)));
-// const store = createStore(reducers, applyMiddleware(thunkMiddleWare));
+
 
 export default store;
