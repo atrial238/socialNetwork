@@ -47,11 +47,11 @@ export type initStateType = {
 
 //types for reducer
 export type actionType = {
-	type: string
-	usersArr?: userType[]
-	currentPage?: number
-	friendPerPage?: number
-	totalCount?: number
-	isLoad?: boolean
-	isFailed?: boolean
+	type: string | undefined
+	usersArr?: userType[] | undefined
+	currentPage?: number | undefined
+	friendPerPage?: number | undefined
+	totalCount?: number | undefined
+	isLoad?: boolean | undefined
+	isFailed?: boolean | undefined
 }

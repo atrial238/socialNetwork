@@ -11,7 +11,7 @@ export const INITIALIZED_FAIL = 'INITIALIZED_FAIL';
 export const initializedThunk = () => (dispatch: any) => {
 
 	dispatch(getAuthData()).then((res: any) => 
-											res && res.name === "Error" 
+											res && res.name === "Error"
 											? dispatch(setFailedInitApp())
 											: res.data.resultCode === 0
 											? dispatch(getUserProfile(res.data.data.id))
