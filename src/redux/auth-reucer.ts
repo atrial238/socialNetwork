@@ -24,8 +24,7 @@ const stateInit: stateInitType = {
 const authReducer = (state = stateInit, action: any) => {
 	
 	switch(action.type){
-		case AUTH: 
-		console.log(action.data)
+		case AUTH:
 			return {...state, ...action.data.data, isAuth: true, captcha: null};
 		case AVATAR_SRC:
 			return {...state, avatar: action.src}

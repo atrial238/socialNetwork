@@ -38,9 +38,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
 		isInintApp: state.app.initialized,
 		isInintAppFail: state.app.isInintAppFail,
-		friends: state.sidebar.friends,
 		isAuth: state.auth.isAuth,
-		
 });
 
 export default connect(mapStateToProps, {initializedThunk})(App);
