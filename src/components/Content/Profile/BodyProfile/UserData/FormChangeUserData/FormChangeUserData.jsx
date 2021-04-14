@@ -11,6 +11,7 @@ import {maxLength20, maxLength100} from '../../../../../../util/validateForm';
 const FormChangeUserData = ({aboutMe, handleClose, contacts, lookingForAJobDescription, updateProfileData, fullName}) => {
 
 	const handleOnSubmit = (values, {setSubmitting, setErrors, setStatus}) => {
+		
 		updateProfileData(values)
 		.then(res => {
 			if(res.data.resultCode === 0){
