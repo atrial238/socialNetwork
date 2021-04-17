@@ -2,12 +2,18 @@ import React from 'react';
 import Users from './Users/Users';
 import Pagination from '../../../common/Pagination/Pagination';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
-import {content, wrapper, body} from './FindUsers.module.scss';
+import styles from './FindUsers.module.scss';
 import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
+import {PropsStateType} from '../FindUsersContainer';
 
-const FindUsers = ({friendsArrFinded, 
-						numberCurrentPage, friendPerPage,
-						totalFriend, setPage, isLoading, isUserLoadingFail}) => {
+const {content, wrapper, body} = styles
+
+interface PropsFindUsers extends  PropsStateType {
+	setPage: (currentPage: number) => void
+}
+
+const FindUsers: React.FC<PropsFindUsers> = ({friendsArrFinded, numberCurrentPage, friendPerPage, 
+													totalFriend, setPage, isLoading, isUserLoadingFail, }) => {
 
 // make preloader
 	const loadingProgressAvatar = (
@@ -30,7 +36,7 @@ const FindUsers = ({friendsArrFinded,
 	const allFriendsElement = isLoading
 										? placeholderContent.map(placeholderData =><Users key={Math.random()} {...placeholderData}/>)
 										: friendsArrFinded.map(friendData => 
-											<Users 
+											<Users
 												key={friendData.id} 
 												{...friendData} 
 												isLoading={isLoading}

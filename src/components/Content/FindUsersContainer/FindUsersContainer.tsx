@@ -1,4 +1,4 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import FindUsers from './FindUsers/FindUsers';
 import { getUsers} from "../../../redux/findUsers-reducer";
@@ -6,17 +6,17 @@ import { getUsersSelecor } from "../../../redux/selectors/findUsersSelecotr";
 import {stateType} from '../../../redux/store';
 import { userType } from '../../../redux/types/find-user-reducer-types';
 
-type PropsStateType = {
-	friendsArrFinded: userType[] | null,
-	numberCurrentPage: number | null,
-	friendPerPage: number | null,
-	totalFriend: number | null,
-	isLoading: boolean | null
-	isUserLoadingFail: boolean | null
+export interface PropsStateType {
+	friendsArrFinded: userType[] ,
+	numberCurrentPage: number,
+	friendPerPage: number,
+	totalFriend: number,
+	isLoading: boolean
+	isUserLoadingFail: boolean
 }
 
 type PropsThunkType = {
-	getUsers: (page: number | null, friendPerPage: number | null) => void
+	getUsers: (page: number, friendPerPage: number) => void
 }
 
 type Props = PropsThunkType & PropsStateType;

@@ -1,16 +1,29 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import placeholderAvatar from '../../../../../assets/images/avatar/placeholder_avatar.jpg';
-import { wrapper, img, body, header, status_style, fullname} from './Users.module.scss'
+import styles from './Users.module.scss';
+const { wrapper, img, body, header, status_style, fullname}  = styles;
 
-const Users = ({id, name, status, photos, placeholder, isLoading}) => {
+type PropsUser = {
+	id?: number
+	name?: string
+	status?: string
+	photos?: {small: string, large: string}
+	placeholder?: {
+		loadingProgressAvatar: JSX.Element
+		loadingProgressName: JSX.Element
+	}
+	isLoading: boolean
+	key: number
+}
+const Users: React.FC<PropsUser> = ({id, name, status, photos, placeholder, isLoading}) => {
 
 	const avatar = isLoading
-								? placeholder.loadingProgressAvatar
-								: <img src={photos.small === null ? placeholderAvatar : photos.small} />;
+								? placeholder!.loadingProgressAvatar
+								: <img src={photos!.small === null ? placeholderAvatar : photos!.small} />;
 
 	const nameStatus = isLoading
-								? placeholder.loadingProgressName
+								? placeholder!.loadingProgressName
 								: (<>
 										<div className={fullname}>{name}</div>
 										<div className={status_style}>{status === null ? 'status' : status }</div>

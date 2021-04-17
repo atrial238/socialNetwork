@@ -1,6 +1,6 @@
 import {usersAPI} from '../api/api';
 import {isUserLoadingFailType, setUserType, userType, currentPageType,
-	setTotalCountType, setLoadingType, initStateType, actionType} from './types/find-user-reducer-types';
+	setTotalCountType, setLoadingType, initStateType} from './types/find-user-reducer-types';
 
 //action creators
 const onSetUsers = (usersArr: userType[]): setUserType => ({type: SET_USERS, usersArr}),
@@ -29,10 +29,10 @@ const setUsers = (state: initStateType, usersArr: userType[]) => {
 // initial state
  const initState: initStateType = {
 	users: [],
-	numberCurrentPage: 1 ,
-	friendPerPage: 10 ,
-	totalFriend: 100 ,
-	isLoading: true ,
+	numberCurrentPage: 1,
+	friendPerPage: 10,
+	totalFriend: 100,
+	isLoading: true,
 	isUserLoadingFail: false 
 }
 
