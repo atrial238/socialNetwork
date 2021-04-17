@@ -5,7 +5,7 @@ import {userDataType, authUserDataType, nullMyDataType,
 const setAuthUserData = (data: userDataType): authUserDataType => ({type: AUTH, data}),
 		nullMyData = (): nullMyDataType => ({type: NULL_MY_DATA}),
 		getCaptchaAC = (url: string): getCaptchaType => ({type: GET_CAPTCHA, url});
-export const setAvatarSrcOnHeader = (src: any): avatarSrcOnHeaderType => ({type: AVATAR_SRC, src});
+export const setAvatarSrcOnHeader = (src: string): avatarSrcOnHeaderType => ({type: AVATAR_SRC, src});
 
 export const AUTH = 'auth_reducer/AUTH';
 export const AVATAR_SRC = 'auth_reducer/AVATAR_SRC';
