@@ -3,7 +3,7 @@ import IconNavigationEnd from '../../../assets/images/pagination/last.svg';
 import IconNavigationContinue from '../../../assets/images/pagination/previous.svg';
 import styles from './Pagination.module.scss';
 
-const {pagination, currentPageClass, next, last, first, previous, disabl_btn}  = styles;
+const {pagination, currentPageClass, next, last, first, previous, disabl_btn} = styles;
 
 interface propsPagination {
 	totalItems: number
@@ -12,6 +12,7 @@ interface propsPagination {
 	setPage: (currentPage: number) => void
 	amountVisiblePortion?: number
 }
+
 const Pagination: React.FC<propsPagination> = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amountVisiblePortion = 10}) => {
 
 	const [countPortionVisibleItmes, setVisibleItems] = useState(1);
