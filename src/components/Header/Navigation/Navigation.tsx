@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {nav, active, link, img_wrapper} from './Navigation.module.scss';
+import styles from './Navigation.module.scss';
 import homeIcon from '../../../assets/images/navigation/home.svg';
 import messageIcon from '../../../assets/images/navigation/messages.svg';
 import findUsers from '../../../assets/images/navigation/findUsers.svg';
+
+const {nav, active, link, img_wrapper} = styles;
 
 const Navigation = () => {
 	return (
