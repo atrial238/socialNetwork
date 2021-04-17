@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import RenderField from '../../common/RenderFormField/RenderFormField.jsx';
+import RenderField from '../../common/RenderFormField/RenderField';
 import Captcha from './Captcha/Captcha';
 import {required} from '../../../util/validateForm';
 import styles from './FormLogin.module.scss';
@@ -30,7 +30,7 @@ const FormLogin: React.FC<PropsFormLoginType> = ({onSubmit, captcha}) => {
 							validate={required}
 							errorMessage='Enter email'
 						>
-							{props => (<RenderField {...props} />)}
+							{props => (<RenderField {...props}/>)}
 						</Field>
 					</div>
 

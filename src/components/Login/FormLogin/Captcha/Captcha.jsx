@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field} from 'react-final-form'
-import RenderField from '../../../common/RenderFormField/RenderFormField';
+import RenderField from '../../../common/RenderFormField/RenderField';
 import {required} from '../../../../util/validateForm';
 import {image, inputWrapper} from './Captcha.module.scss';
 
