@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
 import IconNavigationEnd from '../../../assets/images/pagination/last.svg';
 import IconNavigationContinue from '../../../assets/images/pagination/previous.svg';
-import {pagination, currentPageClass, next, last, first, previous, disabl_btn} from './Pagination.module.scss';
+import styles from './Pagination.module.scss';
 
-const Pagination = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amountVisiblePortion = 10}) => {
+const {pagination, currentPageClass, next, last, first, previous, disabl_btn}  = styles;
+
+interface propsPagination {
+	totalItems: number
+	itemsPerPage: number
+	numberCurrentPage: number
+	setPage: (currentPage: number) => void
+	amountVisiblePortion?: number
+}
+const Pagination: React.FC<propsPagination> = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amountVisiblePortion = 10}) => {
 
 	const [countPortionVisibleItmes, setVisibleItems] = useState(1);
 
@@ -13,7 +22,7 @@ const Pagination = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amoun
 			rightVisibleItems = countPortionVisibleItmes * amountVisiblePortion - 1;
 			
 //function for navigation: next, previous, last, first
-	const changeVisibleItems = (direction) => {
+	const changeVisibleItems = (direction: string) => {
 		if(direction === 'right'){
 			setVisibleItems(countPortionVisibleItmes + 1);
 			setPage(rightVisibleItems + 2);
@@ -34,17 +43,18 @@ const Pagination = ({totalItems, itemsPerPage, numberCurrentPage, setPage, amoun
 	}
 
 //elements which will be displayed
-	const portionVisibleItems = Array
-		.from({length: amountAllItmes})
-		.reduce((arr, _, index) => index  >= leftVisibleItems && index <=   rightVisibleItems? [...arr, index + 1] : arr, [])
-		.map(numberItem => 
-			<li 
-				key={numberItem}
-				className={numberCurrentPage === numberItem ? currentPageClass : null}
-				onClick={() => setPage(numberItem)}
-			>
-				{numberItem}
-			</li>
+	const arrayPages: number[] = Array.from({length: amountAllItmes}, (_, index) => index + 1);
+
+	// props for each element
+	const getPropsForList = (num: number) => ({
+		key: num,
+		className: numberCurrentPage === num ? currentPageClass : undefined,
+		onClick: () => setPage(num),
+	})
+
+	const portionVisibleItems = arrayPages
+											.filter((_, index) => index >= leftVisibleItems && index <= rightVisibleItems)
+											.map((numberItem) => <li {...getPropsForList(numberItem)}>{numberItem}</li>
 	);
 
 // props for buttons
