@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { FORM_ERROR } from 'final-form';
-import { loginUser, getCaptchaThunk, setAvatarSrcOnHeader } from '../../redux/auth-reucer';
+import { loginUser, setAvatarSrcOnHeader } from '../../redux/auth-reucer';
 import { getUserProfile } from '../../redux/profile-reducer';
 import LoginSlider from './LoginSlider/LoginSlider';
 import styles from './Login.module.scss';
@@ -18,20 +18,21 @@ interface PropsStateType {
 
 interface PropsThunkType {
 	loginUser: (email: string, password: string, rememberMe: boolean, captcha: string) => any
-	getCaptchaThunk: () => any
 	getUserProfile:  (userId: number) => any
 	setAvatarSrcOnHeader:  (src: string) => void
 }
 
 interface PropsLoginType extends PropsStateType, PropsThunkType {}
 
-interface FormType {
+export interface FormType {
 	email: string
 	password: string
 	rememberMe: boolean
 	captcha: string
 }
-const Login: React.FC<PropsLoginType> = ({ isAuth, loginUser, getCaptchaThunk, captcha, getUserProfile, setAvatarSrcOnHeader }) => {
+
+
+const Login: React.FC<PropsLoginType> = ({ isAuth, loginUser, captcha, getUserProfile, setAvatarSrcOnHeader }) => {
 
 	const onSubmit = async (formData: FormType) => {
 		const res = await loginUser(formData.email, formData.password, formData.rememberMe, formData.captcha)
@@ -46,7 +47,6 @@ const Login: React.FC<PropsLoginType> = ({ isAuth, loginUser, getCaptchaThunk, c
 
 	const propsFormLogin = {
 		onSubmit: onSubmit, 
-		getCaptchaThunk: getCaptchaThunk, 
 		captcha: captcha,
 	}
 
@@ -64,4 +64,4 @@ const mapStateToProps = (state: stateType): PropsStateType => ({
 	isAuth: state.auth.isAuth,
 	captcha: state.auth.captcha,
 });
-export default connect(mapStateToProps, { loginUser, getCaptchaThunk, getUserProfile, setAvatarSrcOnHeader })(Login);
+export default connect(mapStateToProps, { loginUser, getUserProfile, setAvatarSrcOnHeader })(Login);

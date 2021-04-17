@@ -1,12 +1,18 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import PropTypes from 'prop-types';
 import RenderField from '../../common/RenderFormField/RenderFormField.jsx';
 import Captcha from './Captcha/Captcha';
 import {required} from '../../../util/validateForm';
-import {field, field_checkbox, error} from './FormLogin.module.scss';
+import styles from './FormLogin.module.scss';
+import { FormType } from '../Login.js';
 
-const FormLogin = ({onSubmit, captcha}) => {
+const {field, field_checkbox, error} = styles;
+
+interface PropsFormLoginType {
+	onSubmit: (formData: FormType) => void, 
+	captcha: string
+}
+const FormLogin: React.FC<PropsFormLoginType> = ({onSubmit, captcha}) => {
 
 	return (
 		<Form onSubmit={onSubmit} initialValues={{email: 'free@samuraijs.com', password: 'free'}}>
@@ -20,7 +26,6 @@ const FormLogin = ({onSubmit, captcha}) => {
 							name='email'
 							type="text" 
 							typeTag='input' 
-							name='email' 
 							placeholder='Your email'
 							validate={required}
 							errorMessage='Enter email'
@@ -65,8 +70,3 @@ const FormLogin = ({onSubmit, captcha}) => {
 	)
 } 
 export default FormLogin;
-
-RenderField.propTypes = {
-	onSubmit: PropTypes.func,
-	captcha: PropTypes.string
-}
