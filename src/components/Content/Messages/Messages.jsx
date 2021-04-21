@@ -5,7 +5,7 @@ import {wrapper} from './Messages.module.scss';
 import {Route, Switch} from 'react-router-dom';
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 
-const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) => {
+const Messages = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 
 	const fakePenPal = [16178, 15455, 15349, 15293];
 
@@ -33,7 +33,7 @@ const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) 
 		}
 	}, [...fakePenPal])
 
-	const propsDeployDialogs = {messages, sendMessage, dialogs, getPenPals, authUserAvatar};
+	const propsDeployDialogs = {sendMessage, dialogs, getPenPals, authUserAvatar};
 	const propsDialogs = {dialogs, isPenPalLoading, isPenPalLoadingFail}
 
 	return (
@@ -51,9 +51,7 @@ const Messages = ({messages, dialogs, sendMessage, getPenPals, authUserAvatar}) 
 										<ErrorBoundary>
 											<Route path='/messages/:userId?' children={<DeployDialogs {...propsDeployDialogs} />} />
 										</ErrorBoundary>
-			</>}
-			
-			
+									</>}
 		</div>
 	)
 }
