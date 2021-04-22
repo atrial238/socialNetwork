@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import DeployDialogs from './DeployDialogs/DeployDialogs';
 import Dialogs from './Dialogs/Dialogs';
-import {wrapper} from './Messages.module.scss';
+import styles from './Messages.module.scss';
 import {Route, Switch} from 'react-router-dom';
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
+import {Props} from './MessagesContainer';
 
-const Messages = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
+const {wrapper} = styles;
+
+const Messages: React.FC<Props> = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 
 	const fakePenPal = [16178, 15455, 15349, 15293];
 
@@ -25,7 +28,7 @@ const Messages = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 			setPenPalLoading(true)
 			setIsPenPalLoadingFail(false)
 			getPenPals(fakePenPal)
-				.then(res => res && setPenPalLoading(false))
+				.then((res: any) => res && setPenPalLoading(false))
 				.catch(()=>{
 					setPenPalLoading(false)
 					setIsPenPalLoadingFail(true)
@@ -33,7 +36,7 @@ const Messages = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 		}
 	}, [...fakePenPal])
 
-	const propsDeployDialogs = {sendMessage, dialogs, getPenPals, authUserAvatar};
+	const propsDeployDialogs = {sendMessage, dialogs, authUserAvatar, isMobaleView};
 	const propsDialogs = {dialogs, isPenPalLoading, isPenPalLoadingFail}
 
 	return (
@@ -43,7 +46,7 @@ const Messages = ({dialogs, sendMessage, getPenPals, authUserAvatar}) => {
 									? <ErrorBoundary>
 											<Switch>
 												<Route exact path='/messages/' children={<Dialogs {...propsDialogs}/>} />
-												<Route exact path='/messages/:userId?' children={<DeployDialogs {...propsDeployDialogs} isMobaleView={isMobaleView} />} />
+												<Route exact path='/messages/:userId?' children={<DeployDialogs {...propsDeployDialogs}/>} />
 											</Switch>
 										</ErrorBoundary>
 									: <>

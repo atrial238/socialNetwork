@@ -1,18 +1,26 @@
 import React from 'react';
-import { form_wrapper} from '../DeployDialogs.module.scss';
+import styles from '../DeployDialogs.module.scss';
 import {required} from '../../../../../util/validateForm';
 import { Formik, Field, Form } from 'formik';
 import { TextareaAutosize } from '@material-ui/core';
 import sendImg from '../../../../../assets/images/message/send.svg';
+import { addMessageType } from '../../../../../redux/types/message-reducer-types';
 
-const FormMessage = ({sendMessage, penPalId}) => {
+const { form_wrapper} = styles;
+
+interface Props {
+	sendMessage: (message: string, penPalId: any) => addMessageType
+	penPalId: number | undefined
+}
+
+const FormMessage: React.FC<Props> = ({sendMessage, penPalId}) => {
 
 	return (
 		<Formik
 			initialValues={{message: ''}}
 			onSubmit={(values, {resetForm}) =>{
 				sendMessage(values.message, penPalId);
-				resetForm({message: ''})
+				resetForm()
 			}}
 		>
 			{({handleSubmit, errors, handleChange, values, touched})=>(

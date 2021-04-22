@@ -12,10 +12,10 @@ interface PropsStateType {
 
 interface PropsThunkType {
 	sendMessage: (message: string, penPalId: number) => addMessageType
-	getPenPals: (fakePenPal: number[]) => void
+	getPenPals: (fakePenPal: number[]) => any
 }
 
-type Props = PropsStateType & PropsThunkType;
+export type Props = PropsStateType & PropsThunkType;
 
 const MessagesContainer = (props: Props) => <Messages {...props}/>
 
