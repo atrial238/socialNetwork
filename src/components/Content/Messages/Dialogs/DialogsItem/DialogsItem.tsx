@@ -1,8 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { link, active, avatar_style} from './DialogsItem.module.scss';
+import styles from './DialogsItem.module.scss';
 
-const DialogsItem = ({ name, id, avatar }) => {
+const { link, active, avatar_style} = styles;
+
+interface PropsDialogsItemType {
+	name: string
+	id: number
+	avatar: string
+}
+const DialogsItem: React.FC<PropsDialogsItemType> = ({ name, id, avatar }) => {
 
 	return (
 		<li>

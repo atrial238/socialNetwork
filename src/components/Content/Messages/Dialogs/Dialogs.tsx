@@ -1,9 +1,17 @@
 import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
-import { wrapper } from './Dialogs.module.scss';
+import styles from './Dialogs.module.scss';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
+import { dioalogsTypes } from '../../../../redux/types/message-reducer-types';
 
-const Dialogs = ({dialogs, isPenPalLoading, isPenPalLoadingFail}) => {
+const { wrapper } = styles;
+
+interface PropsDialogsType {
+	dialogs: dioalogsTypes[]
+	isPenPalLoading: boolean
+	isPenPalLoadingFail: boolean
+}
+const Dialogs: React.FC<PropsDialogsType> = ({dialogs, isPenPalLoading, isPenPalLoadingFail}) => {
 	
 	const dialogsElement = dialogs.map(dialog => <DialogsItem name={dialog.name} key={dialog.id} id={dialog.id} avatar={dialog.avatar} />)
 	
