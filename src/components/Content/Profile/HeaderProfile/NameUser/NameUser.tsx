@@ -3,6 +3,7 @@ import UserStatus from './UserStatus/UserStatus';
 import style from './NameUser.module.scss';
 
 const {wrapper, name_user} = style;
+
 interface PropsNameUserType {
 	nameUser: string
 	userStatus: string

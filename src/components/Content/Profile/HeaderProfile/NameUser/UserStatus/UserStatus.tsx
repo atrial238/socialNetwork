@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { status_user, status_user_owner} from './UserStatus.module.scss';
+import styles from './UserStatus.module.scss';
 import EditModeStatus from './EditModeStatus/EditModeStatus';
 
-const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
+const { status_user, status_user_owner} = styles;
+
+interface PropsUserStatusType {
+	userStatus: string
+	updateStatus: Function
+	isOwner: boolean
+}
+
+const UserStatus: React.FC<PropsUserStatusType> = ({ userStatus, updateStatus, isOwner }) => {
 
 // state
 	const [isStatusEdit, setIsStatusEdit] = useState(false),
@@ -13,16 +21,16 @@ const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 	useEffect(() => setStatus(userStatus), [userStatus]);
 
 	const activateEditMode = () => setIsStatusEdit(true),
-			setTemporaryStatus = (e) => setStatus(e.currentTarget.value);
+			setTemporaryStatus = (e:any) => setStatus(e.currentTarget.value);
 
 // post status to server and handle errors
 	const deactivateEditMode = () => {
 			setIsStatusUpload(true)
 			updateStatus(temporaryStatus)
-				.then(res => {
+				.then((res: any) => {
 					if(res.name === 'Error'){
 						setIsError(true)
-						return new Promise((resolve) => setTimeout(() => resolve(), 3000))
+						return new Promise((resolve) => setTimeout((resolve) => resolve(), 3000))
 							.then(() => setIsError(false))
 					}
 				})
@@ -38,7 +46,8 @@ const UserStatus = ({ userStatus, updateStatus, isOwner }) => {
 			isStatusUpload,
 			deactivateEditMode,
 			isStatusEdit,
-			setIsStatusEdit };
+			setIsStatusEdit 
+		};
 
 	const status = (
 			<div
