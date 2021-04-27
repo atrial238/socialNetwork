@@ -10,7 +10,7 @@ export type profileDataType = {
 	aboutMe: string
 	fullName: string
 	lookingForAJOb: boolean
-	lookingForAJobDescription: boolean
+	lookingForAJobDescription: string
 	userId: number
 	photos: {large: string, small: string}
 	contacts: {

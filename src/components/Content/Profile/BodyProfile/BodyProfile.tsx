@@ -1,10 +1,34 @@
 import React from 'react';
-import {wrapper, content} from './BodyProfile.module.scss';
+import styles from './BodyProfile.module.scss';
 import UserData from './UserData/UserData';
 import Posts from './Posts/Posts';
 import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
+import { postDataType } from '../../../../redux/types/profile-reducer-types';
 
-const BodyProfile = (props) => {
+const {wrapper, content} = styles;
+
+interface PropsBodyProfileType {
+	aboutMe: string 
+	isOwner: boolean
+	contacts: {
+		facebook: string
+		website: string
+		vk: string
+		twitter: string
+		instagram: string
+		youtube: string
+		github: string
+		mainLink: string
+	}
+	lookingForAJobDescription: string
+	isProfileUserUploading: boolean
+	updateProfileData: Function
+	fullName: string
+	photos: {large: string, small: string}
+	postData: postDataType 
+	sendPost: Function
+}
+const BodyProfile: React.FC<PropsBodyProfileType> = (props) => {
 
 	const {aboutMe, isOwner, contacts, lookingForAJobDescription,isProfileUserUploading, 
 					updateProfileData, fullName, photos, postData, sendPost} = props;

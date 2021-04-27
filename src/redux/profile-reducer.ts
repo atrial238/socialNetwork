@@ -88,7 +88,7 @@ const initState: initStateType= {
 		aboutMe: '',
 		fullName: '',
 		lookingForAJOb: false,
-		lookingForAJobDescription: false,
+		lookingForAJobDescription: '',
 		userId: 0,
 		photos: {large: '', small: ''}, 
 		contacts: {
