@@ -22,7 +22,7 @@ interface PropsHederProfileTypes {
 	userStatus: string
 	avatar: string
 	userId: number
-	
+
 	isOwner: boolean
 	isAvatarUploading: boolean
 	isErrorUpdateAvatar: boolean
@@ -120,7 +120,7 @@ const {  updateAvatar,
 									? preloaderAvatar 
 									: isProfileUserUploadFail 
 									? <img src={placeholder_avatar} alt="avatar"/> 
-									: <img onClick={handleOpen} src={avatar || placeholder_avatar} alt="avatar"/> 
+									: <img onClick={handleOpen} src={avatar || placeholder_avatar} alt="avatar"/>
 							}
 						</div>
 

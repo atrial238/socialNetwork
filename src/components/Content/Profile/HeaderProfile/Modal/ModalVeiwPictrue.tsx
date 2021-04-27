@@ -7,7 +7,13 @@ import placeholderAvatar from '../../../../../assets/images/avatar/placeholder_a
 
 const {modal, modal_wrapper} = styles;
 
-const Cover = ({avatar, open, handleClose}) => {
+interface PropsCoverType {
+	avatar: string
+	open: boolean
+	handleClose: any
+}
+
+const Cover: React.FC<PropsCoverType> = ({avatar, open, handleClose}) => {
 
 	return (
 		<Modal
