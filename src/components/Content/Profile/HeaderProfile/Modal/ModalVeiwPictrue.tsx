@@ -1,9 +1,11 @@
 import React from 'react';
-import {modal, modal_wrapper} from '../HeaderProfile.module.scss';
+import styles from '../HeaderProfile.module.scss';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import placeholderAvatar from '../../../../../assets/images/avatar/placeholder_avatar.jpg'
+
+const {modal, modal_wrapper} = styles;
 
 const Cover = ({avatar, open, handleClose}) => {
 

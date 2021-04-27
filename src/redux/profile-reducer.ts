@@ -89,7 +89,7 @@ const initState: initStateType= {
 		fullName: '',
 		lookingForAJOb: false,
 		lookingForAJobDescription: false,
-		userId: '',
+		userId: 0,
 		photos: {large: '', small: ''}, 
 		contacts: {
 			facebook: '',

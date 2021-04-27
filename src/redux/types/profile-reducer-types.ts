@@ -11,7 +11,7 @@ export type profileDataType = {
 	fullName: string
 	lookingForAJOb: boolean
 	lookingForAJobDescription: boolean
-	userId: string
+	userId: number
 	photos: {large: string, small: string}
 	contacts: {
 		facebook: string

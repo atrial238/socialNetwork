@@ -1,17 +1,40 @@
 import React from 'react';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
-import placeholder from '../../../../assets/images/placeholder.svg';
 import LoadingSmall from '../../../common/Loading/LoadingSmall/LoadingSmall';
 import placeholder_avatar from '../../../../assets/images/avatar/placeholder_avatar.jpg';
 import NameUser from './NameUser/NameUser';
 import {LoadingProgressContent} from '../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
-import {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_name,
-			avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail, error_occure,
-			avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} from './HeaderProfile.module.scss';
+import styles from './HeaderProfile.module.scss';
 import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
 
-const HeaderProfile = props => {
+const {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_name,
+		avatar_change, button, avatar_wrapper, disable_btn, loading, upload_fail, error_occure,
+		avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} = styles;
+
+interface PropsHederProfileTypes {
+	updateAvatar: Function
+	followUser: Function
+	unfollowUser: Function
+	updateStatus: Function
+
+	nameUser: string
+	userStatus: string
+	avatar: string
+	userId: number
+	
+	isOwner: boolean
+	isAvatarUploading: boolean
+	isErrorUpdateAvatar: boolean
+	isUserFollow: boolean
+	isUserFollowUploading: boolean
+	isUserFollowUploadFail: boolean
+	isProfileUserUploading: boolean
+	isProfileUserUploadFail: boolean
+	isUserStatusUploading: boolean
+	isUserStatusUploadFail: boolean
+}
+const HeaderProfile: React.FC<PropsHederProfileTypes> = props => {
 
 // destructuring props
 const {  updateAvatar, 
@@ -40,7 +63,7 @@ const {  updateAvatar,
 	const btnChangeAvatar = (
 		<div className={`${avatar_change} ${ isAvatarUploading && disable_btn }`} >
 			<label htmlFor="updateAvatar"><img src={photoIcons}/></label>
-			<input disabled={isAvatarUploading} id='updateAvatar' onChange={(e)=>updateAvatar(e.target.files[0])} type='file'/>
+			<input disabled={isAvatarUploading} id='updateAvatar' onChange={(e)=>updateAvatar(e.target.files![0])} type='file'/>
 		</div>
 	)
 
