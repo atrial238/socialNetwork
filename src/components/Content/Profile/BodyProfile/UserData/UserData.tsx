@@ -4,22 +4,14 @@ import socialIcons from './srcSocialIcons';
 import skillsIcons from './srcSkillsIcons';
 import ModalChangeUserData from './ModalChangeUserData/ModalChangeUserData';
 import FormChangeUserData from './FormChangeUserData/FormChangeUserData';
+import { contactsType } from '../../../../../redux/types/profile-reducer-types';
 
 const {wrapper, contacts_wrapper, contacts_header, 
 		skills_wrapper, edit_info, aboutMe_wrapper} = styles;
 
 interface PropsUserDataType {
 	aboutMe: string
-	contacts: {
-		facebook: string
-		website: string
-		vk: string
-		twitter: string
-		instagram: string
-		youtube: string
-		github: string
-		mainLink: string
-	}
+	contacts: contactsType
 	lookingForAJobDescription: string
 	isOwner: boolean
 	updateProfileData: Function

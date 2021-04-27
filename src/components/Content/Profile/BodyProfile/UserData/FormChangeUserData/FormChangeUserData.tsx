@@ -1,19 +1,36 @@
 import React from 'react';
-import {wrapper, textarea, button, buttons_wrapper, save_btn,
-			 cancel_btn, style_contacts, style_contacts_wrapper, 
-			 style_contacts_body, entire_form,
-			  submitting_process, buttons_save_wrapper, 
-			  submitting_error, submitting_success, field_error, field_wrapper} from './FormChangeUserData.module.scss';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
+
+import styles from './FormChangeUserData.module.scss';
 import LoadingSmall from '../../../../../common/Loading/LoadingSmall/LoadingSmall';
 import {maxLength20, maxLength100} from '../../../../../../util/validateForm';
+import { contactsType } from '../../../../../../redux/types/profile-reducer-types';
+import { FormikErrors } from 'formik'
 
-const FormChangeUserData = ({aboutMe, handleClose, contacts, lookingForAJobDescription, updateProfileData, fullName}) => {
+const {wrapper, textarea, button, buttons_wrapper, save_btn,
+		cancel_btn, style_contacts, style_contacts_wrapper, 
+		style_contacts_body, entire_form,
+		submitting_process, buttons_save_wrapper, 
+		submitting_error, submitting_success, field_error, field_wrapper} = styles;
 
-	const handleOnSubmit = (values, {setSubmitting, setErrors, setStatus}) => {
-		
+interface PropsFormUserDataTypes {
+	aboutMe: string
+	handleClose: any
+	contacts: contactsType
+	lookingForAJobDescription: string
+	updateProfileData: Function
+	fullName: string
+}
+
+
+
+const FormChangeUserData: React.FC<PropsFormUserDataTypes> = ({aboutMe, handleClose, contacts, lookingForAJobDescription, updateProfileData, fullName}) => {
+
+	const handleOnSubmit = (values: string, action: any) => {
+
+		const {setSubmitting, setErrors, setStatus} = action
 		updateProfileData(values)
-		.then(res => {
+		.then((res: any) => {
 			if(res.data.resultCode === 0){
 				setSubmitting(false)
 				setStatus({submitSuccess: true})
@@ -51,7 +68,7 @@ const FormChangeUserData = ({aboutMe, handleClose, contacts, lookingForAJobDescr
 			<Formik
 				initialValues={{...initValueFormik}}
 				initialStatus={{submitting_success: false}}
-				onSubmit={(values, actions) => {handleOnSubmit(values, actions)}}
+				onSubmit={(values: any, actions: any) => {handleOnSubmit(values, actions)}}
 			>
 				{({isSubmitting, errors, status}) => (
 
@@ -130,7 +147,9 @@ const FormChangeUserData = ({aboutMe, handleClose, contacts, lookingForAJobDescr
 									<button id='submit' className={save_btn} type='submit' disabled={isSubmitting}><span>Save</span></button>
 								</div>
 								{ isSubmitting && <div className={submitting_process}><LoadingSmall size={25}/></div>}
-								{ errors.submitFaild && <div className={submitting_error}>Something went wrong</div>}
+								 
+								{ // @ts-ignore 
+									errors.submitFaild && <div className={submitting_error}>Something went wrong</div>}
 								{ status.submitSuccess && <div className={submitting_success}>Success!</div>}
 							</div>
 						</div>

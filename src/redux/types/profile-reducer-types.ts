@@ -6,6 +6,16 @@ import { ADD_POST, SET_PROFILE,
 			PROFILE_UPLOADING, PROFILE_UPLOAD_FAIL ,
 			STATUS_UPLOADING, STATUS_UPLOAD_FAIL} from '../profile-reducer';
 
+export type contactsType = {
+	facebook: string
+	website: string
+	vk: string
+	twitter: string
+	instagram: string
+	youtube: string
+	github: string
+	mainLink: string
+}
 export type profileDataType = {
 	aboutMe: string
 	fullName: string
@@ -13,16 +23,7 @@ export type profileDataType = {
 	lookingForAJobDescription: string
 	userId: number
 	photos: {large: string, small: string}
-	contacts: {
-		facebook: string
-		website: string
-		vk: string
-		twitter: string
-		instagram: string
-		youtube: string
-		github: string
-		mainLink: string
-	}
+	contacts: contactsType
 }
 export type sendPostType = {type: typeof ADD_POST, post: string}
 export type deletePostType = {type: typeof DELETE_POST, id: number}
