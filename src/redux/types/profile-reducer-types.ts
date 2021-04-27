@@ -39,7 +39,7 @@ export type isProfileUserUploadFailType = {type: typeof PROFILE_UPLOAD_FAIL, boo
 export type isUserStatusUploadingType = {type: typeof STATUS_UPLOADING, boolean: boolean }
 export type isUserStatusUploadFailType = {type: typeof STATUS_UPLOAD_FAIL, boolean: boolean }
 
-type postDataType = {
+export type postDataType = {
 	id: number
 	text: string
 	like: number

@@ -9,6 +9,7 @@ interface PropsDialogsItemType {
 	id: number
 	avatar: string
 }
+
 const DialogsItem: React.FC<PropsDialogsItemType> = ({ name, id, avatar }) => {
 
 	return (

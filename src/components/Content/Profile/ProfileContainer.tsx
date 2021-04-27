@@ -2,15 +2,45 @@ import React, { useEffect} from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import PropTypes from 'prop-types';
+
 import HeaderProfile from './HeaderProfile/HeaderProfile';
 import BodyProfile from './BodyProfile/BodyProfile';
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 import { updateProfileData, getUserProfile, getUserStatus, getIsUserFollowed,
 	updateStatus, sendPost, updateAvatar, followUser, unfollowUser } from '../../../redux/profile-reducer';
+import { stateType } from '../../../redux/store';
+import { profileDataType, postDataType} from '../../../redux/types/profile-reducer-types';
 
+interface PropsTypes {
+	getIsUserFollowed: Function
+	getUserStatus: Function
+	getUserProfile: Function
+	updateStatus: Function
+	sendPost: Function
+	updateAvatar: Function
+	updateProfileData: Function
+	followUser: Function
+	unfollowUser: Function
 
-const ProfileContainer = props => {
+	profileUserData: profileDataType
+	userStatus: string
+	postData: postDataType
+
+	isAvatarUploading:  boolean
+	isErrorUpdateAvatar: boolean
+	isUserFollow: boolean
+	isUserFollowUploading: boolean
+	isUserFollowUploadFail: boolean
+	isProfileUserUploading: boolean
+	isProfileUserUploadFail: boolean
+	isUserStatusUploading: boolean
+	isUserStatusUploadFail: boolean
+	authData: {id: number, isAuth: boolean}
+	match: any
+	history: any
+}
+
+const ProfileContainer: React.FC<PropsTypes> = props => {
 
 // get profile user from server or redirect to login page
 	useEffect(() => {
@@ -77,7 +107,7 @@ const ProfileContainer = props => {
 	)
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: stateType) => ({
 		profileUserData: state.profile.profileUserData,
 		userStatus: state.profile.userStatus,
 		authData: { id: state.auth.id, isAuth: state.auth.isAuth },
@@ -106,18 +136,3 @@ const actionCreators = {
 }
 
 export default compose(connect(mapStateToProps, actionCreators), withRouter)(ProfileContainer);
-
-ProfileContainer.propTypes = {
-	profileUserData: PropTypes.object,
-	userStatus: PropTypes.string,
-	authData: PropTypes.object,
-	postData: PropTypes.array,
-	isAvatarUploading: PropTypes.bool,
-	isErrorUpdateAvatar: PropTypes.bool,
-	updateProfileData: PropTypes.func,
-	getUserProfile: PropTypes.func,
-	getUserStatus: PropTypes.func,
-	updateStatus: PropTypes.func,
-	sendPost: PropTypes.func,
-	updateAvatar: PropTypes.func,
-}
