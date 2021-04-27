@@ -1,9 +1,20 @@
 import React from 'react';
-import {status_input, buttons_wrapper, button, input_fade,
-				 button_fade, wrapper_input, loading_spinner, button_save } from './EditModeStatus.module.scss';
+import styles from './EditModeStatus.module.scss';
 import LoadingSmall from '../../../../../../common/Loading/LoadingSmall/LoadingSmall';
 
-const EditModeStatus = ({ temporaryStatus, setTemporaryStatus, isStatusEdit, 
+const {status_input, buttons_wrapper, button, input_fade,
+	button_fade, wrapper_input, loading_spinner, button_save } = styles;
+
+interface PropsEditModeStatusType {
+	temporaryStatus: string
+	setTemporaryStatus: any
+	isError: boolean 
+	isStatusUpload: boolean
+	deactivateEditMode: any
+	isStatusEdit: boolean
+	setIsStatusEdit: Function
+}
+const EditModeStatus: React.FC<PropsEditModeStatusType> = ({ temporaryStatus, setTemporaryStatus, isStatusEdit, 
 									isError, isStatusUpload, deactivateEditMode, setIsStatusEdit }) => {
 
 //props for button save
