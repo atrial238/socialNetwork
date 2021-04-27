@@ -1,12 +1,31 @@
 import React from 'react';
-import {wrapper, contacts_wrapper, contacts_header, 
-				skills_wrapper, edit_info, aboutMe_wrapper} from './UserData.module.scss';
+import styles from './UserData.module.scss';
 import socialIcons from './srcSocialIcons';
 import skillsIcons from './srcSkillsIcons';
 import ModalChangeUserData from './ModalChangeUserData/ModalChangeUserData';
 import FormChangeUserData from './FormChangeUserData/FormChangeUserData';
 
-const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, updateProfileData, fullName}) => {
+const {wrapper, contacts_wrapper, contacts_header, 
+		skills_wrapper, edit_info, aboutMe_wrapper} = styles;
+
+interface PropsUserDataType {
+	aboutMe: string
+	contacts: {
+		facebook: string
+		website: string
+		vk: string
+		twitter: string
+		instagram: string
+		youtube: string
+		github: string
+		mainLink: string
+	}
+	lookingForAJobDescription: string
+	isOwner: boolean
+	updateProfileData: Function
+	fullName: string
+}
+const UserData: React.FC<PropsUserDataType> = ({aboutMe, contacts, lookingForAJobDescription, isOwner, updateProfileData, fullName}) => {
 	
 // handle modal widow for edit user information
 	const [open, setOpen] = React.useState(false);
@@ -15,18 +34,18 @@ const UserData = ({aboutMe, contacts, lookingForAJobDescription, isOwner, update
 
 // make elements with icons for every contacts(facebook, website, vk, twitter, instagram, youtube, github, others)
 	const contactsElem = Object.keys(contacts)
-								.map((socialName, index) => 
+								.map((socialName: any, index: any) => 
 									<div key={index}>
-										<a target='_blank' href={contacts[socialName] || '#'}>
-											<img src={socialIcons[socialName]} alt="social icon"/>
+										<a target='_blank' href={(contacts as any)[socialName] || '#'}>
+											<img src={(socialIcons as any)[socialName]} alt="social icon"/>
 										</a>
 									</div>
 	);
 
 // make elements with icons for every skills
-	const getIconSrc = skillsName => skillsIcons[skillsName.replace(/\s/g, '')];
+	const getIconSrc = (skillsName: any) => (skillsIcons as any)[skillsName.replace(/\s/g, '')];
 	
-	let skillsElem = "User have no skills";
+	let skillsElem: any = "User have no skills";
 
 	if(isOwner && lookingForAJobDescription){
 
