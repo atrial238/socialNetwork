@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import {authAPI, secureAPI} from '../api/api';
 import { stateType } from './store';
 import {userDataType, authUserDataType, nullMyDataType,
-	 getCaptchaType, avatarSrcOnHeaderType, stateInitType, ActionAuthType} from './types/auth-reucer-types';
+	 getCaptchaType, avatarSrcOnHeaderType, stateInitType, ActionAuthType, DispatchType} from './types/auth-reucer-types';
 
 const setAuthUserData = (data: userDataType): authUserDataType => ({type: AUTH, data}),
 		nullMyData = (): nullMyDataType => ({type: NULL_MY_DATA}),
@@ -38,14 +38,14 @@ const authReducer = (state = stateInit, action: ActionAuthType) => {
 			return state;
 	}
 }
-export const getAuthData = () => (dispatch: ThunkDispatch<stateType, unknown, ActionAuthType>) => {
+export const getAuthData = () => (dispatch: DispatchType) => {
 
 	return authAPI.isAuthorization()
 		.then((res: any) => res.data.resultCode === 0 ? dispatch(setAuthUserData(res.data)) : res)
 		.catch((error: any) => error)
 }
 
-export const loginUser =  (email: string, password: string, rememberMe: boolean, captcha: string) => (dispatch: ThunkDispatch<stateType, unknown, ActionAuthType>) => {
+export const loginUser =  (email: string, password: string, rememberMe: boolean, captcha: string) => (dispatch: DispatchType) => {
 
 	return authAPI.loginUser(email, password, rememberMe, captcha)
 			.then((respond: any) => respond.data.resultCode === 0 
@@ -57,12 +57,12 @@ export const loginUser =  (email: string, password: string, rememberMe: boolean,
 			.catch((error: any) => error);
 }
 
-export const logoutUser = () => async (dispatch: ThunkDispatch<stateType, unknown, ActionAuthType>) => {
+export const logoutUser = () => async (dispatch: DispatchType) => {
 	const res = await authAPI.logoutUser();
 	if(!res.data.resultCode) dispatch(nullMyData()) 
 }
 
-export const getCaptchaThunk = () => async (dispatch: ThunkDispatch<stateType, unknown, ActionAuthType>) => {
+export const getCaptchaThunk = () => async (dispatch: DispatchType) => {
 	const res = await secureAPI.getCaptcha();
 	dispatch(getCaptchaAC(res.data.url));
 }

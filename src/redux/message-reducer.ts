@@ -1,7 +1,9 @@
+import { ThunkDispatch } from 'redux-thunk';
 import {profileAPI} from '../api/api';
+import { stateType } from './store';
 import {addMessageType, dataMessageType,
 	 		dataPenPalType, initStateType,
-	  		dioalogsTypes, penPalDataType} from './types/message-reducer-types';
+	  		dioalogsTypes, penPalDataType, ActionType} from './types/message-reducer-types';
 
 export const sendMessage = (message: string, penPalId: number): addMessageType => ({type: ADD_MESSAGE, data: {message, penPalId}});
 const setPenPalData = (data: dataPenPalType): penPalDataType => ({type: ADD_PEN_PAL_MESSAGE, data})
@@ -36,7 +38,7 @@ const addPenPalData = (state: initStateType, dataPenPal: dataPenPalType) => ({
 
 const initState: initStateType = {dialogs: []};
 
-const messageReducer = (state = initState, action: any) => {
+const messageReducer = (state = initState, action: ActionType) => {
 	switch(action.type){
 		case ADD_MESSAGE:
 			return addMessage(state, action.data);
@@ -47,7 +49,7 @@ const messageReducer = (state = initState, action: any) => {
 	}
 }
 
-export const getPenPals = (fakePenPal: number[]) => (dispatch: any) => {
+export const getPenPals = (fakePenPal: number[]) => (dispatch: ThunkDispatch<stateType, unknown, ActionType>) => {
 	const respond = fakePenPal.map((penPalId: number) => profileAPI.getUserProfile(penPalId)
 		.then((res: any) => res.status === 200 && dispatch(setPenPalData(res.data))))
 

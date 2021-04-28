@@ -1,4 +1,6 @@
+import { ThunkDispatch } from 'redux-thunk';
 import {  AUTH, AVATAR_SRC, NULL_MY_DATA, GET_CAPTCHA  } from '../auth-reucer';
+import { stateType } from '../store';
 
 type dataType = {
 	id: number
@@ -39,3 +41,5 @@ export type stateInitType = {
 }
 
 export type ActionAuthType = authUserDataType | nullMyDataType | getCaptchaType | avatarSrcOnHeaderType;
+
+export type DispatchType = ThunkDispatch<stateType, unknown, ActionAuthType>

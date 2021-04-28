@@ -32,3 +32,5 @@ export type penPalDataType = {
 	type: typeof ADD_PEN_PAL_MESSAGE
 	data: dataPenPalType
 }
+
+export type ActionType = addMessageType | penPalDataType;
