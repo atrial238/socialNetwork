@@ -3,7 +3,7 @@ import {  AUTH, AVATAR_SRC, NULL_MY_DATA, GET_CAPTCHA  } from '../auth-reucer';
 import { stateType } from '../store';
 
 type dataType = {
-	id: number
+	id: number | null
 	email: string
 	login: string
 }

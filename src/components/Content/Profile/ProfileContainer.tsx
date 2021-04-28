@@ -106,4 +106,4 @@ const actionCreators = {
 	unfollowUser
 }
 
-export default compose(connect<TStateProps, TDispatchProps, {}, stateType>(mapStateToProps, actionCreators), withRouter)(ProfileContainer);
+export default compose(connect<{}, TDispatchProps, {}, stateType>(mapStateToProps, actionCreators), withRouter)(ProfileContainer);

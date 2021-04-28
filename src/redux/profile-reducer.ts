@@ -1,12 +1,13 @@
 import {profileAPI} from '../api/api';
 import {setAvatarSrcOnHeader} from './auth-reucer';
+import { stateType } from './store';
 import { sendPostType, deletePostType, dataProfileType, 
 			userStatusType, avatarSrcType,isAvatarUploadingType,
 			errorUpdateAvatarType, isUserFollowType,
 			isUserFollowUploadingType, isUserFollowUploadFailType, 
 			isProfileUserUploadingType,isProfileUserUploadFailType, 
 			isUserStatusUploadingType, isUserStatusUploadFailType,
-			profileDataType, initStateType } from "./types/profile-reducer-types";
+			profileDataType, initStateType, ActionType, DispatchType } from "./types/profile-reducer-types";
 
 
 // action creators
@@ -115,7 +116,7 @@ const initState: initStateType= {
 }
 
 // reducer
-const profileReducer = (state = initState, action: any) => {
+const profileReducer = (state = initState, action: ActionType) => {
 	switch (action.type) {
 		case ADD_POST:
 			return addPost(state, action.post);
@@ -151,7 +152,7 @@ const profileReducer = (state = initState, action: any) => {
 }
 
 // thunks get data user
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
+export const getUserProfile = (userId: number) => async (dispatch: DispatchType) => {
 	try {
 		dispatch(setIsProfileUserUploadFail(false));
 		dispatch(setIsProfileUserUploading (true))
@@ -169,7 +170,7 @@ export const getUserProfile = (userId: number) => async (dispatch: any) => {
 	}
 }
 
-export const getUserStatus = (id:  number) => async (dispatch: any) => {
+export const getUserStatus = (id:  number) => async (dispatch: DispatchType) => {
 	try {
 		dispatch(setIsUserStatusUploadFail (false));
 		dispatch(setIsUserStatusUploading (true));
@@ -184,19 +185,19 @@ export const getUserStatus = (id:  number) => async (dispatch: any) => {
 	}
 }
 
-export const getIsUserFollowed = (id:  number) => async (dispatch: any) => {
+export const getIsUserFollowed = (id:  number) => async (dispatch: DispatchType) => {
 	const res = await profileAPI.getIsUserFollowed(id)
 	dispatch(setIsUserFollow(res.data))
 }
 
 // thunks update data user
-export const updateStatus = (status: string) => (dispatch: any) => {
+export const updateStatus = (status: string) => (dispatch: DispatchType) => {
 	 return profileAPI.updateUserStatus(status)
 				.then((res: any) => res.data.resultCode === 0 && dispatch(setUserStatus(status)))
 				.catch((error: any) => error);
 }
 
-export const updateAvatar = (url: File) =>  (dispatch: any) => {
+export const updateAvatar = (url: File) =>  (dispatch: DispatchType) => {
 	dispatch(setIsAvatarUploading()) //set true
 	profileAPI.postAvatar(url)
 		.then((res: any) => res.data.resultCode === 0 
@@ -210,7 +211,7 @@ export const updateAvatar = (url: File) =>  (dispatch: any) => {
 		.finally(()=> dispatch(setIsAvatarUploading())) // set false
 }
 
-export const updateProfileData = (data: profileDataType) => (dispatch: any, getState: any) => {
+export const updateProfileData = (data: profileDataType) => (dispatch: DispatchType, getState: () => any) => {
 	 return profileAPI.postDataProfile(data)
 	 	.then((res: any) => {
 			res.data.resultCode === 0 && dispatch(getUserProfile(getState().auth.id));
@@ -219,7 +220,7 @@ export const updateProfileData = (data: profileDataType) => (dispatch: any, getS
 }
 
 // helper function to avoid duplicate code in followUser and unfollowUser thunk
-const followUnfollowUser = async (id:  number, methodAPI: Function, dispatch: any, boolean: boolean) => {
+const followUnfollowUser = async (id:  number, methodAPI: Function, dispatch: DispatchType, boolean: boolean) => {
 	dispatch(setIsUserFollowUploading(true));
 	dispatch(setIsUserFollowUploadFail(false));
 	try{
@@ -235,7 +236,7 @@ const followUnfollowUser = async (id:  number, methodAPI: Function, dispatch: an
 	}
 	
 }
-export const followUser = (id:  number) => (dispatch: any) => followUnfollowUser(id, profileAPI.followUser, dispatch, true);
-export const unfollowUser = (id:  number) => (dispatch: any) => followUnfollowUser(id, profileAPI.unfollowUser, dispatch, false);
+export const followUser = (id:  number) => (dispatch: DispatchType) => followUnfollowUser(id, profileAPI.followUser, dispatch, true);
+export const unfollowUser = (id:  number) => (dispatch: DispatchType) => followUnfollowUser(id, profileAPI.unfollowUser, dispatch, false);
 
 export default profileReducer;

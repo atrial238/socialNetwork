@@ -1,3 +1,4 @@
+import { ThunkDispatch } from 'redux-thunk';
 import { ADD_POST, SET_PROFILE,
 			USER_STATUS, DELETE_POST,
 			SET_AVATAR_SRC, IS_AVATAR_UPLOAD,
@@ -5,6 +6,8 @@ import { ADD_POST, SET_PROFILE,
 			IS_USER_FOLLOW_UPLOADING, IS_USER_FOLLOW_UPLOAD_FAIL,
 			PROFILE_UPLOADING, PROFILE_UPLOAD_FAIL ,
 			STATUS_UPLOADING, STATUS_UPLOAD_FAIL} from '../profile-reducer';
+import { stateType } from '../store';
+import { avatarSrcOnHeaderType } from './auth-reucer-types';
 
 export type contactsType = {
 	facebook: string
@@ -60,3 +63,10 @@ export type initStateType = {
 		isUserStatusUploading: boolean,
 		isUserStatusUploadFail: boolean,
 }
+
+export type ActionType = sendPostType |deletePostType |dataProfileType |userStatusType | avatarSrcOnHeaderType
+									|avatarSrcType |isAvatarUploadingType |errorUpdateAvatarType |isUserFollowType|
+									isUserFollowUploadingType |isUserFollowUploadFailType |isProfileUserUploadingType 
+									|isProfileUserUploadFailType |isUserStatusUploadingType| isUserStatusUploadFailType;
+
+export type DispatchType = ThunkDispatch<stateType, unknown, ActionType>
