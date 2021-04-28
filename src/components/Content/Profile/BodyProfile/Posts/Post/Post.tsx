@@ -26,7 +26,7 @@ const Post: React.FC<PropsPostType>= ({like, text, fullName, photo, date, isProf
 		<div className={wrapper}>
 			<div className={header}>
 				<div className={avatar_img}>
-					{isProfileUserUploading ? preloadAvatar : <img src={photo || palaceHolderAvatar}/>}
+					{isProfileUserUploading ? preloadAvatar : <img src={photo || palaceHolderAvatar} alt='avatar'/>}
 				</div>
 				<div className={header_wrapper}>
 					<div className={userName}>{fullName}</div>

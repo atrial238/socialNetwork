@@ -1,16 +1,23 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import {renderField} from '../../../../../../../util/renderFormField';
 import {required, maxLength100} from '../../../../../../../util/validateForm';
-import {form, send_btn, cancel_btn, button, btn_wrapper, field_wrapper} from '../HeaderPost.module.scss';
+import { HandleCloseType } from '../HeaderPost';
+import styles from '../HeaderPost.module.scss';
 
-const FormPost = ({handleSubmit, handleClose})=> {
+const {form, send_btn, cancel_btn, button, btn_wrapper, field_wrapper} = styles;
+
+interface IPropsFieldName {
+	post: string
+}
+
+const FormPost: React.FC<InjectedFormProps<IPropsFieldName, HandleCloseType> & HandleCloseType> = ({handleSubmit, handleClose})=> {
 	return (
-		<form  className={form} onSubmit={handleSubmit} tabIndex='-1'>
+		<form  className={form} onSubmit={handleSubmit} tabIndex={-1}>
 			<div className={field_wrapper}>
 				<Field
 					type='text'
-					name='post'
+					name='posts'
 					typeTag='textarea'
 					component={renderField}
 					validate={[required]}
@@ -30,4 +37,4 @@ const FormPost = ({handleSubmit, handleClose})=> {
 		</form>
 	)
 }
-export default reduxForm({form: 'post'})(FormPost);
+export default reduxForm<IPropsFieldName, HandleCloseType>({form: 'post'})(FormPost);

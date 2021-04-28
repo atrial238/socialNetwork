@@ -2,15 +2,27 @@ import React from 'react';
 import placeholderAvatar from '../../../../../../assets/images/avatar/placeholder_avatar.jpg';
 import ModalPost from './ModalPost/ModalPost';
 import FormPost from './FormPost/FormPost';
-import {body, avatar, open_modal, wrapper} from './HeaderPost.module.scss';
+import styles from './HeaderPost.module.scss';
+import { sendPostType } from '../../../../../../redux/types/profile-reducer-types';
 
-const HeaderPost = ({photo, sendPost})=> {
+const {body, avatar, open_modal, wrapper} = styles;
+
+interface PropsHeaderPostType {
+	photo: string
+	sendPost: (post: string) => sendPostType
+}
+
+export interface HandleCloseType {
+	handleClose: () => void;
+} 
+
+const HeaderPost: React.FC<PropsHeaderPostType> = ({photo, sendPost})=> {
 
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const onSubmit = data =>{ 
+	const onSubmit = (data: any) =>{ 
 		handleClose();
 		sendPost(data.post);
 	};
