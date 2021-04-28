@@ -23,6 +23,7 @@ export type getCaptchaType = {
 	type: typeof GET_CAPTCHA
 	url: string
 }
+
 export type avatarSrcOnHeaderType = {
 	type: typeof AVATAR_SRC
 	src: string
@@ -36,3 +37,5 @@ export type stateInitType = {
 	avatar: null | string,
 	captcha: null | string
 }
+
+export type ActionAuthType = authUserDataType | nullMyDataType | getCaptchaType | avatarSrcOnHeaderType;
