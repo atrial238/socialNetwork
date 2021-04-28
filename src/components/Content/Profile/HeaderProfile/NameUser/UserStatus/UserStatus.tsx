@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import styles from './UserStatus.module.scss';
 import EditModeStatus from './EditModeStatus/EditModeStatus';
 
@@ -21,7 +21,7 @@ const UserStatus: React.FC<PropsUserStatusType> = ({ userStatus, updateStatus, i
 	useEffect(() => setStatus(userStatus), [userStatus]);
 
 	const activateEditMode = () => setIsStatusEdit(true),
-			setTemporaryStatus = (e:any) => setStatus(e.currentTarget.value);
+			setTemporaryStatus = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value);
 
 // post status to server and handle errors
 	const deactivateEditMode = () => {

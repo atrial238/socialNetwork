@@ -40,13 +40,5 @@ export type initStateType = {
 	isUserLoadingFail: boolean
 }
 
-//types for reducer
-// export type actionType = {
-// 	type: string | undefined
-// 	usersArr?: userType[] | undefined
-// 	currentPage?: number | undefined
-// 	friendPerPage?: number | undefined
-// 	totalCount?: number | undefined
-// 	isLoad?: boolean | undefined
-// 	isFailed?: boolean | undefined
-// }
+
+export type ActionType = setUserType | currentPageType | setTotalCountType | setLoadingType | isUserLoadingFailType;

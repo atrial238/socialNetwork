@@ -1,6 +1,8 @@
+import { ThunkDispatch } from 'redux-thunk';
 import {usersAPI} from '../api/api';
+import { stateType } from './store';
 import {isUserLoadingFailType, setUserType, userType, currentPageType,
-	setTotalCountType, setLoadingType, initStateType} from './types/find-user-reducer-types';
+	setTotalCountType, setLoadingType, initStateType, ActionType} from './types/find-user-reducer-types';
 
 //action creators
 const onSetUsers = (usersArr: userType[]): setUserType => ({type: SET_USERS, usersArr}),
@@ -37,7 +39,7 @@ const setUsers = (state: initStateType, usersArr: userType[]) => {
 }
 
 // reducer
-function findUsersReducer  (state = initState, action: any) {
+function findUsersReducer  (state = initState, action: ActionType) {
 	switch (action.type) {
 		case SET_USERS:
 			return setUsers(state, action.usersArr);
@@ -55,7 +57,7 @@ function findUsersReducer  (state = initState, action: any) {
 }
 
 // thunk
-export const getUsers = (page: number, friendPerPage: number) => async (dispatch: any) => {
+export const getUsers = (page: number, friendPerPage: number) => async (dispatch: ThunkDispatch<stateType, unknown, ActionType>) => {
 	try{
 		dispatch(setUserLoadingFail(false));
 		dispatch(setCurrentPage(page));

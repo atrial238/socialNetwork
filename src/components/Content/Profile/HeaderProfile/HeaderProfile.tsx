@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import ModalVeiwPictrue from './Modal/ModalVeiwPictrue';
 import photoIcons from '../../../../assets/images/avatar/photo.svg';
 import LoadingSmall from '../../../common/Loading/LoadingSmall/LoadingSmall';
@@ -63,7 +63,7 @@ const {  updateAvatar,
 	const btnChangeAvatar = (
 		<div className={`${avatar_change} ${ isAvatarUploading && disable_btn }`} >
 			<label htmlFor="updateAvatar"><img src={photoIcons}/></label>
-			<input disabled={isAvatarUploading} id='updateAvatar' onChange={(e)=>updateAvatar(e.target.files![0])} type='file'/>
+			<input disabled={isAvatarUploading} id='updateAvatar' onChange={(e:  ChangeEvent<HTMLInputElement>)=>updateAvatar(e.target.files![0])} type='file'/>
 		</div>
 	)
 
