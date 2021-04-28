@@ -24,4 +24,4 @@ const mapStateToProps = (state: stateType) => ({
 	authUserAvatar: state.auth.avatar
 });
 
-export default connect<PropsStateType, PropsThunkType, Props, stateType>(mapStateToProps, {sendMessage, getPenPals})(MessagesContainer);
+export default connect<{}, PropsThunkType, Props, stateType>(mapStateToProps, {sendMessage, getPenPals})(MessagesContainer);

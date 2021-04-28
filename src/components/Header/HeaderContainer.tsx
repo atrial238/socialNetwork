@@ -4,7 +4,7 @@ import Header from './Header';
 import { logoutUser} from '../../redux/auth-reucer';
 import {stateType} from '../../redux/store';
 
-interface PropsHeaderStateType {login: string, avatar: string}
+interface PropsHeaderStateType {login: string | null, avatar: string | null}
 
 export interface PropsHeader extends PropsHeaderStateType {logoutUser: () => void}
 

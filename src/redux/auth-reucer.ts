@@ -45,7 +45,7 @@ export const getAuthData = () => (dispatch: DispatchType) => {
 		.catch((error: any) => error)
 }
 
-export const loginUser =  (email: string, password: string, rememberMe: boolean, captcha: string) => (dispatch: DispatchType) => {
+export const loginUser =  (email: string, password: string, rememberMe: boolean, captcha: string | null) => (dispatch: DispatchType) => {
 
 	return authAPI.loginUser(email, password, rememberMe, captcha)
 			.then((respond: any) => respond.data.resultCode === 0 

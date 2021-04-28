@@ -13,11 +13,11 @@ const { container, wrapper } = styles;
 
 interface PropsStateType {
 	isAuth: boolean
-	captcha: string
+	captcha: string | null
 }
 
 interface PropsThunkType {
-	loginUser: (email: string, password: string, rememberMe: boolean, captcha: string) => any
+	loginUser: (email: string, password: string, rememberMe: boolean, captcha: string | null) => any
 	getUserProfile:  (userId: number) => any
 	setAvatarSrcOnHeader:  (src: string) => void
 }
@@ -28,9 +28,8 @@ export interface FormType {
 	email: string
 	password: string
 	rememberMe: boolean
-	captcha: string
+	captcha: string | null
 }
-
 
 const Login: React.FC<PropsLoginType> = ({ isAuth, loginUser, captcha, getUserProfile, setAvatarSrcOnHeader }) => {
 

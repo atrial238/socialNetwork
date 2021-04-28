@@ -10,7 +10,7 @@ const {field, field_checkbox, error} = styles;
 
 interface PropsFormLoginType {
 	onSubmit: (formData: FormType) => void, 
-	captcha: string
+	captcha: string | null
 }
 const FormLogin: React.FC<PropsFormLoginType> = ({onSubmit, captcha}) => {
 

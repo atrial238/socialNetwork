@@ -1,6 +1,5 @@
 import {profileAPI} from '../api/api';
 import {setAvatarSrcOnHeader} from './auth-reucer';
-import { stateType } from './store';
 import { sendPostType, deletePostType, dataProfileType, 
 			userStatusType, avatarSrcType,isAvatarUploadingType,
 			errorUpdateAvatarType, isUserFollowType,
@@ -157,7 +156,7 @@ export const getUserProfile = (userId: number) => async (dispatch: DispatchType)
 		dispatch(setIsProfileUserUploadFail(false));
 		dispatch(setIsProfileUserUploading (true))
 		const res = await profileAPI.getUserProfile(userId)
-
+		
 		if(res.status === 200){
 	
 			dispatch(setDataProfile(res.data));
@@ -175,6 +174,7 @@ export const getUserStatus = (id:  number) => async (dispatch: DispatchType) => 
 		dispatch(setIsUserStatusUploadFail (false));
 		dispatch(setIsUserStatusUploading (true));
 		const res = await profileAPI.getUserStatus(id)
+		
 		if(res.status === 200) {
 			dispatch(setIsUserStatusUploading (false));
 			dispatch(setUserStatus(res.data));
@@ -225,6 +225,7 @@ const followUnfollowUser = async (id:  number, methodAPI: Function, dispatch: Di
 	dispatch(setIsUserFollowUploadFail(false));
 	try{
 		const res = await methodAPI(id)
+		
 		if(res.data.resultCode === 0){
 			dispatch(setIsUserFollow(boolean));
 			dispatch(setIsUserFollowUploading(false));
