@@ -1,6 +1,7 @@
 import { profileDataType } from './../redux/types/profile-reducer-types';
 import  axios from 'axios';
-import { CommonResponseType, FollowUserType, GetCaptchaType, GetUsersResondType, IsAuthorizationType, PostAvatarType } from './typesApi/typesApi';
+import { CommonResponseType, FollowUserType, GetCaptchaType, 
+			GetUsersResondType, IsAuthorizationType, PostAvatarType } from './typesApi/typesApi';
 
 const instance = axios.create({
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',

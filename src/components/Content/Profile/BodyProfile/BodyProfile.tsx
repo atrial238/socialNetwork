@@ -16,7 +16,7 @@ interface PropsBodyProfileType {
 	updateProfileData: (data: profileDataType) => (dispatch: any, getState: any) => Promise<object>
 	fullName: string
 	photos: {large: string, small: string}
-	postData: postDataType 
+	postData: Array<postDataType> 
 	sendPost: (post: string) => sendPostType
 }
 const BodyProfile: React.FC<PropsBodyProfileType> = (props) => {

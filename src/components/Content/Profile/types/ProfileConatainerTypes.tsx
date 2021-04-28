@@ -7,7 +7,7 @@ export type PathParamsType = {userId: string}
 export interface TStateProps {
 	profileUserData: profileDataType
 	userStatus: string
-	postData: postDataType
+	postData: Array<postDataType>
 
 	isAvatarUploading:  boolean
 	isErrorUpdateAvatar: boolean

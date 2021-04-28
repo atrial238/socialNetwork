@@ -1,14 +1,23 @@
 import React from 'react';
-import {wrapper} from './Posts.module.scss';
+import styles from './Posts.module.scss';
 import HeaderPost from './HeaderPost/HeaderPost';
 import Post from './Post/Post';
+import { postDataType, sendPostType } from '../../../../../redux/types/profile-reducer-types';
 
+const {wrapper} = styles;
 
-const Posts = ({photo, postData, sendPost, fullName, isOwner, isProfileUserUploading}) => {
+interface PropsPosts {
+	photo: string
+	postData: Array<postDataType>
+	sendPost: (post: string) => sendPostType
+	fullName: string
+	isOwner: boolean
+	isProfileUserUploading: boolean
+}
 
-	const onSubmit = data => sendPost(data.post);
+const Posts: React.FC<PropsPosts> = ({photo, postData, sendPost, fullName, isOwner, isProfileUserUploading}) => {
 
-	const formPostData = {onSubmit, photo, sendPost};
+	const formPostData = {photo, sendPost};
 
 	const postElement = postData.map((post, index) => 
 								<Post 

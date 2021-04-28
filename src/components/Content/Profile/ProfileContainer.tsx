@@ -9,7 +9,7 @@ import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 import { updateProfileData, getUserProfile, getUserStatus, getIsUserFollowed,
 	updateStatus, sendPost, updateAvatar, followUser, unfollowUser } from '../../../redux/profile-reducer';
 import { stateType } from '../../../redux/store';
-import { PropsTypes, TDispatchProps, TStateProps } from './types/ProfileConatainerTypes';
+import { PropsTypes, TDispatchProps} from './types/ProfileConatainerTypes';
 
 const ProfileContainer: React.FC<PropsTypes> = props => {
 
