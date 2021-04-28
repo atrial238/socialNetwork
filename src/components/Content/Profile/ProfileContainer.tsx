@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import HeaderProfile from './HeaderProfile/HeaderProfile';
 import BodyProfile from './BodyProfile/BodyProfile';
@@ -9,19 +9,11 @@ import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
 import { updateProfileData, getUserProfile, getUserStatus, getIsUserFollowed,
 	updateStatus, sendPost, updateAvatar, followUser, unfollowUser } from '../../../redux/profile-reducer';
 import { stateType } from '../../../redux/store';
-import { profileDataType, postDataType} from '../../../redux/types/profile-reducer-types';
+import { profileDataType, postDataType, sendPostType} from '../../../redux/types/profile-reducer-types';
 
-interface PropsTypes {
-	getIsUserFollowed: Function
-	getUserStatus: Function
-	getUserProfile: Function
-	updateStatus: Function
-	sendPost: Function
-	updateAvatar: Function
-	updateProfileData: Function
-	followUser: Function
-	unfollowUser: Function
+type PathParamsType = {userId: string}
 
+interface TStateProps {
 	profileUserData: profileDataType
 	userStatus: string
 	postData: postDataType
@@ -36,9 +28,21 @@ interface PropsTypes {
 	isUserStatusUploading: boolean
 	isUserStatusUploadFail: boolean
 	authData: {id: number, isAuth: boolean}
-	match: any
-	history: any
 }
+
+interface TDispatchProps {
+	getIsUserFollowed: (id:  number) => (dispatch: any) => void
+	getUserStatus: (id:  number) => (dispatch: any) => void
+	getUserProfile: (userId: number) => (dispatch: any) => void
+	updateStatus: (status: string) => (dispatch: any) => Promise<object>
+	sendPost: (post: string) => sendPostType
+	updateAvatar: (url: string) => (dispatch: any) => void
+	updateProfileData: (data: profileDataType) => (dispatch: any, getState: any) => Promise<object>
+	followUser: (id:  number) => (dispatch: any) => void
+	unfollowUser: (id:  number) => (dispatch: any) => void
+}
+
+type PropsTypes = RouteComponentProps<PathParamsType> & TStateProps & TDispatchProps;
 
 const ProfileContainer: React.FC<PropsTypes> = props => {
 
@@ -48,9 +52,9 @@ const ProfileContainer: React.FC<PropsTypes> = props => {
 				userIdFromAuthData = props.authData.id;
 
 		if (!userIdFromUrl && !userIdFromAuthData) props.history.push('/login')
-			props.getUserProfile(userIdFromUrl || userIdFromAuthData);
-			props.getUserStatus(userIdFromUrl || userIdFromAuthData);
-			userIdFromUrl && props.getIsUserFollowed(userIdFromUrl);
+			props.getUserProfile(+userIdFromUrl || +userIdFromAuthData);
+			props.getUserStatus(+userIdFromUrl || +userIdFromAuthData);
+			userIdFromUrl && props.getIsUserFollowed(+userIdFromUrl);
 
 	}, [props.match.params.userId]);
 
@@ -135,4 +139,4 @@ const actionCreators = {
 	unfollowUser
 }
 
-export default compose(connect(mapStateToProps, actionCreators), withRouter)(ProfileContainer);
+export default compose(connect<TStateProps, TDispatchProps, {}, stateType>(mapStateToProps, actionCreators), withRouter)(ProfileContainer);
