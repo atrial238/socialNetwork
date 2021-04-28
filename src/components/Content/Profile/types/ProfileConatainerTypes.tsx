@@ -27,7 +27,7 @@ export interface TDispatchProps {
 	getUserProfile: (userId: number) => (dispatch: any) => void
 	updateStatus: (status: string) => (dispatch: any) => Promise<object>
 	sendPost: (post: string) => sendPostType
-	updateAvatar: (url: string) => (dispatch: any) => void
+	updateAvatar: (url: File) => (dispatch: any) => void
 	updateProfileData: (data: profileDataType) => (dispatch: any, getState: any) => Promise<object>
 	followUser: (id:  number) => (dispatch: any) => void
 	unfollowUser: (id:  number) => (dispatch: any) => void

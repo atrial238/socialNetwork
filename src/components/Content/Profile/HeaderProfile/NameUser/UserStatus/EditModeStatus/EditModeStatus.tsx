@@ -12,7 +12,7 @@ interface PropsEditModeStatusType {
 	isStatusUpload: boolean
 	deactivateEditMode: any
 	isStatusEdit: boolean
-	setIsStatusEdit: Function
+	setIsStatusEdit: (boolean: boolean) => void
 }
 const EditModeStatus: React.FC<PropsEditModeStatusType> = ({ temporaryStatus, setTemporaryStatus, isStatusEdit, 
 									isError, isStatusUpload, deactivateEditMode, setIsStatusEdit }) => {

@@ -6,7 +6,7 @@ const { status_user, status_user_owner} = styles;
 
 interface PropsUserStatusType {
 	userStatus: string
-	updateStatus: Function
+	updateStatus: (status: string) => any
 	isOwner: boolean
 }
 

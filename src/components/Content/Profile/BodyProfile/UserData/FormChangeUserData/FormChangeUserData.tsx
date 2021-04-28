@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage} from 'formik';
 import styles from './FormChangeUserData.module.scss';
 import LoadingSmall from '../../../../../common/Loading/LoadingSmall/LoadingSmall';
 import {maxLength20, maxLength100} from '../../../../../../util/validateForm';
-import { contactsType } from '../../../../../../redux/types/profile-reducer-types';
+import { contactsType, profileDataType } from '../../../../../../redux/types/profile-reducer-types';
 import { FormikErrors } from 'formik'
 
 const {wrapper, textarea, button, buttons_wrapper, save_btn,
@@ -18,7 +18,7 @@ interface PropsFormUserDataTypes {
 	handleClose: any
 	contacts: contactsType
 	lookingForAJobDescription: string
-	updateProfileData: Function
+	updateProfileData: (data: profileDataType) => any
 	fullName: string
 }
 
@@ -26,7 +26,7 @@ interface PropsFormUserDataTypes {
 
 const FormChangeUserData: React.FC<PropsFormUserDataTypes> = ({aboutMe, handleClose, contacts, lookingForAJobDescription, updateProfileData, fullName}) => {
 
-	const handleOnSubmit = (values: string, action: any) => {
+	const handleOnSubmit = (values: profileDataType, action: any) => {
 
 		const {setSubmitting, setErrors, setStatus} = action
 		updateProfileData(values)

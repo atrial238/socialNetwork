@@ -4,7 +4,7 @@ import socialIcons from './srcSocialIcons';
 import skillsIcons from './srcSkillsIcons';
 import ModalChangeUserData from './ModalChangeUserData/ModalChangeUserData';
 import FormChangeUserData from './FormChangeUserData/FormChangeUserData';
-import { contactsType } from '../../../../../redux/types/profile-reducer-types';
+import { contactsType, profileDataType } from '../../../../../redux/types/profile-reducer-types';
 
 const {wrapper, contacts_wrapper, contacts_header, 
 		skills_wrapper, edit_info, aboutMe_wrapper} = styles;
@@ -14,7 +14,7 @@ interface PropsUserDataType {
 	contacts: contactsType
 	lookingForAJobDescription: string
 	isOwner: boolean
-	updateProfileData: Function
+	updateProfileData: (data: profileDataType) => (dispatch: any, getState: any) => Promise<object>
 	fullName: string
 }
 const UserData: React.FC<PropsUserDataType> = ({aboutMe, contacts, lookingForAJobDescription, isOwner, updateProfileData, fullName}) => {

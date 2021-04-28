@@ -13,10 +13,10 @@ const {cover_img, gradient_bg, wrapper, avatar_container, btn_fade, preloader_na
 		avatar_fade, updateAvatarFail, btn_follow,  btn_unfollow, wrapper_btn, upload_process} = styles;
 
 interface PropsHederProfileTypes {
-	updateAvatar: Function
-	followUser: Function
-	unfollowUser: Function
-	updateStatus: Function
+	updateAvatar: (url: File) => (dispatch: any) => void
+	followUser: (id:  number) => (dispatch: any) => void
+	unfollowUser: (id:  number) => (dispatch: any) => void
+	updateStatus: (status: string) => (dispatch: any) => Promise<object>
 
 	nameUser: string
 	userStatus: string

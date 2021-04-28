@@ -196,7 +196,7 @@ export const updateStatus = (status: string) => (dispatch: any) => {
 				.catch((error: any) => error);
 }
 
-export const updateAvatar = (url: string) =>  (dispatch: any) => {
+export const updateAvatar = (url: File) =>  (dispatch: any) => {
 	dispatch(setIsAvatarUploading()) //set true
 	profileAPI.postAvatar(url)
 		.then((res: any) => res.data.resultCode === 0 

@@ -3,7 +3,7 @@ import styles from './BodyProfile.module.scss';
 import UserData from './UserData/UserData';
 import Posts from './Posts/Posts';
 import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary';
-import { contactsType, postDataType } from '../../../../redux/types/profile-reducer-types';
+import { contactsType, postDataType, profileDataType, sendPostType } from '../../../../redux/types/profile-reducer-types';
 
 const {wrapper, content} = styles;
 
@@ -13,11 +13,11 @@ interface PropsBodyProfileType {
 	contacts: contactsType
 	lookingForAJobDescription: string
 	isProfileUserUploading: boolean
-	updateProfileData: Function
+	updateProfileData: (data: profileDataType) => (dispatch: any, getState: any) => Promise<object>
 	fullName: string
 	photos: {large: string, small: string}
 	postData: postDataType 
-	sendPost: Function
+	sendPost: (post: string) => sendPostType
 }
 const BodyProfile: React.FC<PropsBodyProfileType> = (props) => {
 

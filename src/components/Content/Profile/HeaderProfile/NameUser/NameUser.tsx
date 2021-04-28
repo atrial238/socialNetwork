@@ -7,7 +7,7 @@ const {wrapper, name_user} = style;
 interface PropsNameUserType {
 	nameUser: string
 	userStatus: string
-	updateStatus: Function
+	updateStatus: (status: string) => (dispatch: any) => Promise<object>
 	isOwner: boolean
 }
 const NameUser: React.FC<PropsNameUserType> = ({nameUser, ...userStatusProps}) => {

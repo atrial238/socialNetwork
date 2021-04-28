@@ -64,4 +64,4 @@ const mapStateToProps = (state: stateType): PropsStateType => ({
 	isAuth: state.auth.isAuth,
 	captcha: state.auth.captcha,
 });
-export default connect(mapStateToProps, { loginUser, getUserProfile, setAvatarSrcOnHeader })(Login);
+export default connect<PropsStateType, PropsThunkType, {}, stateType>(mapStateToProps, { loginUser, getUserProfile, setAvatarSrcOnHeader })(Login);
