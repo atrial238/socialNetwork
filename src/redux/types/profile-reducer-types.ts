@@ -47,7 +47,7 @@ export type postDataType = {
 	id: number
 	text: string
 	like: number
-	date: object
+	date: Date
 }
 export type initStateType = {
 		postData: postDataType[]

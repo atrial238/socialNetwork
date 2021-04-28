@@ -1,10 +1,20 @@
 import React from 'react';
-import {wrapper, avatar_img, message, like_style, userName, header, header_wrapper, date_style} from './Post.module.scss';
+import styles from './Post.module.scss';
 import palaceHolderAvatar from '../../../../../../assets/images/avatar/placeholder_avatar.jpg';
 import {getMonthString} from '../../../../../../util/getMonthString';
 import {LoadingProgressContent} from '../../../../../common/Loading/LoadingProgressContent/LoadingProgressContent';
 
-const Post = ({like, text, fullName, photo, date, isProfileUserUploading}) => {
+const {wrapper, avatar_img, message, like_style, userName, header, header_wrapper, date_style} = styles;
+
+interface PropsPostType {
+	like: number
+	text: string
+	fullName: string
+	photo: string
+	date: Date
+	isProfileUserUploading: boolean
+}
+const Post: React.FC<PropsPostType>= ({like, text, fullName, photo, date, isProfileUserUploading}) => {
 	
 	const preloadAvatar = (
 		<LoadingProgressContent height={45} width={45}>
