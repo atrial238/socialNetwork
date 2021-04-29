@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import {renderField} from '../../../../../../../util/renderFormField';
-import {required, maxLength100} from '../../../../../../../util/validateForm';
+import {RenderField} from '../../../../../../../util/renderFormField';
+import {required} from '../../../../../../../util/validateForm';
 import { HandleCloseType } from '../HeaderPost';
 import styles from '../HeaderPost.module.scss';
 
@@ -19,7 +19,7 @@ const FormPost: React.FC<InjectedFormProps<IPropsFieldName, HandleCloseType> & H
 					type='text'
 					name='posts'
 					typeTag='textarea'
-					component={renderField}
+					component={RenderField}
 					validate={[required]}
 					errorMessage='Write something here...'
 				/>

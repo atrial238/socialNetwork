@@ -40,3 +40,4 @@ const HeaderPost: React.FC<PropsHeaderPostType> = ({photo, sendPost})=> {
 	)
 }
 export default HeaderPost;
+
