@@ -17,7 +17,7 @@ const FormPost: React.FC<InjectedFormProps<IPropsFieldName, HandleCloseType> & H
 			<div className={field_wrapper}>
 				<Field
 					type='text'
-					name='posts'
+					name='post'
 					typeTag='textarea'
 					component={RenderField}
 					validate={[required]}
