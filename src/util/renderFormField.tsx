@@ -13,6 +13,7 @@ interface PropsRenderFieldType {
 
 export const RenderField: React.FC<PropsRenderFieldType> = ({meta, input, type, typeTag, placeholder = '', errorMessage}) => {
 
+
 	return (
 			<>
 				{React.createElement(typeTag, {...input, type, placeholder}, null)}

@@ -13,8 +13,7 @@ interface PropsHeaderPostType {
 }
 
 export interface HandleCloseType {
-	handleClose: () => void
-	onSubmit: (data: {post: string}) => void
+	handleClose: () => void;
 } 
 
 const HeaderPost: React.FC<PropsHeaderPostType> = ({photo, sendPost})=> {
@@ -23,7 +22,7 @@ const HeaderPost: React.FC<PropsHeaderPostType> = ({photo, sendPost})=> {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const onSubmit = (data: {post: string}) => { 
+	const onSubmit = (data: any) =>{ 
 		handleClose();
 		sendPost(data.post);
 	};
