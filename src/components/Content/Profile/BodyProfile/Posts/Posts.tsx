@@ -34,7 +34,6 @@ const Posts: React.FC<PropsPosts> = ({photo, postData, sendPost, fullName, isOwn
 								{postElement}
 							</div>
 						: <div className={wrapper} >User don't have a wall</div>
-	
 }
 
 export default Posts;

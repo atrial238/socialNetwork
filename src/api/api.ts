@@ -5,7 +5,7 @@ import { CommonResponseType, FollowUserType, GetCaptchaType,
 
 const instance = axios.create({
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-	headers: {'API-KEY': '7a0e6aca-fbf9-433d-84b6-198a6c1f2d19'},
+	headers: {'API-KEY': '63685982-ee56-4553-a5d3-afb30363c428'},
 	withCredentials: true
 })
 
