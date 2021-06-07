@@ -4,8 +4,8 @@
 
 This is one of my first applications that use React, made by the lessons on youtube.
 
-Here you can get users from the server, go to their page, add and remove a user from your friends.
-It is also possible to upload your avatar to the server, change the status, name, information about 
+Here you can get users from the server, go to their page, add and remove a user from your friends.\
+It is also possible to upload your avatar to the server, change the status, name, information about \
 me, add contacts. There also are errors handle. When developing the project was used typescript.
 
 The following libraries are used here:
@@ -19,4 +19,4 @@ The following libraries are used here:
 -react-final-form\
 -react-router-dom\
 -redux-form\
--redux-thunk\
+-redux-thunk
